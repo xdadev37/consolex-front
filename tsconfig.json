@@ -13,8 +13,24 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "./",
+    "paths": {
+      "Slicers/*": ["Redux/Slicers/*"],
+      "RTKQuery/*": ["Redux/RTKQuery/*"],
+      "TSS/*": ["Styles/TSS/*"],
+      "CSS/*": ["Styles/CSS/*"],
+      "Table/*": ["Modules/Table/*"]
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.json",
+    "**/*.*.ts",
+    "**/*.png",
+    "**/*.svg",
+    "**/*.tsx",
+    "**/*.module.css"
+  ],
+  "exclude": ["node_modules", ".yarn", ".vscode"]
 }
