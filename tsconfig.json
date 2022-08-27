@@ -16,8 +16,8 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
-      "Slicers/*": ["Redux/Slicers/*"],
-      "RTKQuery/*": ["Redux/RTKQuery/*"],
+      "slicers/*": ["Redux/slicers/*"],
+      "api/*": ["Redux/api/*"],
       "TSS/*": ["Styles/TSS/*"],
       "CSS/*": ["Styles/CSS/*"],
       "Table/*": ["Modules/Table/*"]

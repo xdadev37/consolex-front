@@ -1,25 +1,26 @@
-import { memo, Fragment, useState } from 'react';
+import { memo, Fragment, useState } from "react";
 import {
   Card,
   CardHeader,
   CardContent,
+  CardMedia,
   CardActions,
   IconButton,
   Collapse,
   Menu,
   MenuItem,
-} from '@mui/material';
-import sx from 'TSS/Card.module';
-import dropMenuSX from 'TSS/Header/Profile.module';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from "@mui/material";
+import sx from "TSS/Card.module";
+import dropMenuSX from "TSS/Header/Profile.module";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronUp,
   faEllipsisV,
   faXmark,
-} from '@fortawesome/free-solid-svg-icons';
-import type { FC, MouseEvent } from 'react';
-import type { ICard } from 'Types/Card';
+} from "@fortawesome/free-solid-svg-icons";
+import type { FC, MouseEvent } from "react";
+import type { ICard } from "Types/Card";
 
 const Cards: FC<ICard> = ({
   header: { actions, ...header },
@@ -28,6 +29,7 @@ const Cards: FC<ICard> = ({
   collapse,
   children,
   isDeleted,
+  media,
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const openMenu = (e: MouseEvent<HTMLButtonElement>) =>
@@ -50,7 +52,7 @@ const Cards: FC<ICard> = ({
                 PaperProps={{ sx: dropMenuSX.menu }}
                 BackdropProps={{ sx: dropMenuSX.backdropSet }}
                 onClick={closeMenu}
-                anchorOrigin={{ horizontal: 'left', vertical: 'center' }}
+                anchorOrigin={{ horizontal: "left", vertical: "center" }}
               >
                 {actions.map(
                   (action, index) =>
@@ -71,6 +73,12 @@ const Cards: FC<ICard> = ({
             isDeleted && <FontAwesomeIcon icon={faXmark} />
           )
         }
+      />
+      <CardMedia
+        component="img"
+        image={media.url}
+        alt={media.alt}
+        height={300}
       />
       <CardContent>{children}</CardContent>
       {(cardActions || collapse) && (
