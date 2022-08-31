@@ -12,7 +12,7 @@ const TopAppBar: FC = () => (
         <Grid item>
           <Image alt="لوگو" src={Logo} />
         </Grid>
-        <Grid item></Grid>
+        <Grid item>اطلاعات تماس</Grid>
       </Grid>
     </Toolbar>
   </AppBar>
