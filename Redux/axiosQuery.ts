@@ -1,6 +1,6 @@
 import axios from "axios";
 import store from "./store";
-import appSettings from "AppSettings.json";
+import appSettings from "AppSettings";
 import { setAlertInfo } from "slicers/alertSnackbar";
 import type { AxiosRequestConfig } from "axios";
 import type { BaseQueryFn } from "@reduxjs/toolkit/query/react";
