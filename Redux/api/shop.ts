@@ -8,7 +8,7 @@ const shopApi = createApi({
   baseQuery: baseQuery('shops'),
   endpoints: ({ query }) => ({
     shop: query({
-      query: () => ({ url: '', method: 'GET' }),
+      query: () => ({ url: '', method: 'GET', params: { populate: '*' } }),
       transformResponse: (res: IBaseQuery<IShop>) => res,
     }),
   }),

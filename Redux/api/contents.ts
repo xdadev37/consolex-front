@@ -8,7 +8,7 @@ const contentsApi = createApi({
   baseQuery: baseQuery('contents'),
   endpoints: ({ query }) => ({
     content: query({
-      query: () => ({ url: '', method: 'GET' }),
+      query: () => ({ url: '', method: 'GET', params: { populate: '*' } }),
       transformResponse: (res: IBaseQuery<IContents>) => res,
     }),
   }),
