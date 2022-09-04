@@ -3,11 +3,11 @@ import type { MuiClasses } from 'Types/EnvTypes';
 const sx: MuiClasses<'card' | 'dropMenu'> = {
   card: {
     marginBottom: 2,
-    color: '#0e0e0e',
+    color: '#ffd401',
     borderRadius: 5,
     '.MuiCardHeader-subheader': { fontWeight: 'bold' },
   },
-  dropMenu: { color: '#0e0e0e' },
+  dropMenu: { color: '#ffd401' },
 };
 
 export default sx;

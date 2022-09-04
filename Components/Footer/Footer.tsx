@@ -1,9 +1,9 @@
 import { memo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Grid, Typography } from '@mui/material';
-import Image from 'next/future/image';
+import Image from 'next/image';
 import WhatsappQR from 'Components/Footer/consoleXWPQR.jpeg';
 
 const Footer = () => (

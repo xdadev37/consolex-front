@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = localStorage.getItem('DarkMode') === 'true';
+const initialState = false;
 const darkMode = createSlice({
   name: 'darkMode',
   initialState,

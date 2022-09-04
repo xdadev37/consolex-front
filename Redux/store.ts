@@ -3,6 +3,7 @@ import darkMode from 'slicers/darkMode';
 import alertMessage from 'slicers/alertSnackbar';
 import shop from 'Redux/api/shop';
 import contents from 'Redux/api/contents';
+import { createWrapper } from 'next-redux-wrapper';
 
 const store = configureStore({
   reducer: {
@@ -15,4 +16,5 @@ const store = configureStore({
     getDefault().concat([shop.middleware, contents.middleware]),
 });
 
+export const wrapper = createWrapper(() => store);
 export default store;

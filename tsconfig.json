@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,11 +20,21 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
-      "slicers/*": ["Redux/slicers/*"],
-      "api/*": ["Redux/api/*"],
-      "TSS/*": ["Styles/TSS/*"],
-      "CSS/*": ["Styles/CSS/*"],
-      "Table/*": ["Modules/Table/*"]
+      "slicers/*": [
+        "Redux/slicers/*"
+      ],
+      "api/*": [
+        "Redux/api/*"
+      ],
+      "TSS/*": [
+        "Styles/TSS/*"
+      ],
+      "CSS/*": [
+        "Styles/CSS/*"
+      ],
+      "Table/*": [
+        "Modules/Table/*"
+      ]
     }
   },
   "include": [
@@ -32,5 +46,9 @@
     "**/*.tsx",
     "**/*.module.css"
   ],
-  "exclude": ["node_modules", ".yarn", ".vscode"]
+  "exclude": [
+    "node_modules",
+    ".yarn",
+    ".vscode"
+  ]
 }

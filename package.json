@@ -12,10 +12,13 @@
   "dependencies": {
     "@emotion/cache": "^11.10.3",
     "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.10.3",
+    "@mui/styled-engine": "^5.10.3",
     "@mui/system": "^5.10.3",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
@@ -33,10 +36,12 @@
     "@types/react-dom": "18.0.6",
     "@types/stylis": "^4.0.2",
     "@yarnpkg/plugin-interactive-tools": "^4.0.0-rc.15",
+    "@yarnpkg/plugin-nm": "^3.1.4",
     "@yarnpkg/sdks": "^3.0.0-rc.15",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
     "next-sitemap": "^3.1.21",
-    "typescript": "4.6.4"
+    "typescript": "4.6.4",
+    "webpack": "^5.74.0"
   }
 }

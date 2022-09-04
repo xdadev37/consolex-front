@@ -1,8 +1,10 @@
-import { memo } from "react";
-import { AppBar, Toolbar, Grid } from "@mui/material";
-import Image from "next/image";
-import Logo from "Logo.png";
-import type { FC } from "react";
+import { memo } from 'react';
+import { AppBar, Toolbar, Grid, Link } from '@mui/material';
+import Image from 'next/image';
+import Logo from 'Logo.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import type { FC } from 'react';
 
 const TopAppBar: FC = () => (
   <AppBar>
@@ -12,7 +14,11 @@ const TopAppBar: FC = () => (
         <Grid item>
           <Image alt="لوگو" src={Logo} />
         </Grid>
-        <Grid item>اطلاعات تماس</Grid>
+        <Grid item>
+          <Link href="#footer">
+            اطلاعات تماس <FontAwesomeIcon icon={faPhone} />
+          </Link>
+        </Grid>
       </Grid>
     </Toolbar>
   </AppBar>
