@@ -1,7 +1,10 @@
+import type { IData, IDataById } from 'Types/BaseQuery';
+
 interface Image {
-  attributes: { name: string; formats: { small: { url: string } } };
+  name: string;
+  formats: { small: { url: string } };
 }
 
-export interface IImages {
-  attributes: { ContentsImages: { data: Image[] } };
+interface IImages {
+  ContentsImages: IDataById<IData<Image>>;
 }

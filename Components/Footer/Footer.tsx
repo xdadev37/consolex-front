@@ -37,7 +37,7 @@ const Footer = () => (
         icon={faWhatsapp}
         href="https://wa.me/message/QSEN4SDWHXEVJ1"
       />
-      <Image alt="whatsapp" src={WhatsappQR} />
+      <Image alt="whatsapp" src={WhatsappQR} priority />
     </Grid>
   </Grid>
 );

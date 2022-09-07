@@ -2,8 +2,8 @@
   "name": "Console X",
   "short_name": "Console X",
   "start_url": "./",
-  "theme_color": "##ffd401",
-  "background_color": "##ffd401",
+  "theme_color": "#ffd401",
+  "background_color": "#ffd401",
   "display": "minimal-ui",
   "icons": [
     {

@@ -1,5 +1,5 @@
-import type { Dispatch, SetStateAction } from "react";
-import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import type { Dispatch, SetStateAction } from 'react';
+import type { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 interface ICard {
   header: {
@@ -24,4 +24,5 @@ interface ICard {
     backgroundColor: string;
     children: JSX.Element | JSX.Element[];
   };
+  onClick?: () => void;
 }

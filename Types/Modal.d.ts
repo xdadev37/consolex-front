@@ -1,12 +1,10 @@
 import type { Dispatch, SetStateAction } from 'react';
-
-interface IImage {
-  src: string;
-  alt: string;
-}
+import type { Image } from 'Types/Redux/Images';
+import type { IData } from 'Types/BaseQuery';
 
 interface IModal {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  images: IImage[];
+  images: IData<Image>[];
+  descriptions: string;
 }
