@@ -6,12 +6,13 @@ import Providers from 'Components/Providers';
 import type { NextPage } from 'next';
 
 /** @module lazy @constant import */
+const TopAppBar = lazy(() => import('Components/TopAppBar'));
 const MainPage = lazy(() => import('Components/MainPage/MainPage'));
 const Footer = lazy(() => import('Components/Footer/Footer'));
 
 const Home: NextPage = () => (
   <Providers>
-    <Grid container sx={sx.root}>
+    <Grid container sx={sx.root} direction="column">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ffd401" />
@@ -177,6 +178,7 @@ const Home: NextPage = () => (
         />
       </Head>
       <main>
+        <TopAppBar />
         <MainPage />
       </main>
       <footer id="footer">

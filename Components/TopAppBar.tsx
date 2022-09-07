@@ -9,10 +9,10 @@ import type { FC } from 'react';
 const TopAppBar: FC = () => (
   <AppBar>
     <Toolbar>
-      <Grid justifyContent="space-between">
+      <Grid container justifyContent="space-between">
         <Grid item />
         <Grid item>
-          <Image alt="لوگو" src={Logo} />
+          <Image width="80" height="80" alt="لوگو" src={Logo} />
         </Grid>
         <Grid item>
           <Link href="#footer">

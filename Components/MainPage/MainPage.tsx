@@ -71,7 +71,7 @@ const MainPage: NextPage = () => {
   }, [mode]);
 
   return (
-    <Grid container>
+    <Grid container direction="column" marginTop={15}>
       <Grid container justifyContent="flex-start" id="header">
         <Toggler {...{ mode, setMode }} />
       </Grid>

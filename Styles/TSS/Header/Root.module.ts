@@ -11,7 +11,10 @@ export const useTheme = () =>
     palette: {
       mode: true ? 'light' : 'dark',
       primary: {
-        main: true ? '#fafafa' : '#ffd401',
+        main: '#ffd401',
+        '100': '#4caf50',
+        '200': '#ef5350',
+        '300': '#2196f3',
       },
     },
   });

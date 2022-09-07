@@ -3,5 +3,11 @@
     "**/.yarn": true,
     "**/.pnp.*": true
   },
-  "cSpell.words": ["Swiper", "Xmark"]
+  "cSpell.words": [
+    "Swiper",
+    "Xmark"
+  ],
+  "eslint.nodePath": ".yarn/sdks",
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

@@ -1,4 +1,4 @@
-import { memo, Fragment, useState } from "react";
+import { memo, Fragment, useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -9,18 +9,19 @@ import {
   Collapse,
   Menu,
   MenuItem,
-} from "@mui/material";
-import sx from "TSS/Card.module";
-import dropMenuSX from "TSS/Header/Profile.module";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+} from '@mui/material';
+import sx from 'TSS/Card.module';
+import dropMenuSX from 'TSS/Header/Profile.module';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronDown,
   faChevronUp,
   faEllipsisV,
   faXmark,
-} from "@fortawesome/free-solid-svg-icons";
-import type { FC, MouseEvent } from "react";
-import type { ICard } from "Types/Card";
+} from '@fortawesome/free-solid-svg-icons';
+import appSettings from 'AppSettings';
+import type { FC, MouseEvent } from 'react';
+import type { ICard } from 'Types/Card';
 
 const Cards: FC<ICard> = ({
   header: { actions, ...header },
@@ -30,6 +31,7 @@ const Cards: FC<ICard> = ({
   children,
   isDeleted,
   media,
+  onClick,
 }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const openMenu = (e: MouseEvent<HTMLButtonElement>) =>
@@ -37,7 +39,7 @@ const Cards: FC<ICard> = ({
   const closeMenu = () => setAnchorEl(null);
 
   return (
-    <Card sx={{ ...sx.card, backgroundColor }}>
+    <Card sx={{ ...sx.card, backgroundColor }} {...{ onClick }}>
       <CardHeader
         {...header}
         action={
@@ -52,7 +54,7 @@ const Cards: FC<ICard> = ({
                 PaperProps={{ sx: dropMenuSX.menu }}
                 BackdropProps={{ sx: dropMenuSX.backdropSet }}
                 onClick={closeMenu}
-                anchorOrigin={{ horizontal: "left", vertical: "center" }}
+                anchorOrigin={{ horizontal: 'left', vertical: 'center' }}
               >
                 {actions.map(
                   (action, index) =>
@@ -76,7 +78,7 @@ const Cards: FC<ICard> = ({
       />
       <CardMedia
         component="img"
-        image={media.url}
+        image={`${appSettings.baseUrl}${media.url}`}
         alt={media.alt}
         height={300}
       />

@@ -19,17 +19,18 @@ const ContentModal: NextPage<IModal> = ({
         <Swiper lazy>
           {images &&
             images.map((image, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} style={{ position: 'relative' }}>
                 <Image
+                  layout="fill"
                   alt={image.attributes.name}
-                  src={`${appSettings.baseUrl}/${image.attributes.formats.small.url}`}
+                  src={`${appSettings.baseUrl}${image.attributes.formats.small.url}`}
                 />
               </SwiperSlide>
             ))}
         </Swiper>
       </Grid>
       <Grid item xs={12} sm={5} md={5} lg={5}>
-        <Typography variant="body1">{descriptions}</Typography>
+        {descriptions}
       </Grid>
     </Grid>
   </Modal>
