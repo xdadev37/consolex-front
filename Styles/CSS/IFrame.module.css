@@ -1,0 +1,9 @@
+.iframe {
+  border-width: 0;
+  border-radius: 28px;
+  transition-duration: 0.2s;
+}
+
+.iframe:hover {
+  border-radius: 18px;
+}

@@ -4,19 +4,20 @@ import Image from 'next/image';
 import Logo from 'Logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import type { FC } from 'react';
+import sx from 'TSS/Header/AppBar.module';
+import type { NextPage } from 'next';
 
-const TopAppBar: FC = () => (
-  <AppBar>
+const TopAppBar: NextPage = () => (
+  <AppBar sx={sx.appBar}>
     <Toolbar>
-      <Grid container justifyContent="space-between">
-        <Grid item />
-        <Grid item>
-          <Image width="80" height="80" alt="لوگو" src={Logo} />
+      <Grid container alignItems="center" justifyContent="space-between">
+        <Grid item sm={4} md={4} lg={4} />
+        <Grid item sm={4} md={4} lg={4}>
+          <Image width="100" height="70" alt="لوگو" src={Logo} />
         </Grid>
-        <Grid item>
-          <Link href="#footer">
-            اطلاعات تماس <FontAwesomeIcon icon={faPhone} />
+        <Grid item sm={4} md={4} lg={4}>
+          <Link href="#footer" color="primary.100">
+            راه های ارتباطی <FontAwesomeIcon icon={faPhone} />
           </Link>
         </Grid>
       </Grid>

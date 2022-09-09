@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Modal, Grid, Typography } from '@mui/material';
+import { Modal, Grid } from '@mui/material';
 import sx from 'TSS/Modal.module';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
@@ -15,6 +15,9 @@ const ContentModal: NextPage<IModal> = ({
 }) => (
   <Modal keepMounted {...{ open }} sx={sx.modal}>
     <Grid container justifyContent="space-between">
+      <Grid item xs={12} sm={5} md={5} lg={5}>
+        {descriptions}
+      </Grid>
       <Grid item xs={12} sm={5} md={5} lg={5} marginY={1}>
         <Swiper lazy>
           {images &&
@@ -28,9 +31,6 @@ const ContentModal: NextPage<IModal> = ({
               </SwiperSlide>
             ))}
         </Swiper>
-      </Grid>
-      <Grid item xs={12} sm={5} md={5} lg={5}>
-        {descriptions}
       </Grid>
     </Grid>
   </Modal>

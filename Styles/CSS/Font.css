@@ -1,0 +1,10 @@
+@font-face {
+  font-family: IRANSans;
+  src: url('/IRANSans.woff2');
+  font-display: swap;
+}
+
+* {
+  direction: rtl;
+  font-family: IRANSans !important;
+}

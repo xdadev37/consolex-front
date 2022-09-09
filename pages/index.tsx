@@ -1,5 +1,5 @@
+import { memo } from 'react';
 import Head from 'next/head';
-import sx from 'TSS/Header/Root.module';
 import { Grid } from '@mui/material';
 import lazy from 'next/dynamic';
 import Providers from 'Components/Providers';
@@ -12,7 +12,7 @@ const Footer = lazy(() => import('Components/Footer/Footer'));
 
 const Home: NextPage = () => (
   <Providers>
-    <Grid container sx={sx.root} direction="column">
+    <Grid container direction="column">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ffd401" />
@@ -188,4 +188,4 @@ const Home: NextPage = () => (
   </Providers>
 );
 
-export default Home;
+export default memo(Home);

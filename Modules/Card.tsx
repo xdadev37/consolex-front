@@ -20,10 +20,11 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import appSettings from 'AppSettings';
-import type { FC, MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
+import type { NextPage } from 'next';
 import type { ICard } from 'Types/Card';
 
-const Cards: FC<ICard> = ({
+const Cards: NextPage<ICard> = ({
   header: { actions, ...header },
   backgroundColor,
   cardActions,

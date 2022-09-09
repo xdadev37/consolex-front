@@ -24,9 +24,10 @@ const MainPage: NextPage = () => {
   const [getShopImages, gotShopImages] = useLazyShopImagesQuery();
   const contentsImagesHandler = (id: number, descriptions: string) =>
     (mode === 'shop' ? getShopImages : getImages)(id).then(() =>
-      remarkParser
-        .process(descriptions)
-        .then((parsed) => setModalDescriptions(parsed.toString()))
+      remarkParser.process(descriptions).then((parsed) => {
+        setModalDescriptions(parsed.toString());
+        return setModal(true);
+      })
     );
   const cards = useMemo(() => {
     switch (mode) {
@@ -48,6 +49,7 @@ const MainPage: NextPage = () => {
             }}
           />
         ));
+
       case 'contents':
         return contents.data?.data.map((card, index) => (
           <Card
@@ -68,11 +70,11 @@ const MainPage: NextPage = () => {
         ));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode]);
+  }, [shopContents.data, contents.data]);
 
   return (
     <Grid container direction="column" marginTop={15}>
-      <Grid container justifyContent="flex-start" id="header">
+      <Grid container id="header">
         <Toggler {...{ mode, setMode }} />
       </Grid>
       <Grid container spacing={2}>
