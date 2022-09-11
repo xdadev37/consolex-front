@@ -12,10 +12,10 @@ const TopAppBar: NextPage = () => (
     <Toolbar>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item sm={4} md={4} lg={4} />
-        <Grid item sm={4} md={4} lg={4}>
+        <Grid item sm={4} md={4} lg={4} textAlign="center">
           <Image width="100" height="70" alt="لوگو" src={Logo} />
         </Grid>
-        <Grid item sm={4} md={4} lg={4}>
+        <Grid item sm={4} md={4} lg={4} textAlign="right">
           <Link href="#footer" color="primary.100">
             راه های ارتباطی <FontAwesomeIcon icon={faPhone} />
           </Link>

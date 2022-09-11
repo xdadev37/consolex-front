@@ -177,13 +177,13 @@ const Home: NextPage = () => (
           media="(prefers-color-scheme: dark) and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
         />
       </Head>
-      <main>
+      <Grid container component="main">
         <TopAppBar />
         <MainPage />
-      </main>
-      <footer id="footer">
+      </Grid>
+      <Grid container component="footer" id="footer">
         <Footer />
-      </footer>
+      </Grid>
     </Grid>
   </Providers>
 );

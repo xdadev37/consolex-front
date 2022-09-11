@@ -28,33 +28,27 @@ const Footer: NextPage = () => (
           referrerPolicy="no-referrer-when-downgrade"
         />
         <Typography>
-          اصفهان , جنب مادی فدن مجتمع الماس واحد 10 کنسول ایکس, خیابان شمس
-          آبادی, چهارراه, روبروی نظامی فروش ها
+          اصفهان - جنب مادی فدن مجتمع الماس واحد 10 کنسول ایکس - خیابان شمس
+          آبادی - چهارراه - روبروی نظامی فروش ها
         </Typography>
       </Grid>
       <Grid item display="flex" color="primary.300" alignItems="center">
-        <FontAwesomeIcon icon={faPhone} /> &nbsp;
-        <Typography>09139146705</Typography>
+        <Typography>09139146705</Typography> &nbsp;
+        <FontAwesomeIcon icon={faPhone} />
       </Grid>
     </Grid>
-    <Grid item sm={6} md={6} lg={6}>
-      <Grid item>
-        <Link
-          color="primary.200"
-          href="https://www.instagram.com/consolex_store"
-          target="_blank"
-        >
-          <FontAwesomeIcon size="3x" icon={faInstagram} /> @consolex_store
+    <Grid item sm={6} md={6} lg={6} textAlign="right">
+      <Grid item color="primary.200" alignItems="center">
+        <Link href="https://www.instagram.com/consolex_store" target="_blank">
+          <FontAwesomeIcon size="3x" icon={faInstagram} />
         </Link>
+        <Typography>ConsoleX_Store@</Typography>
       </Grid>
-      <Grid item>
-        <Link
-          target="_blank"
-          color="primary.100"
-          href="https://wa.me/message/QSEN4SDWHXEVJ1"
-        >
-          <FontAwesomeIcon size="3x" icon={faWhatsapp} /> @consolex_store
+      <Grid item color="primary.100" alignItems="center">
+        <Link target="_blank" href="https://wa.me/message/QSEN4SDWHXEVJ1">
+          <FontAwesomeIcon size="3x" icon={faWhatsapp} />
         </Link>
+        <Typography>ConsoleX_Store@</Typography>
       </Grid>
       <Grid item>
         <Image
