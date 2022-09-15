@@ -31,6 +31,7 @@ const Cards: NextPage<ICard> = ({
       image={`${appSettings.baseUrl}${media.url}`}
       alt={media.alt}
       height={300}
+      sx={sx.media}
     />
     <CardContent>{children}</CardContent>
     {(cardActions || collapse) && (

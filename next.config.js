@@ -1,10 +1,14 @@
+const withWorkbox = require('next-with-workbox')
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+module.exports = withWorkbox({
   reactStrictMode: true,
   swcMinify: true,
   images: {
     domains: ['localhost', 'consolex.shop', 'consolex.ir']
   },
-};
-
-module.exports = nextConfig;
+  workbox: {
+    swSrc: './sw.ts'
+  }
+});

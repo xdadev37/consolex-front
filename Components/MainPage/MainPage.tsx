@@ -15,6 +15,7 @@ import type { NextPage } from 'next';
 const Toggler = lazy(() => import('Components/MainPage/Items/Toggler'));
 const Card = lazy(() => import('Modules/Card'));
 const Modal = lazy(() => import('Modules/Modal'));
+const Loading = lazy(() => import('Modules/Loading'));
 
 const MainPage: NextPage = () => {
   const router = useRouter();
@@ -63,13 +64,38 @@ const MainPage: NextPage = () => {
                 alt: card.attributes.image.data.attributes.name,
               }}
             >
-              <Grid container justifyContent="space-between">
-                <Typography color="primary.100">قیمت</Typography>
-                <Typography>
-                  {card.attributes.price
-                    ? `${card.attributes.price} تومان`
-                    : 'تماس بگیرید'}
-                </Typography>
+              <Grid
+                container
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Grid item sm={6} md={6} lg={6}>
+                  <Typography color="primary.100">قیمت</Typography>
+                </Grid>
+                {card.attributes.price ? (
+                  <Grid
+                    item
+                    alignItems="baseline"
+                    display="flex"
+                    sm={6}
+                    md={6}
+                    lg={6}
+                  >
+                    <Typography variant="subtitle1">
+                      {card.attributes.price}
+                    </Typography>
+                    &nbsp;
+                    <Typography
+                      component="sub"
+                      variant="caption"
+                      color="primary.200"
+                    >
+                      تومان
+                    </Typography>
+                  </Grid>
+                ) : (
+                  <Typography variant="caption">تماس بگیرید</Typography>
+                )}
               </Grid>
               <Typography variant="caption">
                 {card.attributes.ps || ''}
@@ -116,6 +142,11 @@ const MainPage: NextPage = () => {
         setOpen={setModal}
         images={(mode !== '/contents' ? gotShopImages : gotImages).data || []}
         descriptions={modalDescriptions}
+      />
+      <Loading
+        open={
+          (shopContents || contents || gotShopImages || gotImages).isFetching
+        }
       />
     </Grid>
   );

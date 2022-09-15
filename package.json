@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 4000",
     "lint": "next lint",
-    "next": "next"
+    "next": "next",
+    "postbuild": "next build && next start -p 4000"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.3",
@@ -24,6 +25,7 @@
     "axios": "^0.27.2",
     "next": "12.2.5",
     "next-redux-wrapper": "^7.0.5",
+    "next-with-workbox": "^3.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.2",
@@ -34,7 +36,12 @@
     "stylis": "^4.1.1",
     "stylis-plugin-rtl": "^2.1.1",
     "swiper": "^8.3.2",
-    "unified": "^10.1.2"
+    "unified": "^10.1.2",
+    "workbox-core": "^6.5.4",
+    "workbox-precaching": "^6.5.4",
+    "workbox-routing": "^6.5.4",
+    "workbox-strategies": "^6.5.4",
+    "workbox-window": "^6.5.4"
   },
   "devDependencies": {
     "@types/node": "18.7.14",
