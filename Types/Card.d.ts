@@ -5,19 +5,11 @@ interface ICard {
   header: {
     title: string;
     subheader?: string;
-    actions?: (
-      | {
-          onClick: () => void;
-          label: string;
-          icon: IconDefinition;
-        }
-      | false
-    )[];
+    actions?: JSX.Element | JSX.Element[];
   };
   backgroundColor: string;
   children?: JSX.Element | JSX.Element[];
   cardActions?: JSX.Element | JSX.Element[];
-  isDeleted?: boolean;
   media: { url?: string; alt: string };
   collapse?: {
     open: { value: boolean; setValue: Dispatch<SetStateAction<boolean>> };

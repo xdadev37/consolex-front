@@ -1,8 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 
-type Modes = "/shop" | "/contents";
-
 interface IToggler {
-  mode: Modes;
+  mode: string;
   setMode: Dispatch<SetStateAction<Modes>>;
 }

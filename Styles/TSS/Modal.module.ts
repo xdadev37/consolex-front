@@ -1,14 +1,9 @@
 import type { MuiClasses } from 'Types/EnvTypes';
 
-const sx: MuiClasses<'paper' | 'close'> = {
-  paper: { overflowY: 'unset' },
-  close: {
-    position: 'absolute',
-    left: '95%',
-    top: '-9%',
-    backgroundColor: 'error.main',
-    color: 'white',
-  },
+const sx: MuiClasses<'paper' | 'modal' | 'actions'> = {
+  paper: { overflowY: 'unset', borderRadius: 5 },
+  modal: { padding: 2 },
+  actions: { justifyContent: 'flex-start' },
 };
 
 export default sx;

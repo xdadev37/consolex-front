@@ -5,7 +5,7 @@ interface IContents {
   image: { data: { attributes: Image } };
   ps: string;
   description: string;
-  contentsImages: {
+  contentsImages?: {
     data: { id: string; attributes: { Descriptions: string } };
   };
 }

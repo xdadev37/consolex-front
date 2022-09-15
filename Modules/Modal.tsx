@@ -25,10 +25,17 @@ const ContentModal: NextPage<IModal> = ({
   images,
   descriptions,
 }) => (
-  <Dialog fullWidth keepMounted {...{ open }} PaperProps={{ sx: sx.paper }}>
-    <DialogActions>
-      <IconButton sx={sx.close} color="error" onClick={() => setOpen(false)}>
-        <FontAwesomeIcon icon={faCircleXmark} />
+  <Dialog
+    fullWidth
+    fullScreen
+    keepMounted
+    {...{ open }}
+    sx={sx.modal}
+    PaperProps={{ sx: sx.paper }}
+  >
+    <DialogActions sx={sx.actions}>
+      <IconButton color="error" onClick={() => setOpen(false)}>
+        <FontAwesomeIcon size="lg" icon={faCircleXmark} />
       </IconButton>
     </DialogActions>
     <DialogContent>
@@ -37,16 +44,16 @@ const ContentModal: NextPage<IModal> = ({
         justifyContent="space-between"
         alignItems="center"
         bgcolor="white"
+        height="100%"
       >
         <Grid
           item
-          xs={12}
-          sm={5}
+          sm={12}
           md={5}
           lg={5}
           dangerouslySetInnerHTML={{ __html: descriptions }}
         />
-        <Grid item xs={12} sm={5} md={5} lg={5}>
+        <Grid item sm={12} md={5} lg={5}>
           <Swiper
             modules={[Navigation, Pagination, A11y]}
             pagination={{ clickable: true }}
