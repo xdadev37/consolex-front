@@ -7,7 +7,14 @@ const sx: MuiClasses<'paper' | 'modal' | 'actions' | 'contents'> = {
   },
   modal: { padding: 2 },
   actions: { justifyContent: 'flex-start' },
-  contents: { '& > div > div > p > img': { width: 800, height: 500 } },
+  contents: {
+    '& > p > img': {
+      width: 600,
+      height: 800,
+      aspectRatio: '2/1',
+      objectFit: 'cover',
+    },
+  },
 };
 
 export default sx;
