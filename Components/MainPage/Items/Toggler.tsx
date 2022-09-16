@@ -3,13 +3,14 @@ import { ToggleButtonGroup, ToggleButton } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGamepad, faShop } from '@fortawesome/free-solid-svg-icons';
 import sx from 'TSS/Toggler.module';
+import { useRouter } from 'next/router';
 import type { MouseEvent } from 'react';
 import type { NextPage } from 'next';
-import type { IToggler } from 'Types/Toggler';
 
-const Toggler: NextPage<IToggler> = ({ mode, setMode }) => {
+const Toggler: NextPage = () => {
+  const router = useRouter();
   const handleMode = (e: MouseEvent<HTMLElement>, mode: string | null) =>
-    mode && setMode(mode);
+    mode && router.push(mode);
 
   const modesButton = [
     {
@@ -27,7 +28,11 @@ const Toggler: NextPage<IToggler> = ({ mode, setMode }) => {
   ];
 
   return (
-    <ToggleButtonGroup value={mode} exclusive onChange={handleMode}>
+    <ToggleButtonGroup
+      value={router.asPath !== '/content' ? '/shop' : '/content'}
+      exclusive
+      onChange={handleMode}
+    >
       {modesButton.map((button, index) => (
         <ToggleButton
           sx={{
@@ -39,7 +44,8 @@ const Toggler: NextPage<IToggler> = ({ mode, setMode }) => {
           href={button.value}
           value={button.value}
         >
-          <FontAwesomeIcon icon={button.icon} /> &nbsp; {button.label}
+          <FontAwesomeIcon size="lg" icon={button.icon} /> &nbsp;
+          {button.label}
         </ToggleButton>
       ))}
     </ToggleButtonGroup>

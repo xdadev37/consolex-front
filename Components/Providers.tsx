@@ -11,7 +11,7 @@ import type { Children } from 'Types/EnvTypes';
 const Providers: NextPage<Children> = ({ children }) => (
   <CacheProvider value={rtlCache}>
     <ThemeProvider {...{ theme }}>
-      <CssBaseline enableColorScheme />
+      <CssBaseline />
       {children}
     </ThemeProvider>
   </CacheProvider>

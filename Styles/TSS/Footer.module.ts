@@ -13,7 +13,7 @@ const sx: MuiClasses<'footer' | 'iframe'> = {
     transitionDuration: '0.2s',
     '&:hover': { borderRadius: 4 },
     height: 250,
-    width: 400,
+    width: '95%',
   },
 };
 

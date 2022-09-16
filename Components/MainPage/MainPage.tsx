@@ -19,15 +19,19 @@ const Loading = lazy(() => import('Modules/Loading'));
 
 const MainPage: NextPage = () => {
   const router = useRouter();
-  const [mode, setMode] = useState(router.asPath);
   const [modal, setModal] = useState(false);
+  const shopMode = router.asPath !== '/contents';
   const [modalDescriptions, setModalDescriptions] = useState('');
-  const shopContents = useShopQuery(undefined, { skip: mode === '/contents' });
-  const contents = useContentsQuery(undefined, { skip: mode !== '/contents' });
+  const shopContents = useShopQuery(undefined, {
+    skip: router.asPath === '/contents',
+  });
+  const contents = useContentsQuery(undefined, {
+    skip: shopMode,
+  });
   const [getImages, gotImages] = useLazyImagesQuery();
   const [getShopImages, gotShopImages] = useLazyShopImagesQuery();
   const contentsImagesHandler = (id: number, descriptions: string) =>
-    (mode !== '/contents' ? getShopImages : getImages)(id).then(() =>
+    (shopMode ? getShopImages : getImages)(id).then(() =>
       remarkParser.process(descriptions).then((parsed) => {
         setModalDescriptions(parsed.toString());
         return setModal(true);
@@ -35,7 +39,7 @@ const MainPage: NextPage = () => {
     );
   const cards = useMemo(
     () =>
-      mode !== '/contents'
+      shopMode
         ? shopContents.data?.data.map((card, index) => (
             <Card
               key={index}
@@ -132,15 +136,15 @@ const MainPage: NextPage = () => {
   return (
     <Grid container direction="column" marginTop={15}>
       <Grid container id="header">
-        <Toggler {...{ mode, setMode }} />
+        <Toggler />
       </Grid>
-      <Grid container gap={3} marginTop={2}>
+      <Grid container gap={3} marginTop={2} justifyContent="center">
         {cards}
       </Grid>
       <Modal
         open={modal}
         setOpen={setModal}
-        images={(mode !== '/contents' ? gotShopImages : gotImages).data || []}
+        images={(shopMode ? gotShopImages : gotImages).data || []}
         descriptions={modalDescriptions}
       />
       <Loading

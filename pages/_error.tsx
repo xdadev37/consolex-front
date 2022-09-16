@@ -1,4 +1,4 @@
-import App from 'pages/index';
+import App from 'pages/404';
 import type { NextPage } from 'next';
 
 const FourOhFour: NextPage = () => <App />;

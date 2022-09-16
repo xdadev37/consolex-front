@@ -5,6 +5,7 @@ import {
   DialogActions,
   DialogContent,
   IconButton,
+  Zoom,
 } from '@mui/material';
 import sx from 'TSS/Modal.module';
 import { Navigation, Pagination, A11y } from 'swiper';
@@ -30,6 +31,8 @@ const ContentModal: NextPage<IModal> = ({
     fullScreen
     keepMounted
     {...{ open }}
+    transitionDuration={300}
+    TransitionComponent={Zoom}
     sx={sx.modal}
     PaperProps={{ sx: sx.paper }}
   >
@@ -38,7 +41,7 @@ const ContentModal: NextPage<IModal> = ({
         <FontAwesomeIcon size="lg" icon={faCircleXmark} />
       </IconButton>
     </DialogActions>
-    <DialogContent>
+    <DialogContent sx={sx.contents}>
       <Grid
         container
         justifyContent="space-between"
