@@ -44,11 +44,11 @@
     "workbox-precaching": "^6.5.4",
     "workbox-routing": "^6.5.4",
     "workbox-strategies": "^6.5.4",
-    "workbox-window": "^6.5.4"
+    "workbox-window": "^6.5.4",
+    "@types/react-dom": "18.0.6",
+    "@types/stylis": "^4.0.2"
   },
   "devDependencies": {
-    "@types/react-dom": "18.0.6",
-    "@types/stylis": "^4.0.2",
     "@yarnpkg/plugin-interactive-tools": "^4.0.0-rc.15",
     "@yarnpkg/plugin-nm": "^3.1.4",
     "@yarnpkg/sdks": "^3.0.0-rc.15",
