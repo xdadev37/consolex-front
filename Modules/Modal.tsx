@@ -72,8 +72,8 @@ const ContentModal: NextPage<IModal> = ({
                   <Image
                     width={800}
                     height={1000}
-                    alt={image.attributes.name}
-                    src={`${appSettings.baseUrl}${image.attributes.formats.small.url}`}
+                    alt={image.name}
+                    src={`${appSettings.baseUrl}${image.formats.small.url}`}
                   />
                 </SwiperSlide>
               ))}

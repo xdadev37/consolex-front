@@ -13,7 +13,7 @@ const imagesApi = createApi({
         method: 'GET',
         params: { populate: '*' },
       }),
-      transformResponse: (res: IImages) => res.ContentsImages.data,
+      transformResponse: (res: IImages) => res.ContentsImages,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>

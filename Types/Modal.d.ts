@@ -5,6 +5,6 @@ import type { IData } from 'Types/BaseQuery';
 interface IModal {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  images: IData<Image>[];
+  images: Image[];
   descriptions: string;
 }

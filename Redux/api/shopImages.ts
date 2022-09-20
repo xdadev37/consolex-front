@@ -13,7 +13,7 @@ const shopImagesApi = createApi({
         method: 'GET',
         params: { populate: '*' },
       }),
-      transformResponse: (res: IImages) => res.ShopImages.data,
+      transformResponse: (res: IImages) => res.ShopImages,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>
