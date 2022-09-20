@@ -11,7 +11,6 @@ const imagesApi = createApi({
       query: (id: number) => ({
         url: id.toString(),
         method: 'GET',
-        params: { populate: '*' },
       }),
       transformResponse: (res: IImages) => res.ContentsImages,
     }),
