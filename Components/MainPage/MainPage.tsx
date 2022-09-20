@@ -40,22 +40,21 @@ const MainPage: NextPage = () => {
   const cards = useMemo(
     () =>
       shopMode
-        ? shopContents.data?.data.map((card, index) => (
+        ? shopContents.data?.map((card, index) => (
             <Card
               key={index}
               onClick={
-                card.attributes.shopImages
+                card.shopImages
                   ? () =>
                       contentsImagesHandler(
                         card.id,
-                        card.attributes.shopImages?.data.attributes
-                          .Descriptions || ''
+                        card.shopImages?.Descriptions || ''
                       )
                   : undefined
               }
               backgroundColor="#ffd401"
               header={{
-                title: card.attributes.title,
+                title: card.title,
                 subheader: 'تماس برای اطلاعات بیش تر',
                 actions: (
                   <Link href="#footer" color="primary.100">
@@ -64,8 +63,8 @@ const MainPage: NextPage = () => {
                 ),
               }}
               media={{
-                url: card.attributes.image.data.attributes.formats.small.url,
-                alt: card.attributes.image.data.attributes.name,
+                url: card.image.formats.small.url,
+                alt: card.image.name,
               }}
             >
               <Grid
@@ -76,7 +75,7 @@ const MainPage: NextPage = () => {
                 <Grid item sm={6} md={6} lg={6}>
                   <Typography color="primary.100">قیمت</Typography>
                 </Grid>
-                {card.attributes.price ? (
+                {card.price ? (
                   <Grid
                     item
                     alignItems="baseline"
@@ -85,9 +84,7 @@ const MainPage: NextPage = () => {
                     md={6}
                     lg={6}
                   >
-                    <Typography variant="subtitle1">
-                      {card.attributes.price}
-                    </Typography>
+                    <Typography variant="subtitle1">{card.price}</Typography>
                     &nbsp;
                     <Typography
                       component="sub"
@@ -101,32 +98,29 @@ const MainPage: NextPage = () => {
                   <Typography variant="caption">تماس بگیرید</Typography>
                 )}
               </Grid>
-              <Typography variant="caption">
-                {card.attributes.ps || ''}
-              </Typography>
+              <Typography variant="caption">{card.ps || ''}</Typography>
             </Card>
           ))
-        : contents.data?.data.map((card, index) => (
+        : contents.data?.map((card, index) => (
             <Card
               key={index}
               onClick={
-                card.attributes.contentsImages
+                card.contentsImages
                   ? () =>
                       contentsImagesHandler(
                         card.id,
-                        card.attributes.contentsImages?.data.attributes
-                          .Descriptions || ''
+                        card.contentsImages?.Descriptions || ''
                       )
                   : undefined
               }
               backgroundColor="#ffd401"
-              header={{ title: card.attributes.title }}
+              header={{ title: card.title }}
               media={{
-                url: card.attributes.image.data.attributes.formats.small.url,
-                alt: card.attributes.image.data.attributes.name,
+                url: card.image.formats.small.url,
+                alt: card.image.name,
               }}
             >
-              <Typography>{card.attributes.ps}</Typography>
+              <Typography>{card.ps}</Typography>
             </Card>
           )),
     // eslint-disable-next-line react-hooks/exhaustive-deps

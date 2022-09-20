@@ -1,11 +1,10 @@
 import type { Image } from 'Types/Redux/Images';
 
 interface IContents {
+  id: number;
   title: string;
-  image: { data: { attributes: Image } };
+  image: Image;
   ps: string;
   description: string;
-  contentsImages?: {
-    data: { id: string; attributes: { Descriptions: string } };
-  };
+  contentsImages?: { Descriptions: string };
 }

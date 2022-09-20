@@ -1,12 +1,11 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseQuery from 'Redux/axiosQuery';
 import { HYDRATE } from 'next-redux-wrapper';
-import type { IBaseQueryById } from 'Types/BaseQuery';
 import type { IImages } from 'Types/Redux/ShopImages';
 
 const shopImagesApi = createApi({
   reducerPath: 'shopImagesApi',
-  baseQuery: baseQuery('shopImages'),
+  baseQuery: baseQuery('shop-Images'),
   endpoints: ({ query }) => ({
     shopImages: query({
       query: (id: number) => ({
@@ -14,8 +13,7 @@ const shopImagesApi = createApi({
         method: 'GET',
         params: { populate: '*' },
       }),
-      transformResponse: (res: IBaseQueryById<IImages>) =>
-        res.data.attributes.ShopImages.data,
+      transformResponse: (res: IImages) => res.ShopImages.data,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>

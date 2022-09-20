@@ -6,5 +6,5 @@ interface Image {
 }
 
 interface IImages {
-  ContentsImages: IDataById<IData<Image>>;
+  ContentsImages: Image[];
 }

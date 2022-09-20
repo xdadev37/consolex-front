@@ -6,7 +6,7 @@ import type { AxiosRequestConfig } from 'axios';
 import type { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
 const baseAxios = axios.create({
-  baseURL: `${appSettings.baseUrl}/api`,
+  baseURL: `${appSettings.baseUrl}`,
   timeout: 3000,
   timeoutErrorMessage: 'Network Error',
   headers: {

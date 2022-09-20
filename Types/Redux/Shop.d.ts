@@ -1,9 +1,10 @@
 import type { Image } from 'Types/Redux/Images';
 
 interface IShop {
+  id: number;
   title: string;
-  image: { data: { attributes: Image } };
+  image: Image;
   ps?: string;
   price?: number;
-  shopImages?: { data: { id: string; attributes: { Descriptions: string } } };
+  shopImages?: { Descriptions: string };
 }
