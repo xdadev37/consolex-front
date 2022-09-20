@@ -5,7 +5,7 @@ import type { IShop } from 'Types/Redux/Shop';
 
 const shopApi = createApi({
   reducerPath: 'shopApi',
-  baseQuery: baseQuery('shops'),
+  baseQuery: baseQuery('shop'),
   endpoints: ({ query }) => ({
     shop: query({
       query: () => ({ url: '', method: 'GET' }),
