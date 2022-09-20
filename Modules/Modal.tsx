@@ -4,6 +4,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogContentText,
   IconButton,
   Zoom,
 } from '@mui/material';
@@ -27,10 +28,10 @@ const ContentModal: NextPage<IModal> = ({
   descriptions,
 }) => (
   <Dialog
+    {...{ open }}
     fullWidth
     fullScreen
     keepMounted
-    {...{ open }}
     transitionDuration={300}
     TransitionComponent={Zoom}
     sx={sx.modal}
@@ -41,7 +42,7 @@ const ContentModal: NextPage<IModal> = ({
         <FontAwesomeIcon size="lg" icon={faCircleXmark} />
       </IconButton>
     </DialogActions>
-    <DialogContent sx={sx.contents}>
+    <DialogContent>
       <Grid
         container
         justifyContent="space-between"
@@ -49,14 +50,14 @@ const ContentModal: NextPage<IModal> = ({
         bgcolor="white"
         height="100%"
       >
-        <Grid
-          item
-          sm={12}
-          md={5}
-          lg={5}
-          dangerouslySetInnerHTML={{ __html: descriptions }}
-        />
-        <Grid item sm={12} md={5} lg={5}>
+        <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
+          <DialogContentText
+            paragraph
+            sx={sx.contents}
+            dangerouslySetInnerHTML={{ __html: descriptions }}
+          />
+        </Grid>
+        <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
           <Swiper
             modules={[Navigation, Pagination, A11y]}
             pagination={{ clickable: true }}
