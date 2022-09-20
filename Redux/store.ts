@@ -3,7 +3,7 @@ import darkMode from 'slicers/darkMode';
 import alertMessage from 'slicers/alertSnackbar';
 import shop from 'Redux/api/shop';
 import contents from 'Redux/api/contents';
-import images from 'Redux/api/images';
+import images from 'api/contentsImages';
 import shopImages from 'Redux/api/shopImages';
 import { createWrapper } from 'next-redux-wrapper';
 

@@ -6,5 +6,5 @@ interface IShop {
   image: Image;
   ps?: string;
   price?: number;
-  shopImages?: { Descriptions: string };
+  imagesId?: number;
 }

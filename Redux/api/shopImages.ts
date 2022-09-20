@@ -1,18 +1,18 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseQuery from 'Redux/axiosQuery';
 import { HYDRATE } from 'next-redux-wrapper';
-import type { IImages } from 'Types/Redux/ShopImages';
+import type { IShopImages } from 'Types/Redux/ShopImages';
 
 const shopImagesApi = createApi({
   reducerPath: 'shopImagesApi',
-  baseQuery: baseQuery('shop-Images'),
+  baseQuery: baseQuery('shop-images'),
   endpoints: ({ query }) => ({
     shopImages: query({
       query: (id: number) => ({
         url: id.toString(),
         method: 'GET',
       }),
-      transformResponse: (res: IImages) => res.ShopImages,
+      transformResponse: (res: IShopImages) => res,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>

@@ -6,5 +6,5 @@ interface IContents {
   image: Image;
   ps: string;
   description: string;
-  contentsImages?: { Descriptions: string };
+  imagesId?: number;
 }

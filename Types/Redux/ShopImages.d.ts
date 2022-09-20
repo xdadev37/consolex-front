@@ -1,6 +1,5 @@
-import type { IData, IDataById } from 'Types/BaseQuery';
-import type { Image } from 'Types/Redux/Images';
+import type { Image, IDescriptions } from 'Types/Redux/Images';
 
-interface IImages {
-  ShopImages: Image[];
+interface IShopImages extends IDescriptions {
+  shopImages: Image[];
 }

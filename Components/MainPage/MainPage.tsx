@@ -3,7 +3,7 @@ import { Grid, Typography, Link } from '@mui/material';
 import lazy from 'next/dynamic';
 import { useShopQuery } from 'api/shop';
 import { useContentsQuery } from 'api/contents';
-import { useLazyImagesQuery } from 'api/images';
+import { useLazyImagesQuery } from 'api/contentsImages';
 import { useLazyShopImagesQuery } from 'api/shopImages';
 import remarkParser from 'Constants/remarkParser';
 import { useRouter } from 'next/router';
@@ -30,13 +30,15 @@ const MainPage: NextPage = () => {
   });
   const [getImages, gotImages] = useLazyImagesQuery();
   const [getShopImages, gotShopImages] = useLazyShopImagesQuery();
-  const contentsImagesHandler = (id: number, descriptions: string) =>
-    (shopMode ? getShopImages : getImages)(id).then(() =>
-      remarkParser.process(descriptions).then((parsed) => {
-        setModalDescriptions(parsed.toString());
-        return setModal(true);
-      })
-    );
+  const contentsImagesHandler = (id: number) =>
+    (shopMode ? getShopImages : getImages)(id)
+      .unwrap()
+      .then((res) =>
+        remarkParser.process(res.descriptions).then((parsed) => {
+          setModalDescriptions(parsed.toString());
+          return setModal(true);
+        })
+      );
   const cards = useMemo(
     () =>
       shopMode
@@ -44,12 +46,8 @@ const MainPage: NextPage = () => {
             <Card
               key={index}
               onClick={
-                card.shopImages
-                  ? () =>
-                      contentsImagesHandler(
-                        card.id,
-                        card.shopImages?.Descriptions || ''
-                      )
+                card.imagesId
+                  ? () => contentsImagesHandler(card.imagesId || 0)
                   : undefined
               }
               backgroundColor="#ffd401"
@@ -105,12 +103,8 @@ const MainPage: NextPage = () => {
             <Card
               key={index}
               onClick={
-                card.contentsImages
-                  ? () =>
-                      contentsImagesHandler(
-                        card.id,
-                        card.contentsImages?.Descriptions || ''
-                      )
+                card.imagesId
+                  ? () => contentsImagesHandler(card.imagesId || 0)
                   : undefined
               }
               backgroundColor="#ffd401"
@@ -138,7 +132,11 @@ const MainPage: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={(shopMode ? gotShopImages : gotImages).data || []}
+        images={
+          (shopMode
+            ? gotShopImages.data?.shopImages
+            : gotImages.data?.contentsImages) || []
+        }
         descriptions={modalDescriptions}
       />
       <Loading
