@@ -1,5 +1,5 @@
 import { memo, useState, useMemo } from 'react';
-import { Grid, Typography, Link } from '@mui/material';
+import { Grid, Typography, Link, Slide } from '@mui/material';
 import lazy from 'next/dynamic';
 import { useShopQuery } from 'api/shop';
 import { useContentsQuery } from 'api/contents';
@@ -126,9 +126,11 @@ const MainPage: NextPage = () => {
       <Grid container id="header">
         <Toggler />
       </Grid>
-      <Grid container gap={3} marginTop={2} justifyContent="center">
-        {cards}
-      </Grid>
+      <Slide direction="up" in>
+        <Grid container gap={3} marginTop={2} justifyContent="center">
+          {cards}
+        </Grid>
+      </Slide>
       <Modal
         open={modal}
         setOpen={setModal}
