@@ -5,7 +5,7 @@ export default createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#ffd401',
+      main: '#fafafa',
       '100': '#4caf50',
       '200': '#ef5350',
       '300': '#2196f3',

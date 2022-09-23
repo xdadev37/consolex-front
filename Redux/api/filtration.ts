@@ -1,24 +1,22 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import baseQuery from 'Redux/axiosQuery';
 import { HYDRATE } from 'next-redux-wrapper';
-import type { IShop } from 'Types/Redux/Shop';
 
-const shopApi = createApi({
-  reducerPath: 'shopApi',
-  baseQuery: baseQuery('shop'),
+const catalogsApi = createApi({
+  reducerPath: 'catalogsApi',
+  baseQuery: baseQuery('catalogs'),
   endpoints: ({ query }) => ({
-    shop: query({
-      query: (params?: Record<'catalogs', string>) => ({
+    catalogs: query({
+      query: () => ({
         url: '',
         method: 'GET',
-        params,
       }),
-      transformResponse: (res: IShop[]) => res,
+      transformResponse: (res: Record<string, any>[]) => res,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 });
 
-export const { useShopQuery } = shopApi;
-export default shopApi;
+export const { useCatalogsQuery } = catalogsApi;
+export default catalogsApi;

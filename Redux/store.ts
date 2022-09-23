@@ -5,6 +5,7 @@ import shop from 'Redux/api/shop';
 import contents from 'Redux/api/contents';
 import images from 'api/contentsImages';
 import shopImages from 'Redux/api/shopImages';
+import filtration from 'api/filtration';
 import { createWrapper } from 'next-redux-wrapper';
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     [contents.reducerPath]: contents.reducer,
     [images.reducerPath]: images.reducer,
     [shopImages.reducerPath]: shopImages.reducer,
+    [filtration.reducerPath]: filtration.reducer,
   },
   middleware: (getDefault) =>
     getDefault().concat([
@@ -22,6 +24,7 @@ const store = configureStore({
       contents.middleware,
       images.middleware,
       shopImages.middleware,
+      filtration.middleware,
     ]),
 });
 
