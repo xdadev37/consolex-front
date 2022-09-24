@@ -50,6 +50,7 @@
     "workbox-window": "^6.5.4"
   },
   "devDependencies": {
+    "@types/react-transition-group": "^4.4.5",
     "@yarnpkg/plugin-interactive-tools": "^4.0.0-rc.15",
     "@yarnpkg/plugin-nm": "^3.1.4",
     "@yarnpkg/sdks": "^3.0.0-rc.15",

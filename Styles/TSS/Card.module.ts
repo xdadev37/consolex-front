@@ -6,8 +6,9 @@ const sx: MuiClasses<'card' | 'dropMenu' | 'media'> = {
     borderRadius: 5,
     '.MuiCardHeader-subheader': { fontWeight: 'bold' },
     width: 300,
+    boxShadow: '3px 3px 7px',
   },
-  dropMenu: { color: '#ffd401' },
+  dropMenu: { color: '#fafafa' },
   media: { borderRadius: 8, padding: 1 },
 };
 

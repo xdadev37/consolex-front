@@ -2,11 +2,11 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import baseQuery from 'Redux/axiosQuery';
 import { HYDRATE } from 'next-redux-wrapper';
 
-const catalogsApi = createApi({
-  reducerPath: 'catalogsApi',
-  baseQuery: baseQuery('catalogs'),
+const categoriesApi = createApi({
+  reducerPath: 'categoriesApi',
+  baseQuery: baseQuery('categories'),
   endpoints: ({ query }) => ({
-    catalogs: query({
+    categories: query({
       query: () => ({
         url: '',
         method: 'GET',
@@ -18,5 +18,5 @@ const catalogsApi = createApi({
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 });
 
-export const { useCatalogsQuery } = catalogsApi;
-export default catalogsApi;
+export const { useCategoriesQuery } = categoriesApi;
+export default categoriesApi;

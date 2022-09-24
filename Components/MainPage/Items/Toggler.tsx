@@ -14,7 +14,7 @@ const Toggler: NextPage = () => {
 
   const modesButton = [
     {
-      value: '/contents',
+      value: '/contents-cards',
       label: 'مطالب',
       icon: faGamepad,
       backgroundColor: '#6200ea',

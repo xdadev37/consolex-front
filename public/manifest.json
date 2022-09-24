@@ -2,8 +2,8 @@
   "name": "ConsoleX",
   "short_name": "ConsoleX",
   "start_url": "./",
-  "theme_color": "#ffd401",
-  "background_color": "#ffd401",
+  "theme_color": "#fafafa",
+  "background_color": "#fafafa",
   "display": "minimal-ui",
   "icons": [
     {

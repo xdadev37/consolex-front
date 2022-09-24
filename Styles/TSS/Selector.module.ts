@@ -9,6 +9,7 @@ const sx: MuiClasses<'group' | 'options' | 'adornment' | 'popper' | 'paper'> = {
   adornment: {
     '.MuiButtonBase-root': { padding: 0.8 },
     '.MuiOutlinedInput-root': { alignContent: 'center' },
+    marginX: 1,
   },
   popper: { zIndex: 1399 },
   paper: { borderRadius: 5 },

@@ -96,7 +96,9 @@ const Selectors: FC<ISelectors> = ({
       }}
       filterOptions={options.length > 15 ? undefined : (filter) => filter}
       PopperComponent={multiple ? MultiPopper : undefined}
-      popupIcon={<FontAwesomeIcon icon={faChevronDown} color="#0e5691" />}
+      popupIcon={
+        <FontAwesomeIcon size="sm" icon={faChevronDown} color="#0e5691" />
+      }
       disableCloseOnSelect={multiple}
       renderOption={multiple ? renderOption : undefined}
       noOptionsText="موردی جهت نمایش وجود ندارد"

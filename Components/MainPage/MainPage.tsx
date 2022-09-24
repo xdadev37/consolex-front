@@ -1,5 +1,5 @@
-import { memo, useState } from 'react';
-import { Grid, Slide } from '@mui/material';
+import { memo, useState, useEffect } from 'react';
+import { Grid } from '@mui/material';
 import lazy from 'next/dynamic';
 import { useLazyImagesQuery } from 'api/contentsImages';
 import { useLazyShopImagesQuery } from 'api/shopImages';
@@ -13,11 +13,12 @@ const Modal = lazy(() => import('Modules/Modal'));
 const Loading = lazy(() => import('Modules/Loading'));
 const ContentsCards = lazy(() => import('Components/MainPage/Items/Contents'));
 const ShopCards = lazy(() => import('Components/MainPage/Items/Shop'));
+const Preview = lazy(() => import('Components/Preview/Preview'));
 
 const MainPage: NextPage = () => {
   const router = useRouter();
   const [modal, setModal] = useState(false);
-  const shopMode = router.asPath !== '/contents';
+  const [shopMode, setShopMode] = useState(false);
   const [modalDescriptions, setModalDescriptions] = useState('');
   const [getImages, gotImages] = useLazyImagesQuery();
   const [getShopImages, gotShopImages] = useLazyShopImagesQuery();
@@ -32,20 +33,21 @@ const MainPage: NextPage = () => {
         })
       );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => setShopMode(router.asPath !== '/contents-cards'), []);
+
   return (
-    <Grid container direction="column" marginTop={15}>
+    <Grid container direction="column" marginTop={15} marginX={2}>
       <Grid container id="header">
         <Toggler />
       </Grid>
-      <Slide direction="up" in>
-        <Grid container gap={3} marginTop={2} justifyContent="center">
-          {shopMode ? (
-            <ShopCards {...{ contentsImagesHandler }} />
-          ) : (
-            <ContentsCards {...{ contentsImagesHandler }} />
-          )}
-        </Grid>
-      </Slide>
+      <Grid container gap={3} marginTop={2} justifyContent="center">
+        {shopMode ? (
+          <ShopCards {...{ contentsImagesHandler }} />
+        ) : (
+          <ContentsCards {...{ contentsImagesHandler }} />
+        )}
+      </Grid>
       <Modal
         open={modal}
         setOpen={setModal}
@@ -57,6 +59,7 @@ const MainPage: NextPage = () => {
         descriptions={modalDescriptions}
       />
       <Loading open={(gotShopImages || gotImages).isFetching} />
+      <Preview />
     </Grid>
   );
 };
