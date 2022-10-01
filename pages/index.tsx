@@ -16,6 +16,7 @@ const Home: NextPage = () => (
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ffd401" />
+        <meta name="description" content="" />
         <link rel="manifest" href="/manifest.json" />
         <title>کنسول ایکس</title>
         <meta

@@ -7,7 +7,6 @@ import type { IContentsImagesHandler } from 'Types/MainPage';
 
 /** @module lazy @constant import */
 const Card = lazy(() => import('Modules/Card'));
-const Loading = lazy(() => import('Modules/Loading'));
 
 const Contents: NextPage<IContentsImagesHandler> = ({
   contentsImagesHandler,
@@ -34,7 +33,6 @@ const Contents: NextPage<IContentsImagesHandler> = ({
           <Typography>{card.ps}</Typography>
         </Card>
       ))}
-      <Loading open={contents.isFetching} />
     </Fragment>
   );
 };

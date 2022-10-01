@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from 'react';
+import { memo, useState } from 'react';
 import Image from 'next/image';
 import {
   Dialog,
@@ -20,7 +20,7 @@ import sx from 'TSS/Preview.module';
 import type { FC } from 'react';
 
 const Preview: FC = () => {
-  const [preview, setPreview] = useState(false);
+  const [preview, setPreview] = useState(true);
   const images1 = [
     { path: xbox, alt: 'ایکس باکس' },
     { path: ps5, alt: 'پلی استیشن' },
@@ -32,12 +32,7 @@ const Preview: FC = () => {
     { path: ps5Controller, alt: 'دسته پلی استیشن' },
   ];
 
-  const init = () => {
-    localStorage.setItem('preview', 'false');
-    return setPreview(false);
-  };
-
-  useEffect(() => setPreview(!Boolean(localStorage.getItem('preview'))), []);
+  const init = () => setPreview(false);
 
   return (
     <Dialog

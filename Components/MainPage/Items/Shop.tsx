@@ -11,7 +11,6 @@ import type { IContentsImagesHandler } from 'Types/MainPage';
 /** @module lazy @constant import */
 const Card = lazy(() => import('Modules/Card'));
 const Selector = lazy(() => import('Modules/Selector'));
-const Loading = lazy(() => import('Modules/Loading'));
 
 const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
   const [params, setParams] = useState<Record<'categories.key', string>>();
@@ -93,7 +92,6 @@ const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
           ))}
         </Grid>
       </Zoom>
-      <Loading open={(shopContents || categories).isFetching} />
     </Grid>
   );
 };

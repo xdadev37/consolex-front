@@ -1,7 +1,5 @@
 import { memo } from 'react';
-import { AppBar, Toolbar, Grid, Link } from '@mui/material';
-import Image from 'next/image';
-import LogoText from 'Components/LogoText.png';
+import { AppBar, Toolbar, Grid, Link, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import sx from 'TSS/Header/AppBar.module';
@@ -13,7 +11,7 @@ const TopAppBar: NextPage = () => (
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item sm={4} md={4} lg={4} />
         <Grid item sm={4} md={4} lg={4} textAlign="center">
-          <Image width="80" height="40" alt="لوگو" src={LogoText} />
+          <Typography variant="h2">کنسول ایکس</Typography>
         </Grid>
         <Grid item sm={4} md={4} lg={4} textAlign="right">
           <Link href="#footer" color="primary.100">

@@ -10,7 +10,6 @@ import type { NextPage } from 'next';
 /** @module lazy @constant import */
 const Toggler = lazy(() => import('Components/MainPage/Items/Toggler'));
 const Modal = lazy(() => import('Modules/Modal'));
-const Loading = lazy(() => import('Modules/Loading'));
 const ContentsCards = lazy(() => import('Components/MainPage/Items/Contents'));
 const ShopCards = lazy(() => import('Components/MainPage/Items/Shop'));
 const Preview = lazy(() => import('Components/Preview/Preview'));
@@ -58,7 +57,6 @@ const MainPage: NextPage = () => {
         }
         descriptions={modalDescriptions}
       />
-      <Loading open={(gotShopImages || gotImages).isFetching} />
       <Preview />
     </Grid>
   );
