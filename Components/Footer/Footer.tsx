@@ -6,6 +6,7 @@ import { Grid, Typography, Link } from '@mui/material';
 import sx from 'TSS/Footer.module';
 import Image from 'next/image';
 import WhatsappQR from 'Components/Footer/consoleXWPQR.jpeg';
+import constants from 'Constants/constants.enum';
 import type { NextPage } from 'next';
 
 const Footer: NextPage = () => (
@@ -15,7 +16,7 @@ const Footer: NextPage = () => (
     alignItems="flex-end"
     sx={sx.footer}
   >
-    <Grid item xs={12} sm={6} md={6} lg={6}>
+    <Grid item xs={12} sm={8} md={4} lg={4} xl={3}>
       <Grid
         item
         component="iframe"
@@ -40,7 +41,7 @@ const Footer: NextPage = () => (
         <FontAwesomeIcon icon={faPhone} />
       </Grid>
     </Grid>
-    <Grid item xs={12} sm={6} md={6} lg={6} textAlign="right">
+    <Grid item xs={12} sm={4} md={4} lg={4} xl={3} textAlign="right">
       <Grid item alignItems="center">
         <Link
           color="primary.200"
@@ -71,6 +72,7 @@ const Footer: NextPage = () => (
         />
       </Grid>
     </Grid>
+    <Typography variant="subtitle1">{constants.description}</Typography>
   </Grid>
 );
 

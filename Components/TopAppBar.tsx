@@ -11,7 +11,9 @@ const TopAppBar: NextPage = () => (
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item sm={4} md={4} lg={4} />
         <Grid item sm={4} md={4} lg={4} textAlign="center">
-          <Typography variant="h2">کنسول ایکس</Typography>
+          <Typography variant="body1" fontStyle="italic">
+            کنسول ایکس
+          </Typography>
         </Grid>
         <Grid item sm={4} md={4} lg={4} textAlign="right">
           <Link href="#footer" color="primary.100">

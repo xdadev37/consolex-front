@@ -1,16 +1,8 @@
-import { memo, useState } from 'react';
+import { memo, useState, useEffect } from 'react';
 import Image from 'next/image';
-import {
-  Dialog,
-  DialogContent,
-  Slide,
-  ImageList,
-  ImageListItem,
-  Grid,
-} from '@mui/material';
+import { Dialog, DialogContent, Slide, Grid, Fade } from '@mui/material';
 import xbox from 'Components/Preview/Xbox.jpeg';
 import ps5 from 'Components/Preview/PS5.jpeg';
-import nintendo from 'Components/Preview/Nintendo-Switch.jpeg';
 import ps5Controller from 'Components/Preview/PS5_Controller.jpeg';
 import xboxController from 'Components/Preview/Xbox_Controller.jpeg';
 import { faComputerMouse } from '@fortawesome/free-solid-svg-icons';
@@ -21,18 +13,19 @@ import type { FC } from 'react';
 
 const Preview: FC = () => {
   const [preview, setPreview] = useState(true);
-  const images1 = [
+  const [cycle, setCycle] = useState(0);
+  const images = [
     { path: xbox, alt: 'ایکس باکس' },
     { path: ps5, alt: 'پلی استیشن' },
-    { path: nintendo, alt: 'نینتندو سوییچ' },
-  ];
-  const images2 = [
-    { path: nintendo, alt: 'نینتندو سوییچ' },
     { path: xboxController, alt: 'دسته ایکس باکس' },
     { path: ps5Controller, alt: 'دسته پلی استیشن' },
   ];
 
   const init = () => setPreview(false);
+
+  useEffect(() => {
+    setInterval(() => setCycle((prev) => (prev === 3 ? 0 : prev + 1)), 3000);
+  }, []);
 
   return (
     <Dialog
@@ -47,42 +40,13 @@ const Preview: FC = () => {
     >
       <DialogContent sx={sx.zeroPad}>
         <Grid container>
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <ImageList sx={sx.dialog} cols={1} rowHeight={300}>
-              <TransitionGroup>
-                {images1.map((image, index) => (
-                  <Slide
-                    key={index}
-                    in
-                    direction="up"
-                    timeout={(index + 1) * 1000}
-                  >
-                    <ImageListItem>
-                      <Image priority alt={image.alt} src={image.path} />
-                    </ImageListItem>
-                  </Slide>
-                ))}
-              </TransitionGroup>
-            </ImageList>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-            <ImageList sx={sx.dialog} cols={1} rowHeight={300}>
-              <TransitionGroup>
-                {images2.map((image, index) => (
-                  <Slide
-                    key={index}
-                    in
-                    direction="up"
-                    timeout={(index + 1) * 1000}
-                  >
-                    <ImageListItem>
-                      <Image alt={image.alt} src={image.path} loading="lazy" />
-                    </ImageListItem>
-                  </Slide>
-                ))}
-              </TransitionGroup>
-            </ImageList>
-          </Grid>
+          <TransitionGroup>
+            {images.map((image, index) => (
+              <Fade key={index} in={index === cycle}>
+                <Image priority alt={image.alt} src={image.path} />
+              </Fade>
+            ))}
+          </TransitionGroup>
         </Grid>
         <Grid
           container
