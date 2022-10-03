@@ -1,6 +1,13 @@
 import { memo, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Dialog, DialogContent, Slide, Grid, Fade } from '@mui/material';
+import {
+  Dialog,
+  DialogContent,
+  Slide,
+  Grid,
+  Fade,
+  ImageListItem,
+} from '@mui/material';
 import xbox from 'Components/Preview/Xbox.jpeg';
 import ps5 from 'Components/Preview/PS5.jpeg';
 import ps5Controller from 'Components/Preview/PS5_Controller.jpeg';
@@ -24,7 +31,7 @@ const Preview: FC = () => {
   const init = () => setPreview(false);
 
   useEffect(() => {
-    setInterval(() => setCycle((prev) => (prev === 3 ? 0 : prev + 1)), 3000);
+    setInterval(() => setCycle((prev) => (prev === 3 ? 0 : prev + 1)), 10000);
   }, []);
 
   return (
@@ -41,11 +48,16 @@ const Preview: FC = () => {
       <DialogContent sx={sx.zeroPad}>
         <Grid container>
           <TransitionGroup>
-            {images.map((image, index) => (
-              <Fade key={index} in={index === cycle}>
-                <Image priority alt={image.alt} src={image.path} />
-              </Fade>
-            ))}
+            {images.map(
+              (image, index) =>
+                index === cycle && (
+                  <Fade key={index} timeout={3000}>
+                    <ImageListItem>
+                      <Image priority alt={image.alt} src={image.path} />
+                    </ImageListItem>
+                  </Fade>
+                )
+            )}
           </TransitionGroup>
         </Grid>
         <Grid
