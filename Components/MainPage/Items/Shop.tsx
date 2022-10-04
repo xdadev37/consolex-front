@@ -32,7 +32,7 @@ const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
         />
       </Grid>
       <Zoom in>
-        <Grid item>
+        <Grid container gap={3} marginTop={2} justifyContent="center">
           {shopContents.data?.map((card, index) => (
             <Card
               key={index}
@@ -41,7 +41,7 @@ const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
                   ? () => contentsImagesHandler(card.imagesId || 0)
                   : undefined
               }
-              backgroundColor="#fafafa"
+              backgroundColor="primary.main"
               header={{
                 title: card.title,
                 subheader: 'تماس برای اطلاعات بیش تر',

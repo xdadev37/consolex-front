@@ -23,7 +23,7 @@ const Contents: NextPage<IContentsImagesHandler> = ({
               ? () => contentsImagesHandler(card.imagesId || 0)
               : undefined
           }
-          backgroundColor="#fafafa"
+          backgroundColor="primary.main"
           header={{ title: card.title }}
           media={{
             url: card.image.formats.small.url,
