@@ -53,7 +53,12 @@ const Preview: FC = () => {
                 index === cycle && (
                   <Fade key={index} timeout={3000}>
                     <ImageListItem>
-                      <Image priority alt={image.alt} src={image.path} />
+                      <Image
+                        width={1920}
+                        height={900}
+                        alt={image.alt}
+                        src={image.path}
+                      />
                     </ImageListItem>
                   </Fade>
                 )
@@ -64,8 +69,8 @@ const Preview: FC = () => {
           container
           position="absolute"
           left="50%"
-          bottom="5%"
-          color="primary.main"
+          bottom="3%"
+          color="primary.500"
         >
           <FontAwesomeIcon icon={faComputerMouse} /> scroll
         </Grid>

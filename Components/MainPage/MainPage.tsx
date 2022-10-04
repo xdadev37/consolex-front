@@ -57,7 +57,7 @@ const MainPage: NextPage = () => {
         }
         descriptions={modalDescriptions}
       />
-      <Preview />
+      {shopMode && <Preview />}
     </Grid>
   );
 };

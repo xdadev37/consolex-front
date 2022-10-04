@@ -8,3 +8,7 @@
   direction: rtl;
   font-family: IRANSans !important;
 }
+
+body {
+  background-color: #fafafa;
+}

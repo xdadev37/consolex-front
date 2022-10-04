@@ -49,7 +49,6 @@ const Footer: NextPage = () => (
           target="_blank"
         >
           <FontAwesomeIcon size="3x" icon={faInstagram} />
-          <Typography color="primary.200">ConsoleX_Store@</Typography>
         </Link>
       </Grid>
       <Grid item alignItems="center">
@@ -59,7 +58,6 @@ const Footer: NextPage = () => (
           href="https://wa.me/message/QSEN4SDWHXEVJ1"
         >
           <FontAwesomeIcon size="3x" icon={faWhatsapp} />
-          <Typography color="primary.100">ConsoleX_Store@</Typography>
         </Link>
       </Grid>
       <Grid item>

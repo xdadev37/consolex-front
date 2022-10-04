@@ -2,7 +2,7 @@ import type { MuiClasses } from 'Types/EnvTypes';
 
 const sx: MuiClasses<'footer' | 'iframe'> = {
   footer: {
-    backgroundColor: 'primary.main',
+    backgroundColor: 'primary.600',
     padding: 2,
     '& > div > div': { marginBottom: 3 },
     boxShadow: '10px 10px 25px',

@@ -10,6 +10,8 @@ export default createTheme({
       '200': '#ef5350',
       '300': '#2196f3',
       '400': '#ffeb3b',
+      '500': '#0e0e0e',
+      '600': '#ffffff',
     },
   },
 });
