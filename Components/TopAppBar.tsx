@@ -17,7 +17,8 @@ const TopAppBar: NextPage = () => (
         </Grid>
         <Grid item sm={4} md={4} lg={4} textAlign="right">
           <Link href="#footer" color="primary.100">
-            راه های ارتباطی <FontAwesomeIcon icon={faPhone} />
+            09139146705 &nbsp;
+            <FontAwesomeIcon icon={faPhone} />
           </Link>
         </Grid>
       </Grid>

@@ -19,17 +19,28 @@ const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
   const all = { id: 0, value: 'همه' };
 
   return (
-    <Grid container direction="column">
-      <Grid item marginY={2} width="15%" alignItems="center" display="flex">
-        فیلتر:
-        <Selector
-          defaultValue={all}
-          optionLabel="value"
-          options={[all, ...(categories.data || [])]}
-          onChange={(object: Record<string, any>) =>
-            setParams({ 'categories.key': object.key })
-          }
-        />
+    <Grid container direction="column" justifyContent="space-between">
+      <Grid container>
+        <Grid
+          item
+          marginY={2}
+          xs={6}
+          sm={3}
+          md={3}
+          lg={2}
+          alignItems="center"
+          display="flex"
+        >
+          فیلتر:
+          <Selector
+            defaultValue={all}
+            optionLabel="value"
+            options={[all, ...(categories.data || [])]}
+            onChange={(object: Record<string, any>) =>
+              setParams({ 'categories.key': object.key })
+            }
+          />
+        </Grid>
       </Grid>
       <Zoom in>
         <Grid container gap={3} marginTop={2} justifyContent="center">

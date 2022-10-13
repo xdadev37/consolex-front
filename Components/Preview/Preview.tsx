@@ -5,7 +5,7 @@ import {
   DialogContent,
   Slide,
   Grid,
-  Fade,
+  Grow,
   ImageListItem,
 } from '@mui/material';
 import xbox from 'Components/Preview/Xbox.jpeg';
@@ -19,8 +19,9 @@ import sx from 'TSS/Preview.module';
 import type { FC } from 'react';
 
 const Preview: FC = () => {
-  const [preview, setPreview] = useState(true);
+  const [preview, setPreview] = useState(false);
   const [cycle, setCycle] = useState(0);
+  const [size, setSize] = useState(0);
   const images = [
     { path: xbox, alt: 'ایکس باکس' },
     { path: ps5, alt: 'پلی استیشن' },
@@ -28,10 +29,15 @@ const Preview: FC = () => {
     { path: ps5Controller, alt: 'دسته پلی استیشن' },
   ];
 
-  const init = () => setPreview(false);
+  const init = () => {
+    localStorage.setItem('firstLaunch', 'false');
+    return setPreview(false);
+  };
 
   useEffect(() => {
-    setInterval(() => setCycle((prev) => (prev === 3 ? 0 : prev + 1)), 10000);
+    !localStorage.getItem('firstLaunch') && setPreview(true);
+    setSize(window.screenY * 2);
+    setInterval(() => setCycle((prev) => (prev === 3 ? 0 : prev + 1)), 14000);
   }, []);
 
   return (
@@ -41,26 +47,27 @@ const Preview: FC = () => {
       open={preview}
       TransitionComponent={Slide}
       transitionDuration={500}
-      onScrollCapture={init}
+      onClickCapture={init}
       onTouchMoveCapture={init}
       PaperProps={{ sx: sx.dialog }}
     >
       <DialogContent sx={sx.zeroPad}>
-        <Grid container>
+        <Grid container display="block">
           <TransitionGroup>
             {images.map(
               (image, index) =>
                 index === cycle && (
-                  <Fade key={index} timeout={3000}>
+                  <Grow key={index} timeout={7000}>
                     <ImageListItem>
                       <Image
-                        width={1920}
-                        height={900}
+                        height={size}
+                        width="100%"
                         alt={image.alt}
                         src={image.path}
+                        layout="responsive"
                       />
                     </ImageListItem>
-                  </Fade>
+                  </Grow>
                 )
             )}
           </TransitionGroup>
@@ -72,7 +79,7 @@ const Preview: FC = () => {
           bottom="3%"
           color="primary.500"
         >
-          <FontAwesomeIcon icon={faComputerMouse} /> scroll
+          <FontAwesomeIcon icon={faComputerMouse} /> &nbsp; Click
         </Grid>
       </DialogContent>
     </Dialog>
