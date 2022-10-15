@@ -42,7 +42,7 @@
     "stylis": "^4.1.1",
     "stylis-plugin-rtl": "^2.1.1",
     "swiper": "^8.3.2",
-    "typescript": "4.6.4",
+    "typescript": "^4.8.4",
     "unified": "^10.1.2",
     "workbox-core": "^6.5.4",
     "workbox-precaching": "^6.5.4",
@@ -53,10 +53,11 @@
   "devDependencies": {
     "@yarnpkg/plugin-interactive-tools": "^4.0.0-rc.15",
     "@yarnpkg/plugin-nm": "^3.1.4",
-    "@yarnpkg/sdks": "^3.0.0-rc.15",
+    "@yarnpkg/sdks": "^3.0.0-rc.25",
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
     "next-sitemap": "^3.1.21",
+    "web-vitals": "^3.0.3",
     "webpack": "^5.74.0"
   }
 }

@@ -68,10 +68,9 @@ const ContentModal: NextPage<IModal> = ({
           >
             {images &&
               images.map((image, index) => (
-                <SwiperSlide key={index} style={{ position: 'relative' }}>
+                <SwiperSlide key={index} style={{ display: 'block' }}>
                   <Image
-                    width={800}
-                    height={1000}
+                    layout="responsive"
                     alt={image.name}
                     src={`${appSettings.baseUrl}${image.formats.small.url}`}
                   />
