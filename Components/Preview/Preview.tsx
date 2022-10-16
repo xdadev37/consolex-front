@@ -81,7 +81,7 @@ const Preview: FC = () => {
                       <Image
                         priority
                         height={mobile ? 200 : undefined}
-                        width="100%"
+                        width={mobile ? '100%' : undefined}
                         alt={image.alt}
                         src={image.path}
                         layout="responsive"
