@@ -57,7 +57,7 @@ const ContentModal: NextPage<IModal> = ({
             dangerouslySetInnerHTML={{ __html: descriptions }}
           />
         </Grid>
-        <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
+        <Grid item xs={12} sm={12} md={5} lg={5} xl={5} display="block">
           <Swiper
             modules={[Navigation, Pagination, A11y]}
             pagination={{ clickable: true }}
@@ -68,9 +68,11 @@ const ContentModal: NextPage<IModal> = ({
           >
             {images &&
               images.map((image, index) => (
-                <SwiperSlide key={index} style={{ display: 'block' }}>
+                <SwiperSlide key={index}>
                   <Image
                     layout="responsive"
+                    height="100%"
+                    width="100%"
                     alt={image.name}
                     src={`${appSettings.baseUrl}${image.formats.small.url}`}
                   />

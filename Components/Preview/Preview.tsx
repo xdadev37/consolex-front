@@ -13,10 +13,10 @@ import gow_Landscape from 'Components/Preview/Landscape/god_of_war.jpg';
 import ps5_white_Landscape from 'Components/Preview/Landscape/ps5_white.jpg';
 import ps5_controller_Landscape from 'Components/Preview/Landscape/ps5-dualsense-controller.jpg';
 import ps5_Landscape from 'Components/Preview/Landscape/ps5.jpeg';
-import god_of_war from 'Components/Preview/Portrait/god_of_war.png';
-import headphone_Portrait from 'Components/Preview/Portrait/ps5.png';
-import Wireless_Controller_Portrait from 'Components/Preview/Portrait/xbox_s.jpg';
-import xbox_series_Portrait from 'Components/Preview/Portrait/xbox.png';
+import god_of_war_Portrait from 'Components/Preview/Portrait/god_of_war.png';
+import ps5_Portrait from 'Components/Preview/Portrait/ps5.png';
+import xbox_s_Portrait from 'Components/Preview/Portrait/xbox_s.jpg';
+import xbox_Portrait from 'Components/Preview/Portrait/xbox.png';
 import { faComputerMouse } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TransitionGroup } from 'react-transition-group';
@@ -30,10 +30,10 @@ const Preview: FC = () => {
   const mobile = useMediaQuery((media: Theme) => media.breakpoints.down('sm'));
   const images = mobile
     ? [
-        { path: headphone_Portrait, alt: 'هدفون پلی استیشن' },
-        { path: god_of_war, alt: 'بازی Hallo' },
-        { path: Wireless_Controller_Portrait, alt: 'دسته پلی استیشن' },
-        { path: xbox_series_Portrait, alt: 'ایکس باکس سری اس' },
+        { path: ps5_Portrait, alt: 'پلی استیشن' },
+        { path: xbox_Portrait, alt: 'ایکس باکس' },
+        { path: xbox_s_Portrait, alt: 'ایکس باکس سری اس' },
+        { path: god_of_war_Portrait, alt: 'گاد اف وار' },
       ]
     : [
         { path: ps5_Landscape, alt: 'پلی استیشن' },
@@ -49,8 +49,9 @@ const Preview: FC = () => {
 
   useEffect(() => {
     !sessionStorage.getItem('firstLaunch') && setPreview(true);
-    setInterval(() => setCycle((prev) => (prev === 3 ? 0 : prev + 1)), 11000);
-  }, []);
+    setTimeout(() => setCycle(cycle === 3 ? 0 : cycle + 1), 10000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cycle]);
 
   return (
     <Dialog
@@ -65,7 +66,12 @@ const Preview: FC = () => {
       PaperProps={{ sx: sx.dialog }}
     >
       <DialogContent sx={sx.zeroPad}>
-        <Grid container display="block" alignContent="center" bgcolor="#fafafa">
+        <Grid
+          container
+          display="block"
+          alignContent="center"
+          bgcolor="primary.main"
+        >
           <TransitionGroup>
             {images.map(
               (image, index) =>
@@ -73,7 +79,9 @@ const Preview: FC = () => {
                   <Grow key={index} timeout={5000}>
                     <ImageListItem>
                       <Image
-                        height={mobile ? '1400%' : undefined}
+                        priority
+                        height={mobile ? 200 : undefined}
+                        width="100%"
                         alt={image.alt}
                         src={image.path}
                         layout="responsive"
