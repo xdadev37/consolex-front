@@ -1,6 +1,5 @@
 enum appSettings {
-  // baseUrl = 'http://localhost:1337',
-  baseUrl = 'https://manage.consolex.ir',
+  baseUrl = 'http://localhost:1337',
 }
 
 export default appSettings;
