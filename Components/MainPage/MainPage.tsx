@@ -11,29 +11,28 @@ import type { NextPage } from 'next';
 const Toggler = lazy(() => import('Components/MainPage/Items/Toggler'));
 const Modal = lazy(() => import('Modules/Modal'));
 const ContentsCards = lazy(() => import('Components/MainPage/Items/Contents'));
-const ShopCards = lazy(() => import('Components/MainPage/Items/Shop'));
+const ShopCards = lazy(() => import('pages/shop'));
 const Preview = lazy(() => import('Components/Preview/Preview'));
 
 const MainPage: NextPage = () => {
   const router = useRouter();
   const [modal, setModal] = useState(false);
-  const [shopMode, setShopMode] = useState(false);
   const [modalDescriptions, setModalDescriptions] = useState('');
   const [getImages, gotImages] = useLazyImagesQuery();
   const [getShopImages, gotShopImages] = useLazyShopImagesQuery();
 
-  const contentsImagesHandler = (id: number) =>
-    (shopMode ? getShopImages : getImages)(id)
-      .unwrap()
-      .then((res) =>
-        remarkParser.process(res.descriptions).then((parsed) => {
-          setModalDescriptions(parsed.toString());
-          return setModal(true);
-        })
-      );
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setShopMode(router.asPath !== '/contents-cards'), []);
+  const contentsImagesHandler = (id?: number) =>
+    id
+      ? () =>
+          (shopMode ? getShopImages : getImages)(id)
+            .unwrap()
+            .then((res) =>
+              remarkParser.process(res.descriptions).then((parsed) => {
+                setModalDescriptions(parsed.toString());
+                return setModal(true);
+              })
+            )
+      : undefined;
 
   return (
     <Grid container direction="column" marginTop={15} marginX={2}>
@@ -57,7 +56,7 @@ const MainPage: NextPage = () => {
         }
         descriptions={modalDescriptions}
       />
-      {shopMode && <Preview />}
+      <Preview />
     </Grid>
   );
 };

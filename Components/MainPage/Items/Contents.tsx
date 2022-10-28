@@ -18,11 +18,7 @@ const Contents: NextPage<IContentsImagesHandler> = ({
       {contents.data?.map((card, index) => (
         <Card
           key={index}
-          onClick={
-            card.imagesId
-              ? () => contentsImagesHandler(card.imagesId || 0)
-              : undefined
-          }
+          onClick={contentsImagesHandler(card.imagesId)}
           backgroundColor="primary.main"
           header={{ title: card.title }}
           media={{

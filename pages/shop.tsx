@@ -3,14 +3,19 @@ import { Grid, Typography, Link, Zoom } from '@mui/material';
 import lazy from 'next/dynamic';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import { useShopQuery } from 'api/shop';
+import { getShop } from 'api/shop';
 import { useCategoriesQuery } from 'api/filtration';
+import { getStaticProps as wrapper } from 'Redux/store';
 import type { NextPage } from 'next';
 import type { IContentsImagesHandler } from 'Types/MainPage';
 
 /** @module lazy @constant import */
 const Card = lazy(() => import('Modules/Card'));
 const Selector = lazy(() => import('Modules/Selector'));
+
+export const getStaticProps = wrapper((store) => async (context) => {
+
+});
 
 const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
   const [params, setParams] = useState<Record<'categories.key', string>>();
@@ -47,11 +52,7 @@ const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
           {shopContents.data?.map((card, index) => (
             <Card
               key={index}
-              onClick={
-                card.imagesId
-                  ? () => contentsImagesHandler(card.imagesId || 0)
-                  : undefined
-              }
+              onClick={contentsImagesHandler(card.imagesId)}
               backgroundColor="primary.main"
               header={{
                 title: card.title,

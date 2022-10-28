@@ -1,3 +1,11 @@
 {
-    "singleQuote": true
+    "bracketSpacing": true,
+    "jsxSingleQuote": true,
+    "htmlWhitespaceSensitivity": "strict",
+    "parser": "typescript",
+    "singleQuote": true,
+    "semi": false,
+    "insertPragma": false,
+    "requirePragma": false,
+    "arrowParens": "avoid"
 }

@@ -28,5 +28,5 @@ const store = configureStore({
     ]),
 });
 
-export const wrapper = createWrapper(() => store);
+export const { withRedux, getStaticProps } = createWrapper(() => store);
 export default store;

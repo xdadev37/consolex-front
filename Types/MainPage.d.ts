@@ -1,3 +1,3 @@
 export interface IContentsImagesHandler {
-  contentsImagesHandler: (id: number) => Promise<void>;
+  contentsImagesHandler: (id?: number) => (() => Promise<void>) | undefined;
 }

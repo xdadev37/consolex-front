@@ -7,7 +7,7 @@ const shopApi = createApi({
   reducerPath: 'shopApi',
   baseQuery: baseQuery('shops'),
   endpoints: ({ query }) => ({
-    shop: query({
+    getShop: query({
       query: (params?: Record<'categories.key', string>) => ({
         url: '',
         method: 'GET',
@@ -20,5 +20,5 @@ const shopApi = createApi({
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 });
 
-export const { useShopQuery } = shopApi;
+export const { getShop } = shopApi.endpoints;
 export default shopApi;

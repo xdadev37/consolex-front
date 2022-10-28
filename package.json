@@ -8,7 +8,8 @@
     "start": "next start -p 4000",
     "lint": "next lint",
     "next": "next",
-    "postbuild": "next build && next start -p 4000"
+    "postbuild": "next build && next start -p 4000",
+    "prettier": "prettier"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.3",
@@ -57,6 +58,7 @@
     "eslint": "8.23.0",
     "eslint-config-next": "12.2.5",
     "next-sitemap": "^3.1.21",
+    "prettier": "^2.7.1",
     "web-vitals": "^3.0.3",
     "webpack": "^5.74.0"
   }

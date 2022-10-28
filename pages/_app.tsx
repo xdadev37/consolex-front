@@ -5,12 +5,10 @@ import { Workbox } from 'workbox-window';
 import 'CSS/Font.css';
 import type { AppProps } from 'next/app';
 config.autoAddCss = false;
+const regSW = new Workbox('/sw.js').register();
 
 const App = ({ Component, pageProps }: AppProps) => {
-  useEffect(() => {
-    new Workbox('/sw.js').register();
-  }, []);
-
+  useEffect(regSW);
   return <Component {...pageProps} />;
 };
 
