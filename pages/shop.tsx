@@ -1,30 +1,32 @@
-import { memo, useState } from 'react';
-import { Grid, Typography, Link, Zoom } from '@mui/material';
-import lazy from 'next/dynamic';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import { getShop } from 'api/shop';
-import { useCategoriesQuery } from 'api/filtration';
-import { getStaticProps as wrapper } from 'Redux/store';
-import type { NextPage } from 'next';
-import type { IContentsImagesHandler } from 'Types/MainPage';
+import { memo, useState } from 'react'
+import { Grid, Typography, Link, Zoom } from '@mui/material'
+import lazy from 'next/dynamic'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPhone } from '@fortawesome/free-solid-svg-icons'
+import { getShop } from 'api/shop'
+import { useCategoriesQuery } from 'api/filtration'
+import { getStaticProps as wrapper } from 'Redux/store'
+import type { NextPage } from 'next'
+import type { IContentsImagesHandler } from 'Types/MainPage'
 
 /** @module lazy @constant import */
-const Card = lazy(() => import('Modules/Card'));
-const Selector = lazy(() => import('Modules/Selector'));
+const Card = lazy(() => import('Modules/Card'))
+const Selector = lazy(() => import('Modules/Selector'))
 
-export const getStaticProps = wrapper((store) => async (context) => {
-
-});
+export const getStaticProps = wrapper(
+  ({ dispatch }) =>
+    async ({}) =>
+      dispatch(getShop.initiate())
+)
 
 const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
-  const [params, setParams] = useState<Record<'categories.key', string>>();
-  const shopContents = useShopQuery(params);
-  const categories = useCategoriesQuery(undefined);
-  const all = { id: 0, value: 'همه' };
+  const [params, setParams] = useState<Record<'categories.key', string>>()
+  const shopContents = useShopQuery(params)
+  const categories = useCategoriesQuery(undefined)
+  const all = { id: 0, value: 'همه' }
 
   return (
-    <Grid container direction="column" justifyContent="space-between">
+    <Grid container direction='column' justifyContent='space-between'>
       <Grid container>
         <Grid
           item
@@ -33,13 +35,13 @@ const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
           sm={3}
           md={3}
           lg={2}
-          alignItems="center"
-          display="flex"
+          alignItems='center'
+          display='flex'
         >
           فیلتر:
           <Selector
             defaultValue={all}
-            optionLabel="value"
+            optionLabel='value'
             options={[all, ...(categories.data || [])]}
             onChange={(object: Record<string, any>) =>
               setParams({ 'categories.key': object.key })
@@ -48,17 +50,17 @@ const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
         </Grid>
       </Grid>
       <Zoom in>
-        <Grid container gap={3} marginTop={2} justifyContent="center">
+        <Grid container gap={3} marginTop={2} justifyContent='center'>
           {shopContents.data?.map((card, index) => (
             <Card
               key={index}
               onClick={contentsImagesHandler(card.imagesId)}
-              backgroundColor="primary.main"
+              backgroundColor='primary.main'
               header={{
                 title: card.title,
                 subheader: 'تماس برای اطلاعات بیش تر',
                 actions: (
-                  <Link href="#footer" color="primary.100">
+                  <Link href='#footer' color='primary.100'>
                     <FontAwesomeIcon icon={faPhone} />
                   </Link>
                 ),
@@ -70,42 +72,42 @@ const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
             >
               <Grid
                 container
-                justifyContent="space-between"
-                alignItems="center"
+                justifyContent='space-between'
+                alignItems='center'
               >
                 <Grid item sm={6} md={6} lg={6}>
-                  <Typography color="primary.100">قیمت</Typography>
+                  <Typography color='primary.100'>قیمت</Typography>
                 </Grid>
                 {card.price ? (
                   <Grid
                     item
-                    alignItems="baseline"
-                    display="flex"
+                    alignItems='baseline'
+                    display='flex'
                     sm={6}
                     md={6}
                     lg={6}
                   >
-                    <Typography variant="subtitle1">{card.price}</Typography>
+                    <Typography variant='subtitle1'>{card.price}</Typography>
                     &nbsp;
                     <Typography
-                      component="sub"
-                      variant="caption"
-                      color="primary.200"
+                      component='sub'
+                      variant='caption'
+                      color='primary.200'
                     >
                       تومان
                     </Typography>
                   </Grid>
                 ) : (
-                  <Typography variant="caption">تماس بگیرید</Typography>
+                  <Typography variant='caption'>تماس بگیرید</Typography>
                 )}
               </Grid>
-              <Typography variant="caption">{card.ps || ''}</Typography>
+              <Typography variant='caption'>{card.ps || ''}</Typography>
             </Card>
           ))}
         </Grid>
       </Zoom>
     </Grid>
-  );
-};
+  )
+}
 
-export default memo(Shop);
+export default memo(Shop)

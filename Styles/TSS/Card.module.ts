@@ -1,4 +1,4 @@
-import type { MuiClasses } from 'Types/EnvTypes';
+import type { MuiClasses } from 'Types/EnvTypes'
 
 const sx: MuiClasses<'card' | 'dropMenu' | 'media'> = {
   card: {
@@ -11,6 +11,6 @@ const sx: MuiClasses<'card' | 'dropMenu' | 'media'> = {
   },
   dropMenu: { color: 'primary.main' },
   media: { borderRadius: 8, padding: 1 },
-};
+}
 
-export default sx;
+export default sx

@@ -1,12 +1,12 @@
 interface Image {
-  name: string;
-  formats: { small: { url: string } };
+  name: string
+  formats: { small: { url: string } }
 }
 
 interface IDescriptions {
-  descriptions: string;
+  descriptions: string
 }
 
 export interface IContentsImages extends IDescriptions {
-  contentsImages: Image[];
+  contentsImages: Image[]
 }

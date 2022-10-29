@@ -1,4 +1,4 @@
-import type { MuiClasses } from 'Types/EnvTypes';
+import type { MuiClasses } from 'Types/EnvTypes'
 
 const sx: MuiClasses<'group' | 'options' | 'adornment' | 'popper' | 'paper'> = {
   group: {
@@ -13,6 +13,6 @@ const sx: MuiClasses<'group' | 'options' | 'adornment' | 'popper' | 'paper'> = {
   },
   popper: { zIndex: 1399 },
   paper: { borderRadius: 5 },
-};
+}
 
-export default sx;
+export default sx

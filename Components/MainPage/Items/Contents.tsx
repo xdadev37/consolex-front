@@ -1,17 +1,17 @@
-import { memo, Fragment } from 'react';
-import { Typography } from '@mui/material';
-import lazy from 'next/dynamic';
-import { useContentsQuery } from 'api/contents';
-import type { NextPage } from 'next';
-import type { IContentsImagesHandler } from 'Types/MainPage';
+import { memo, Fragment } from 'react'
+import { Typography } from '@mui/material'
+import lazy from 'next/dynamic'
+import { useContentsQuery } from 'api/contents'
+import type { NextPage } from 'next'
+import type { IContentsImagesHandler } from 'Types/MainPage'
 
 /** @module lazy @constant import */
-const Card = lazy(() => import('Modules/Card'));
+const Card = lazy(() => import('Modules/Card'))
 
 const Contents: NextPage<IContentsImagesHandler> = ({
   contentsImagesHandler,
 }) => {
-  const contents = useContentsQuery(undefined);
+  const contents = useContentsQuery(undefined)
 
   return (
     <Fragment>
@@ -19,7 +19,7 @@ const Contents: NextPage<IContentsImagesHandler> = ({
         <Card
           key={index}
           onClick={contentsImagesHandler(card.imagesId)}
-          backgroundColor="primary.main"
+          backgroundColor='primary.main'
           header={{ title: card.title }}
           media={{
             url: card.image.formats.small.url,
@@ -30,7 +30,7 @@ const Contents: NextPage<IContentsImagesHandler> = ({
         </Card>
       ))}
     </Fragment>
-  );
-};
+  )
+}
 
-export default memo(Contents);
+export default memo(Contents)

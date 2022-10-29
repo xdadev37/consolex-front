@@ -1,7 +1,7 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import baseQuery from 'Redux/axiosQuery';
-import { HYDRATE } from 'next-redux-wrapper';
-import type { IShop } from 'Types/Redux/Shop';
+import { createApi } from '@reduxjs/toolkit/query/react'
+import baseQuery from 'Redux/axiosQuery'
+import { HYDRATE } from 'next-redux-wrapper'
+import type { IShop } from 'Types/Redux/Shop'
 
 const shopApi = createApi({
   reducerPath: 'shopApi',
@@ -18,7 +18,7 @@ const shopApi = createApi({
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
-});
+})
 
-export const { getShop } = shopApi.endpoints;
-export default shopApi;
+export const { getShop } = shopApi.endpoints
+export default shopApi

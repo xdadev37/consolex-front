@@ -1,13 +1,13 @@
-import { memo, Suspense } from 'react';
-import rtlCache from 'Constants/rtlCache';
-import { CacheProvider } from '@emotion/react';
-import { ThemeProvider } from '@mui/system';
-import { CssBaseline } from '@mui/material';
-import theme from 'TSS/Header/Root.module';
-import { withRedux } from 'Redux/store';
-import Loading from 'Modules/Loading';
-import type { NextPage } from 'next';
-import type { Children } from 'Types/EnvTypes';
+import { memo, Suspense } from 'react'
+import rtlCache from 'Constants/rtlCache'
+import { CacheProvider } from '@emotion/react'
+import { ThemeProvider } from '@mui/system'
+import { CssBaseline } from '@mui/material'
+import theme from 'TSS/Header/Root.module'
+import { withRedux } from 'Redux/store'
+import Loading from 'Modules/Loading'
+import type { NextPage } from 'next'
+import type { Children } from 'Types/EnvTypes'
 
 const Providers: NextPage<Children> = ({ children }) => (
   <Suspense fallback={<Loading open />}>
@@ -18,6 +18,6 @@ const Providers: NextPage<Children> = ({ children }) => (
       </ThemeProvider>
     </CacheProvider>
   </Suspense>
-);
+)
 
-export default withRedux(memo(Providers));
+export default withRedux(memo(Providers))

@@ -1,4 +1,4 @@
-import type { MuiClasses } from 'Types/EnvTypes';
+import type { MuiClasses } from 'Types/EnvTypes'
 
 const sx: MuiClasses<'paper' | 'modal' | 'actions' | 'contents'> = {
   paper: {
@@ -15,6 +15,6 @@ const sx: MuiClasses<'paper' | 'modal' | 'actions' | 'contents'> = {
       objectFit: 'cover',
     },
   },
-};
+}
 
-export default sx;
+export default sx

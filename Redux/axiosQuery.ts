@@ -1,9 +1,9 @@
-import axios from 'axios';
-import store from './store';
-import appSettings from 'AppSettings';
-import { setAlertInfo } from 'slicers/alertSnackbar';
-import type { AxiosRequestConfig } from 'axios';
-import type { BaseQueryFn } from '@reduxjs/toolkit/query/react';
+import axios from 'axios'
+import store from './store'
+import appSettings from 'AppSettings'
+import { setAlertInfo } from 'slicers/alertSnackbar'
+import type { AxiosRequestConfig } from 'axios'
+import type { BaseQueryFn } from '@reduxjs/toolkit/query/react'
 
 const baseAxios = axios.create({
   baseURL: `${appSettings.baseUrl}`,
@@ -13,16 +13,16 @@ const baseAxios = axios.create({
     'Content-Type': 'application/json',
     Accept: 'application/json',
   },
-});
+})
 
 const axiosBaseQuery =
   (
     endpoint: string
   ): BaseQueryFn<{
-    url: string;
-    method: AxiosRequestConfig['method'];
-    data?: AxiosRequestConfig['data'];
-    params?: AxiosRequestConfig['params'];
+    url: string
+    method: AxiosRequestConfig['method']
+    data?: AxiosRequestConfig['data']
+    params?: AxiosRequestConfig['params']
   }> =>
   ({ url, method, data, params }) =>
     baseAxios({
@@ -31,14 +31,14 @@ const axiosBaseQuery =
       data,
       params,
     })
-      .then((res) => ({ data: res.data, error: undefined }))
-      .catch((err) => {
-        const errMessage = 'خطا در برقراری ارتباط با سرور';
+      .then(res => ({ data: res.data, error: undefined }))
+      .catch(err => {
+        const errMessage = 'خطا در برقراری ارتباط با سرور'
         store.dispatch(
           setAlertInfo({ severity: 'warning', message: errMessage })
-        );
+        )
 
-        return { error: err, data: undefined };
-      });
+        return { error: err, data: undefined }
+      })
 
-export default axiosBaseQuery;
+export default axiosBaseQuery

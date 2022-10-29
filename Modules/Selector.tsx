@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo } from 'react'
 import {
   Autocomplete,
   TextField,
@@ -7,15 +7,15 @@ import {
   ListItemButton,
   ListItemText,
   Popper,
-} from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import sx from 'TSS/Text.module';
-import sxSelector from 'TSS/Selector.module';
-import type { AutocompleteRenderInputParams } from '@mui/material/Autocomplete';
-import type { PopperProps } from '@mui/material/Popper';
-import type { FC, HTMLAttributes } from 'react';
-import type { ISelectors } from 'Types/Selectors';
+} from '@mui/material'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import sx from 'TSS/Text.module'
+import sxSelector from 'TSS/Selector.module'
+import type { AutocompleteRenderInputParams } from '@mui/material/Autocomplete'
+import type { PopperProps } from '@mui/material/Popper'
+import type { FC, HTMLAttributes } from 'react'
+import type { ISelectors } from 'Types/Selectors'
 
 const Selectors: FC<ISelectors> = ({
   options,
@@ -30,9 +30,9 @@ const Selectors: FC<ISelectors> = ({
   ...selectProps
 }) => {
   const MultiPopper = (props: PopperProps) => (
-    <Popper {...props} placement="left" />
-  );
-  const getOptionLabel = (option: any) => option[optionLabel];
+    <Popper {...props} placement='left' />
+  )
+  const getOptionLabel = (option: any) => option[optionLabel]
   const renderOption = (
     props: HTMLAttributes<HTMLLIElement>,
     option: any,
@@ -44,7 +44,7 @@ const Selectors: FC<ISelectors> = ({
       </ListItemButton>
       <ListItemText>{option[optionLabel]}</ListItemText>
     </ListItem>
-  );
+  )
   const renderInput = (props: AutocompleteRenderInputParams) => (
     <TextField
       {...props}
@@ -62,7 +62,7 @@ const Selectors: FC<ISelectors> = ({
       helperText={hintText}
       label={placeholder}
     />
-  );
+  )
 
   return (
     <Autocomplete
@@ -94,20 +94,20 @@ const Selectors: FC<ISelectors> = ({
               },
         },
       }}
-      filterOptions={options.length > 15 ? undefined : (filter) => filter}
+      filterOptions={options.length > 15 ? undefined : filter => filter}
       PopperComponent={multiple ? MultiPopper : undefined}
       popupIcon={
-        <FontAwesomeIcon size="sm" icon={faChevronDown} color="#0e5691" />
+        <FontAwesomeIcon size='sm' icon={faChevronDown} color='#0e5691' />
       }
       disableCloseOnSelect={multiple}
       renderOption={multiple ? renderOption : undefined}
-      noOptionsText="موردی جهت نمایش وجود ندارد"
+      noOptionsText='موردی جهت نمایش وجود ندارد'
       onChange={(e, valueSel: Record<string, any> | Record<string, any>[]) =>
         valueSel !== value ? onChange(valueSel) : undefined
       }
     />
-  );
-};
+  )
+}
 
 export default memo(
   Selectors,
@@ -115,4 +115,4 @@ export default memo(
     prev.options.length === next.options.length &&
     prev.value === next.value &&
     prev.disabled === next.disabled
-);
+)

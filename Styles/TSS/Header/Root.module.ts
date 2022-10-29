@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles'
 
 export default createTheme({
   direction: 'rtl',
@@ -14,4 +14,4 @@ export default createTheme({
       '600': '#ffffff',
     },
   },
-});
+})

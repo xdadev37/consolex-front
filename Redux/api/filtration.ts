@@ -1,6 +1,6 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import baseQuery from 'Redux/axiosQuery';
-import { HYDRATE } from 'next-redux-wrapper';
+import { createApi } from '@reduxjs/toolkit/query/react'
+import baseQuery from 'Redux/axiosQuery'
+import { HYDRATE } from 'next-redux-wrapper'
 
 const categoriesApi = createApi({
   reducerPath: 'categoriesApi',
@@ -16,7 +16,7 @@ const categoriesApi = createApi({
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
-});
+})
 
-export const { useCategoriesQuery } = categoriesApi;
-export default categoriesApi;
+export const { useCategoriesQuery } = categoriesApi
+export default categoriesApi

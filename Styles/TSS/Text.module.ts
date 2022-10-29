@@ -1,4 +1,4 @@
-import type { MuiClasses } from 'Types/EnvTypes';
+import type { MuiClasses } from 'Types/EnvTypes'
 
 const sx: MuiClasses<'root' | 'adornment'> = {
   root: {
@@ -26,7 +26,7 @@ const sx: MuiClasses<'root' | 'adornment'> = {
     },
   },
   adornment: { color: 'primary.A100' },
-};
+}
 
 export const passSX = {
   ...sx.root,
@@ -35,6 +35,6 @@ export const passSX = {
     fontFamily: 'sans-serif !important',
     marginBottom: 0.4,
   },
-};
+}
 
-export default sx;
+export default sx

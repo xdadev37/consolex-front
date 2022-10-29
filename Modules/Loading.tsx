@@ -1,10 +1,10 @@
-import { memo } from 'react';
-import { Dialog, Stack, Fade } from '@mui/material';
-import Logo from 'Logo.png';
-import classes from 'CSS/Loading.module.css';
-import Image from 'next/image';
-import type { FC } from 'react';
-import type { ILoading } from 'Types/Loading';
+import { memo } from 'react'
+import { Dialog, Stack, Fade } from '@mui/material'
+import Logo from 'Logo.png'
+import classes from 'CSS/Loading.module.css'
+import Image from 'next/image'
+import type { FC } from 'react'
+import type { ILoading } from 'Types/Loading'
 
 const Loading: FC<ILoading> = ({ open }) => (
   <Dialog
@@ -20,10 +20,10 @@ const Loading: FC<ILoading> = ({ open }) => (
           .map((dot, index) => (
             <Stack key={index} />
           ))}
-        <Image alt="logo" src={Logo} />
+        <Image alt='logo' src={Logo} />
       </Stack>
     </Stack>
   </Dialog>
-);
+)
 
-export default memo(Loading);
+export default memo(Loading)

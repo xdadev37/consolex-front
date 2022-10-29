@@ -1,4 +1,4 @@
-import type { MuiClasses } from 'Types/EnvTypes';
+import type { MuiClasses } from 'Types/EnvTypes'
 
 const sx: MuiClasses<'footer' | 'iframe'> = {
   footer: {
@@ -15,6 +15,6 @@ const sx: MuiClasses<'footer' | 'iframe'> = {
     height: 250,
     width: '95%',
   },
-};
+}
 
-export default sx;
+export default sx

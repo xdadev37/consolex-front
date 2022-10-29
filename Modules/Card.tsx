@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo } from 'react'
 import {
   Card,
   CardHeader,
@@ -7,13 +7,13 @@ import {
   CardActions,
   IconButton,
   Collapse,
-} from '@mui/material';
-import sx from 'TSS/Card.module';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import appSettings from 'AppSettings';
-import type { NextPage } from 'next';
-import type { ICard } from 'Types/Card';
+} from '@mui/material'
+import sx from 'TSS/Card.module'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import appSettings from 'AppSettings'
+import type { NextPage } from 'next'
+import type { ICard } from 'Types/Card'
 
 const Cards: NextPage<ICard> = ({
   header: { actions, ...header },
@@ -27,7 +27,7 @@ const Cards: NextPage<ICard> = ({
   <Card sx={{ ...sx.card, backgroundColor }} {...{ onClick }}>
     <CardHeader {...header} {...{ actions }} />
     <CardMedia
-      component="img"
+      component='img'
       image={`${appSettings.baseUrl}${media.url}`}
       alt={media.alt}
       height={300}
@@ -56,6 +56,6 @@ const Cards: NextPage<ICard> = ({
       </Collapse>
     )}
   </Card>
-);
+)
 
-export default memo(Cards);
+export default memo(Cards)
