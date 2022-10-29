@@ -3,7 +3,7 @@ import { Grid, Typography, Link, Zoom } from '@mui/material'
 import lazy from 'next/dynamic'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { getShop } from 'api/shop'
+import { getRunningOperationPromises, getShop, useGetShopQuery } from 'api/shop'
 import { useCategoriesQuery } from 'api/filtration'
 import { getStaticProps as wrapper } from 'Redux/store'
 import type { NextPage } from 'next'
@@ -13,15 +13,22 @@ import type { IContentsImagesHandler } from 'Types/MainPage'
 const Card = lazy(() => import('Modules/Card'))
 const Selector = lazy(() => import('Modules/Selector'))
 
-export const getStaticProps = wrapper(
-  ({ dispatch }) =>
-    async ({}) =>
-      dispatch(getShop.initiate())
-)
+export const getStaticProps = wrapper(({ dispatch }) => async ({ params }) => {
+  dispatch(getShop.initiate(params as Record<'categories.key', string>))
+
+  await Promise.all(getRunningOperationPromises())
+
+  return {
+    props: {},
+  }
+})
 
 const Shop: NextPage<IContentsImagesHandler> = ({ contentsImagesHandler }) => {
   const [params, setParams] = useState<Record<'categories.key', string>>()
-  const shopContents = useShopQuery(params)
+  const shopContents = useGetShopQuery(params, {
+    refetchOnMountOrArgChange: true,
+    skip: true,
+  })
   const categories = useCategoriesQuery(undefined)
   const all = { id: 0, value: 'همه' }
 

@@ -1,4 +1,4 @@
-import { createApi } from '@reduxjs/toolkit/query/react'
+import { createApi,skipToken } from '@reduxjs/toolkit/query/react'
 import baseQuery from 'Redux/axiosQuery'
 import { HYDRATE } from 'next-redux-wrapper'
 import type { IShop } from 'Types/Redux/Shop'
@@ -20,5 +20,11 @@ const shopApi = createApi({
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 })
 
-export const { getShop } = shopApi.endpoints
-export default shopApi
+export const {
+  endpoints: { getShop },
+  util: { getRunningOperationPromises },
+  reducer,
+  reducerPath,
+  middleware,
+  useGetShopQuery,
+} = shopApi

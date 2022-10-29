@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import darkMode from 'slicers/darkMode'
 import alertMessage from 'slicers/alertSnackbar'
-import shop from 'Redux/api/shop'
+import * as shop from 'Redux/api/shop'
 import contents from 'Redux/api/contents'
 import images from 'api/contentsImages'
 import shopImages from 'Redux/api/shopImages'
@@ -27,6 +27,10 @@ const store = configureStore({
       filtration.middleware,
     ]),
 })
+
+export type AppStore = typeof store
+export type RooState = ReturnType<AppStore['getState']>
+export type AppDispatch = AppStore['dispatch']
 
 export const { withRedux, getStaticProps } = createWrapper(() => store)
 export default store
