@@ -16,5 +16,8 @@ const alertMessageSlice = createSlice({
   },
 })
 
-export const { setAlertInfo, closeAlert } = alertMessageSlice.actions
-export default alertMessageSlice
+export const {
+  actions: { setAlertInfo, closeAlert },
+  reducer,
+  name,
+} = alertMessageSlice

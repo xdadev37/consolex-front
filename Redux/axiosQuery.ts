@@ -1,7 +1,5 @@
 import axios from 'axios'
-import store from './store'
 import appSettings from 'AppSettings'
-import { setAlertInfo } from 'slicers/alertSnackbar'
 import type { AxiosRequestConfig } from 'axios'
 import type { BaseQueryFn } from '@reduxjs/toolkit/query/react'
 
@@ -32,13 +30,6 @@ const axiosBaseQuery =
       params,
     })
       .then(res => ({ data: res.data, error: undefined }))
-      .catch(err => {
-        const errMessage = 'خطا در برقراری ارتباط با سرور'
-        store.dispatch(
-          setAlertInfo({ severity: 'warning', message: errMessage })
-        )
-
-        return { error: err, data: undefined }
-      })
+      .catch(err => ({ error: err.message, data: undefined }))
 
 export default axiosBaseQuery

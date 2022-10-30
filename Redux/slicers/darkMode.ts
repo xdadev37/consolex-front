@@ -13,5 +13,8 @@ const darkMode = createSlice({
   },
 })
 
-export const { changeUIMode } = darkMode.actions
-export default darkMode
+export const {
+  actions: { changeUIMode },
+  name,
+  reducer,
+} = darkMode

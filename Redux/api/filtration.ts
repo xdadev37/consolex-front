@@ -6,7 +6,7 @@ const categoriesApi = createApi({
   reducerPath: 'categoriesApi',
   baseQuery: baseQuery('categories'),
   endpoints: ({ query }) => ({
-    categories: query({
+    getCategories: query({
       query: () => ({
         url: '',
         method: 'GET',
@@ -18,5 +18,10 @@ const categoriesApi = createApi({
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 })
 
-export const { useCategoriesQuery } = categoriesApi
-export default categoriesApi
+export const {
+  useGetCategoriesQuery,
+  reducer,
+  reducerPath,
+  middleware,
+  endpoints: { getCategories },
+} = categoriesApi

@@ -6,9 +6,8 @@ import 'CSS/Font.css'
 import type { AppProps } from 'next/app'
 
 config.autoAddCss = false
-const sw = new Workbox('/sw.js')
 const regSW = () => {
-  sw.register()
+  new Workbox('/sw.js').register()
 }
 
 const App = ({ Component, pageProps }: AppProps) => {

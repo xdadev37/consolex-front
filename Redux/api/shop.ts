@@ -1,4 +1,4 @@
-import { createApi,skipToken } from '@reduxjs/toolkit/query/react'
+import { createApi } from '@reduxjs/toolkit/query/react'
 import baseQuery from 'Redux/axiosQuery'
 import { HYDRATE } from 'next-redux-wrapper'
 import type { IShop } from 'Types/Redux/Shop'

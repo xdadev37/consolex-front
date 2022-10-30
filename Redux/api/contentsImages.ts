@@ -19,5 +19,5 @@ const imagesApi = createApi({
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 })
 
-export const { useLazyImagesQuery } = imagesApi
-export default imagesApi
+export const { useLazyImagesQuery, reducer, reducerPath, middleware } =
+  imagesApi

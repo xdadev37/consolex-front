@@ -14,7 +14,7 @@ const Toggler: NextPage = () => {
 
   const modesButton = [
     {
-      value: '/contents-cards',
+      value: '/contents',
       label: 'مطالب',
       icon: faGamepad,
       backgroundColor: '#6200ea',
@@ -28,11 +28,7 @@ const Toggler: NextPage = () => {
   ]
 
   return (
-    <ToggleButtonGroup
-      value={router.asPath !== '/content' ? '/shop' : '/content'}
-      exclusive
-      onChange={handleMode}
-    >
+    <ToggleButtonGroup value={router.asPath} exclusive onChange={handleMode}>
       {modesButton.map((button, index) => (
         <ToggleButton
           sx={{

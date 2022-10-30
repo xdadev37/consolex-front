@@ -7,7 +7,7 @@ const contentsApi = createApi({
   reducerPath: 'contentsApi',
   baseQuery: baseQuery('contents'),
   endpoints: ({ query }) => ({
-    contents: query({
+    getContents: query({
       query: () => ({ url: '', method: 'GET' }),
       transformResponse: (res: IContents[]) => res,
     }),
@@ -16,5 +16,11 @@ const contentsApi = createApi({
     action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 })
 
-export const { useContentsQuery } = contentsApi
-export default contentsApi
+export const {
+  useGetContentsQuery,
+  endpoints: { getContents },
+  util: { getRunningOperationPromises },
+  reducer,
+  reducerPath,
+  middleware,
+} = contentsApi
