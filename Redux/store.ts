@@ -32,4 +32,6 @@ export type AppStore = typeof store
 export type RooState = ReturnType<AppStore['getState']>
 export type AppDispatch = AppStore['dispatch']
 
-export const { withRedux, getStaticProps } = createWrapper(() => store)
+export const { withRedux, getStaticProps, getServerSideProps } = createWrapper(
+  () => store
+)

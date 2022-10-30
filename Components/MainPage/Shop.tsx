@@ -1,31 +1,30 @@
 import { memo, useState } from 'react'
 import { Grid, Typography, Link, Zoom } from '@mui/material'
-import lazy from 'next/dynamic'
+import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import { useGetShopQuery } from 'api/shop'
 import { useLazyShopImagesQuery } from 'api/shopImages'
 import { useGetCategoriesQuery } from 'api/filtration'
 import remarkParser from 'Constants/remarkParser'
+import Card from 'Modules/Card'
+import Selector from 'Modules/Selector'
+import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
 
-/** @module lazy @constant import */
-const Card = lazy(() => import('Modules/Card'))
-const Selector = lazy(() => import('Modules/Selector'))
-const Modal = lazy(() => import('Modules/Modal'))
-
 const Shop: NextPage = () => {
+  const { isFallback } = useRouter()
   const [params, setParams] = useState<Record<'categories.key', string>>()
   const [modal, setModal] = useState(false)
   const [modalDescriptions, setModalDescriptions] = useState('')
-  const shopContents = useGetShopQuery(params, {
+  const { data } = useGetShopQuery(params, {
     refetchOnMountOrArgChange: true,
-    skip: true,
+    skip: isFallback,
   })
-  const categories = useGetCategoriesQuery(undefined, { skip: true })
+  const categories = useGetCategoriesQuery(undefined, { skip: isFallback })
   const all = { id: 0, value: 'همه' }
   const [getShopImages, gotShopImages] = useLazyShopImagesQuery()
-  const contentsImagesHandler = (id: number) => () =>
+  const shopImagesHandler = (id: number) => () =>
     getShopImages(id)
       .unwrap()
       .then(res =>
@@ -61,10 +60,10 @@ const Shop: NextPage = () => {
       </Grid>
       <Zoom in>
         <Grid container gap={3} marginTop={2} justifyContent='center'>
-          {shopContents.data?.map((card, index) => (
+          {data?.map((card, index) => (
             <Card
               key={index}
-              onClick={contentsImagesHandler(card.imagesId || 0)}
+              onClick={shopImagesHandler(card.imagesId || 0)}
               backgroundColor='primary.main'
               header={{
                 title: card.title,

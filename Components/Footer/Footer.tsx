@@ -27,7 +27,7 @@ const Footer: NextPage = () => (
         loading='lazy'
         referrerPolicy='no-referrer-when-downgrade'
       />
-      <Typography>
+      <Typography textAlign='justify'>
         اصفهان_ ابتدای خیابان طالقانی از سمت خیابان شمس آبادی_ روبه روی بانک
         ملی_ جنب مادی فدن_ مجتمع تجاری اداری الماس شهر _ طبقه پایین واحد 10
       </Typography>
@@ -43,23 +43,25 @@ const Footer: NextPage = () => (
       </Grid>
     </Grid>
     <Grid item xs={12} sm={4} md={4} lg={4} xl={3} textAlign='right'>
-      <Grid item alignItems='center'>
-        <Link
-          color='primary.200'
-          href='https://www.instagram.com/consolex_store'
-          target='_blank'
-        >
-          <FontAwesomeIcon size='3x' icon={faInstagram} />
-        </Link>
-      </Grid>
-      <Grid item alignItems='center'>
-        <Link
-          color='primary.100'
-          target='_blank'
-          href='https://wa.me/message/QSEN4SDWHXEVJ1'
-        >
-          <FontAwesomeIcon size='3x' icon={faWhatsapp} />
-        </Link>
+      <Grid container justifyContent='flex-end' gap={2}>
+        <Grid item alignItems='center'>
+          <Link
+            color='primary.200'
+            href='https://www.instagram.com/consolex_store'
+            target='_blank'
+          >
+            <FontAwesomeIcon size='3x' icon={faInstagram} />
+          </Link>
+        </Grid>
+        <Grid item alignItems='center'>
+          <Link
+            color='primary.100'
+            target='_blank'
+            href='https://wa.me/message/QSEN4SDWHXEVJ1'
+          >
+            <FontAwesomeIcon size='3x' icon={faWhatsapp} />
+          </Link>
+        </Grid>
       </Grid>
       <Grid item>
         <Image

@@ -9,9 +9,7 @@ export const getStaticProps = wrapper(({ dispatch }) => async () => {
 
   await Promise.all(getRunningOperationPromises())
 
-  return {
-    props: {},
-  }
+  return { props: {} }
 })
 
 const ContentsPage: NextPage = () => (

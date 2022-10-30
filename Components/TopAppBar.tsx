@@ -12,7 +12,7 @@ const TopAppBar: NextPage = () => (
         <Grid item sm={4} md={4} lg={4} />
         <Grid item sm={4} md={4} lg={4} textAlign='center'>
           <Typography variant='body1' fontStyle='italic'>
-            کنسول ایکس
+            کنسول ایکس | ConsoleX
           </Typography>
         </Grid>
         <Grid item sm={4} md={4} lg={4} textAlign='right'>

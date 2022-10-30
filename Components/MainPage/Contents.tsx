@@ -1,19 +1,19 @@
-import { memo, useState } from 'react'
-import { Typography, Grid } from '@mui/material'
-import lazy from 'next/dynamic'
+import { memo, useState, Fragment } from 'react'
+import { Typography } from '@mui/material'
 import { useLazyImagesQuery } from 'api/contentsImages'
 import { useGetContentsQuery } from 'api/contents'
+import { useRouter } from 'next/router'
 import remarkParser from 'Constants/remarkParser'
+import Card from 'Modules/Card'
+import Selector from 'Modules/Selector'
+import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
 
-/** @module lazy @constant import */
-const Card = lazy(() => import('Modules/Card'))
-const Modal = lazy(() => import('Modules/Modal'))
-
 const Contents: NextPage = () => {
+  const { isFallback } = useRouter()
   const [modal, setModal] = useState(false)
   const [modalDescriptions, setModalDescriptions] = useState('')
-  const contents = useGetContentsQuery(undefined, { skip: true })
+  const { data } = useGetContentsQuery(undefined, { skip: isFallback })
   const [getImages, gotImages] = useLazyImagesQuery()
   const contentsImagesHandler = (id: number) => () =>
     getImages(id)
@@ -26,8 +26,8 @@ const Contents: NextPage = () => {
       )
 
   return (
-    <Grid container direction='column' justifyContent='space-between'>
-      {contents.data?.map((card, index) => (
+    <Fragment>
+      {data?.map((card, index) => (
         <Card
           key={index}
           onClick={contentsImagesHandler(card.imagesId || 0)}
@@ -47,7 +47,7 @@ const Contents: NextPage = () => {
         images={gotImages.data?.contentsImages || []}
         descriptions={modalDescriptions}
       />
-    </Grid>
+    </Fragment>
   )
 }
 

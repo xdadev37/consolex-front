@@ -1,6 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import baseQuery from 'Redux/axiosQuery'
-import { HYDRATE } from 'next-redux-wrapper'
 import type { IShopImages } from 'Types/Redux/ShopImages'
 
 const shopImagesApi = createApi({
@@ -15,8 +14,6 @@ const shopImagesApi = createApi({
       transformResponse: (res: IShopImages) => res,
     }),
   }),
-  extractRehydrationInfo: (action, { reducerPath }) =>
-    action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 })
 
 export const { useLazyShopImagesQuery, reducer, reducerPath, middleware } =

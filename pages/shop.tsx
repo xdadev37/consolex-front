@@ -11,9 +11,7 @@ export const getStaticProps = wrapper(({ dispatch }) => async ({ params }) => {
 
   await Promise.all(getRunningOperationPromises())
 
-  return {
-    props: {},
-  }
+  return { props: {} }
 })
 
 const ShopPage: NextPage = () => (

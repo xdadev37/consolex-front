@@ -4,13 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGamepad, faShop } from '@fortawesome/free-solid-svg-icons'
 import sx from 'TSS/Toggler.module'
 import { useRouter } from 'next/router'
-import type { MouseEvent } from 'react'
 import type { NextPage } from 'next'
 
 const Toggler: NextPage = () => {
-  const router = useRouter()
-  const handleMode = (e: MouseEvent<HTMLElement>, mode: string | null) =>
-    mode && router.push(mode)
+  const { asPath } = useRouter()
 
   const modesButton = [
     {
@@ -28,15 +25,15 @@ const Toggler: NextPage = () => {
   ]
 
   return (
-    <ToggleButtonGroup value={router.asPath} exclusive onChange={handleMode}>
+    <ToggleButtonGroup value={asPath} exclusive>
       {modesButton.map((button, index) => (
         <ToggleButton
+          key={index}
           sx={{
             ...sx.toggler,
             backgroundColor: button.backgroundColor,
             '&:hover': { color: button.backgroundColor },
           }}
-          key={index}
           href={button.value}
           value={button.value}
         >

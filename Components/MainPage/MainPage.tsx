@@ -1,31 +1,28 @@
-import { memo } from 'react'
+import { memo, Fragment, useEffect, useState } from 'react'
 import { Grid } from '@mui/material'
-import lazy from 'next/dynamic'
 import Head from 'next/head'
 import Providers from 'Components/Providers'
 import constants from 'Constants/constants.enum'
+import Toggler from 'Components/MainPage/Items/Toggler'
+import Preview from 'Components/Preview/Preview'
+import TopAppBar from 'Components/TopAppBar'
+import Footer from 'Components/Footer/Footer'
 import type { NextPage } from 'next'
 import type { IChildren } from 'Types/Children'
 
-/** @module lazy @constant import */
-const Toggler = lazy(() => import('Components/MainPage/Items/Toggler'))
-const Preview = lazy(() => import('Components/Preview/Preview'))
-const TopAppBar = lazy(() => import('Components/TopAppBar'))
-const Footer = lazy(() => import('Components/Footer/Footer'))
+const MainPage: NextPage<IChildren> = ({ children }) => {
+  const [client, setClient] = useState(false)
 
-const MainPage: NextPage<IChildren> = ({ children }) => (
-  <Providers>
-    <Grid container direction='column'>
+  useEffect(() => setClient(true), [])
+
+  return (
+    <Fragment>
       <Head>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta name='theme-color' content='#ffd401' />
         <meta name='description' content={constants.description} />
         <link rel='manifest' href='/manifest.json' />
-        <title>کنسول ایکس</title>
-        <meta
-          name='description'
-          content='فروشگاه کنسول ایکس اصفهان PS4, PS5, Xbox'
-        />
+        <title>کنسول ایکس | PS4 | PS5 | Xbox | بازی | اصفهان</title>
         <link
           rel='icon'
           type='image/png'
@@ -181,23 +178,31 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
           media='(prefers-color-scheme: dark) and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)'
         />
       </Head>
-      <Grid container component='main'>
+      <Providers>
         <TopAppBar />
-        <Grid container direction='column' marginTop={15} marginX={2}>
-          <Grid container id='header'>
-            <Toggler />
+        <Grid
+          container
+          direction='column'
+          marginTop={10}
+          paddingX={1}
+          justifyContent='center'
+        >
+          <Toggler />
+          <Grid
+            container
+            gap={3}
+            marginTop={2}
+            justifyContent='center'
+            minHeight={1000}
+          >
+            {client && children}
           </Grid>
-          <Grid container gap={3} marginTop={2} justifyContent='center'>
-            {children}
-          </Grid>
-          <Preview />
         </Grid>
-      </Grid>
-      <Grid container component='footer' id='footer'>
         <Footer />
-      </Grid>
-    </Grid>
-  </Providers>
-)
+        <Preview />
+      </Providers>
+    </Fragment>
+  )
+}
 
 export default memo(MainPage)
