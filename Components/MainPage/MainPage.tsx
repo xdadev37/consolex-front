@@ -1,4 +1,4 @@
-import { memo, Fragment, useEffect, useState } from 'react'
+import { memo, Fragment } from 'react'
 import { Grid } from '@mui/material'
 import Head from 'next/head'
 import Providers from 'Components/Providers'
@@ -10,12 +10,8 @@ import Footer from 'Components/Footer/Footer'
 import type { NextPage } from 'next'
 import type { IChildren } from 'Types/Children'
 
-const MainPage: NextPage<IChildren> = ({ children }) => {
-  const [client, setClient] = useState(false)
-
-  useEffect(() => setClient(true), [])
-
-  return (
+const MainPage: NextPage<IChildren> = ({ children }) => 
+   (
     <Fragment>
       <Head>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
@@ -195,7 +191,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => {
             justifyContent='center'
             minHeight={1000}
           >
-            {client && children}
+            {children}
           </Grid>
         </Grid>
         <Footer />
@@ -203,6 +199,6 @@ const MainPage: NextPage<IChildren> = ({ children }) => {
       </Providers>
     </Fragment>
   )
-}
+
 
 export default memo(MainPage)
