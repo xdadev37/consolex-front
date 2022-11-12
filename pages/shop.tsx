@@ -9,7 +9,7 @@ export const getStaticProps = wrapper(({ dispatch }) => async ({ params }) => {
   dispatch(getCategories.initiate(undefined))
   dispatch(getShop.initiate(params as Record<'categories.key', string>))
 
-  await Promise.all(getRunningOperationPromises())
+  await Promise.all(getRunningOperationPromises() as any)
 
   return { props: {} }
 })

@@ -7,7 +7,7 @@ import type { NextPage } from 'next'
 export const getStaticProps = wrapper(({ dispatch }) => async () => {
   dispatch(getContents.initiate(undefined))
 
-  await Promise.all(getRunningOperationPromises())
+  await Promise.all(getRunningOperationPromises() as any)
 
   return { props: {} }
 })
