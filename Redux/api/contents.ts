@@ -19,7 +19,7 @@ const contentsApi = createApi({
 export const {
   useGetContentsQuery,
   endpoints: { getContents },
-  util: { getRunningOperationPromises },
+  util: { getRunningQueriesThunk },
   reducer,
   reducerPath,
   middleware,

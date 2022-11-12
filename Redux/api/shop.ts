@@ -22,7 +22,7 @@ const shopApi = createApi({
 
 export const {
   endpoints: { getShop },
-  util: { getRunningOperationPromises },
+  util: { getRunningQueriesThunk },
   reducer,
   reducerPath,
   middleware,

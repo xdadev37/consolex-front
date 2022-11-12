@@ -1,13 +1,13 @@
 import MainPage from 'Components/MainPage/MainPage'
 import Contents from 'Components/MainPage/Contents'
-import { getContents, getRunningOperationPromises } from 'api/contents'
+import { getContents, getRunningQueriesThunk } from 'api/contents'
 import { getStaticProps as wrapper } from 'Redux/store'
 import type { NextPage } from 'next'
 
 export const getStaticProps = wrapper(({ dispatch }) => async () => {
   dispatch(getContents.initiate(undefined))
 
-  await Promise.all(getRunningOperationPromises() as any)
+  await Promise.all(dispatch(getRunningQueriesThunk()))
 
   return { props: {} }
 })
