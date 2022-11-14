@@ -58,7 +58,7 @@ const Shop: NextPage = () => {
           />
         </Grid>
       </Grid>
-      <Zoom in>
+      <Zoom in timeout={1000}>
         <Grid container gap={3} marginTop={2} justifyContent='center'>
           {data?.map((card, index) => (
             <Card

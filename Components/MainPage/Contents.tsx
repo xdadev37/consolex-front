@@ -5,7 +5,6 @@ import { useGetContentsQuery } from 'api/contents'
 import { useRouter } from 'next/router'
 import remarkParser from 'Constants/remarkParser'
 import Card from 'Modules/Card'
-import Selector from 'Modules/Selector'
 import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
 
