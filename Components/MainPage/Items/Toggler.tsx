@@ -25,7 +25,7 @@ const Toggler: NextPage = () => {
   ]
 
   return (
-    <ToggleButtonGroup value={asPath} exclusive>
+    <ToggleButtonGroup value={asPath} sx={sx.togglerGroup}>
       {modesButton.map((button, index) => (
         <ToggleButton
           key={index}
