@@ -16,6 +16,7 @@ const Shop: NextPage = () => {
   const { isFallback } = useRouter()
   const [params, setParams] = useState<Record<'categories.key', string>>()
   const [modal, setModal] = useState(false)
+  const thousandsFormatter = new Intl.NumberFormat()
   const [modalDescriptions, setModalDescriptions] = useState('')
   const { data } = useGetShopQuery(params, {
     refetchOnMountOrArgChange: true,
@@ -96,7 +97,9 @@ const Shop: NextPage = () => {
                     md={6}
                     lg={6}
                   >
-                    <Typography variant='subtitle1'>{card.price}</Typography>
+                    <Typography variant='subtitle1'>
+                      {thousandsFormatter.format(card.price)}
+                    </Typography>
                     &nbsp;
                     <Typography
                       component='sub'

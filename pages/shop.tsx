@@ -1,5 +1,7 @@
+import { Fragment } from 'react'
 import MainPage from 'Components/MainPage/MainPage'
 import Shop from 'Components/MainPage/Shop'
+import Head from 'next/head'
 import { getRunningQueriesThunk, getShop } from 'api/shop'
 import { getCategories } from 'api/filtration'
 import { getStaticProps as wrapper } from 'Redux/store'
@@ -16,7 +18,12 @@ export const getStaticProps = wrapper(({ dispatch }) => async ({ params }) => {
 
 const ShopPage: NextPage = () => (
   <MainPage>
-    <Shop />
+    <Fragment>
+      <Head>
+        <link rel='canonical' href='https://consolex.ir' />
+      </Head>
+      <Shop />
+    </Fragment>
   </MainPage>
 )
 
