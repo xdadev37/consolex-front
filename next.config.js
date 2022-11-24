@@ -6,7 +6,7 @@ module.exports = withWorkbox({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['localhost', 'manage.consolex.shop', 'manage.consolex.ir'],
+    domains: ['localhost', 'manage.consolex.ir'],
   },
   workbox: {
     swSrc: './sw.ts',

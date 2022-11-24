@@ -4,10 +4,10 @@ import Shop from 'Components/MainPage/Shop'
 import Head from 'next/head'
 import { getRunningQueriesThunk, getShop } from 'api/shop'
 import { getCategories } from 'api/filtration'
-import { getStaticProps as wrapper } from 'Redux/store'
+import { getServerSideProps as wrapper } from 'Redux/store'
 import type { NextPage } from 'next'
 
-export const getStaticProps = wrapper(({ dispatch }) => async ({ params }) => {
+export const getServerSideProps = wrapper(({ dispatch }) => async ({ params }) => {
   dispatch(getCategories.initiate(undefined))
   dispatch(getShop.initiate(params as Record<'categories.key', string>))
 
