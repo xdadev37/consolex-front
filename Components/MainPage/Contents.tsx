@@ -3,14 +3,19 @@ import { Typography } from '@mui/material'
 import { useLazyImagesQuery } from 'api/contentsImages'
 import { useGetContentsQuery } from 'api/contents'
 import remarkParser from 'Constants/remarkParser'
+import { useRouter } from 'next/router'
 import Card from 'Modules/Card'
 import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
 
 const Contents: NextPage = () => {
+  const { isFallback } = useRouter()
   const [modal, setModal] = useState(false)
   const [modalDescriptions, setModalDescriptions] = useState('')
-  const { data } = useGetContentsQuery(undefined)
+  const { data } = useGetContentsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    skip: isFallback,
+  })
   const [getImages, gotImages] = useLazyImagesQuery()
   const contentsImagesHandler = (id: number) => () =>
     getImages(id)

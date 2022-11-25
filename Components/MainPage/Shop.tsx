@@ -3,6 +3,7 @@ import { Grid, Typography, Link, Zoom } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import { useGetShopQuery } from 'api/shop'
+import { useRouter } from 'next/router'
 import { useLazyShopImagesQuery } from 'api/shopImages'
 import { useGetCategoriesQuery } from 'api/filtration'
 import remarkParser from 'Constants/remarkParser'
@@ -12,12 +13,19 @@ import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
 
 const Shop: NextPage = () => {
+  const { isFallback } = useRouter()
   const [params, setParams] = useState<Record<'categories.key', string>>()
   const [modal, setModal] = useState(false)
   const thousandsFormatter = new Intl.NumberFormat()
   const [modalDescriptions, setModalDescriptions] = useState('')
-  const { data } = useGetShopQuery(params, { refetchOnMountOrArgChange: true })
-  const categories = useGetCategoriesQuery(undefined)
+  const { data } = useGetShopQuery(params, {
+    refetchOnMountOrArgChange: true,
+    skip: isFallback,
+  })
+  const categories = useGetCategoriesQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    skip: isFallback,
+  })
   const all = { id: 0, value: 'همه' }
   const [getShopImages, gotShopImages] = useLazyShopImagesQuery()
   const shopImagesHandler = (id: number) => () =>
