@@ -2,17 +2,15 @@ import { memo, useState, Fragment } from 'react'
 import { Typography } from '@mui/material'
 import { useLazyImagesQuery } from 'api/contentsImages'
 import { useGetContentsQuery } from 'api/contents'
-import { useRouter } from 'next/router'
 import remarkParser from 'Constants/remarkParser'
 import Card from 'Modules/Card'
 import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
 
 const Contents: NextPage = () => {
-  const { isFallback } = useRouter()
   const [modal, setModal] = useState(false)
   const [modalDescriptions, setModalDescriptions] = useState('')
-  const { data } = useGetContentsQuery(undefined, { skip: isFallback })
+  const { data } = useGetContentsQuery(undefined)
   const [getImages, gotImages] = useLazyImagesQuery()
   const contentsImagesHandler = (id: number) => () =>
     getImages(id)
