@@ -1,6 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import baseQuery from 'Redux/axiosQuery'
-import { REHYDRATE } from 'redux-persist'
 import { HYDRATE } from 'next-redux-wrapper'
 
 const categoriesApi = createApi({
