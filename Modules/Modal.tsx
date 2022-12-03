@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import Gallery from 'react-image-gallery'
 import type { NextPage } from 'next'
 import type { IModal } from 'Types/Modal'
 
@@ -58,6 +59,12 @@ const ContentModal: NextPage<IModal> = ({
           />
         </Grid>
         <Grid item xs={12} sm={12} md={5} lg={5} xl={5} display='block'>
+          <Gallery
+            items={images.map(image => ({
+              original: `${appSettings.baseUrl}${image.formats.small.url}`,
+              description: image.name,
+            }))}
+          />
           <Swiper
             modules={[Navigation, Pagination, A11y]}
             pagination={{ clickable: true }}
