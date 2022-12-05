@@ -26,17 +26,17 @@ interface MyAppProps extends AppProps {
 const App = ({ Component, emotionCache = rtlCache, pageProps }: MyAppProps) => {
   useEffect(regSW, [])
   return (
-    <TssCacheProvider value={emotionCache}>
-      <Head>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-      </Head>
-      <ThemeProvider {...{ theme }}>
-        <StyledEngineProvider injectFirst>
+    <ThemeProvider {...{ theme }}>
+      <TssCacheProvider value={emotionCache}>
+        <Head>
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
+        </Head>
+        <StyledEngineProvider>
           <CssBaseline enableColorScheme />
           <Component {...pageProps} />
         </StyledEngineProvider>
-      </ThemeProvider>
-    </TssCacheProvider>
+      </TssCacheProvider>
+    </ThemeProvider>
   )
 }
 
