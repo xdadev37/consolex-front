@@ -29,9 +29,9 @@ const Selectors: FC<ISelectors> = ({
   reverseFlexDirection,
   ...selectProps
 }) => {
-  const MultiPopper = (props: PopperProps) => (
-    <Popper {...props} placement='left' />
-  )
+  // const MultiPopper = (props: PopperProps) => (
+  //   <Popper {...props} placement='left' />
+  // )
   const getOptionLabel = (option: any) => option[optionLabel]
   const renderOption = (
     props: HTMLAttributes<HTMLLIElement>,
@@ -95,7 +95,7 @@ const Selectors: FC<ISelectors> = ({
         },
       }}
       filterOptions={options.length > 15 ? undefined : filter => filter}
-      PopperComponent={multiple ? MultiPopper : undefined}
+      // PopperComponent={multiple ? MultiPopper : undefined}
       popupIcon={
         <FontAwesomeIcon size='sm' icon={faChevronDown} color='#0e5691' />
       }
