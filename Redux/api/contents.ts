@@ -9,7 +9,7 @@ const contentsApi = createApi({
   endpoints: ({ query }) => ({
     getContents: query({
       query: () => ({ url: '', method: 'GET' }),
-      transformResponse: (res: IContents[]) => res,
+      transformResponse: (res: IContents[]) => res.sort((a, b) => b.id - a.id),
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>

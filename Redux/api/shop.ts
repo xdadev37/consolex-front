@@ -13,7 +13,7 @@ const shopApi = createApi({
         method: 'GET',
         params,
       }),
-      transformResponse: (res: IShop[]) => res,
+      transformResponse: (res: IShop[]) => res.sort((a, b) => b.id - a.id),
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>
