@@ -6,12 +6,14 @@ import * as contents from 'Redux/api/contents'
 import * as images from 'api/contentsImages'
 import * as shopImages from 'Redux/api/shopImages'
 import * as filtration from 'api/filtration'
+import * as category from 'slicers/category'
 import { createWrapper } from 'next-redux-wrapper'
 
 const store = configureStore({
   reducer: {
     [darkMode.name]: darkMode.reducer,
     [alertMessage.name]: alertMessage.reducer,
+    [category.name]: category.reducer,
     [shop.reducerPath]: shop.reducer,
     [contents.reducerPath]: contents.reducer,
     [images.reducerPath]: images.reducer,
