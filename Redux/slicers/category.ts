@@ -6,11 +6,13 @@ const initialState = {}
 const categorySlice = createSlice({
   name: 'category',
   initialState,
-  reducers: {},
+  reducers: {
+    setInit: () => {},
+  },
 })
 
 export const {
-  actions: {},
+  actions: { setInit },
   reducer,
   name,
 } = categorySlice
