@@ -1,13 +1,14 @@
-export interface IUrl {
+interface IMedium {
   url: string
-}
-
-interface Image {
   name: string
-  formats: { small: IUrl; medium: IUrl; large: IUrl; thumbnail: IUrl }
+  ext: string
 }
 
-interface IImages {
-  descriptions: string
-  images: Image[]
+interface IFormats {
+  medium: IMedium
+}
+
+export interface IImage {
+  name: string
+  formats: IFormats
 }

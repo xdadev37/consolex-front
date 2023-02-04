@@ -37,7 +37,7 @@ const Shop: NextPage = () => {
     <Grid container direction='column' justifyContent='space-between'>
       <Zoom in timeout={1000}>
         <Grid container gap={3} marginTop={2} justifyContent='center'>
-          {data?.map((card, index) => (
+          {data?.data.map((card, index) => (
             <Card
               key={index}
               onClick={shopImagesHandler(card.imagesId || 0)}

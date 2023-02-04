@@ -18,7 +18,7 @@ const contentsApi = createApi({
           'populate[image][populate]': 'medium',
         },
       }),
-      transformResponse: (res: IContents[]) => res,
+      transformResponse: (res: Record<'data', IContents[]>) => res,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>
