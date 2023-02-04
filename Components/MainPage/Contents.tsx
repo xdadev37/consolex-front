@@ -1,6 +1,6 @@
 import { memo, useState, Fragment } from 'react'
 import { Typography } from '@mui/material'
-import { useLazyImagesQuery } from 'api/contentsImages'
+import { useLazyImagesQuery } from 'api/images'
 import { useGetContentsQuery } from 'api/contents'
 import remarkParser from 'Constants/remarkParser'
 import { useRouter } from 'next/router'
@@ -46,7 +46,7 @@ const Contents: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotImages.data?.contentsImages || []}
+        images={gotImages.data?.images || []}
         descriptions={modalDescriptions}
       />
     </Fragment>

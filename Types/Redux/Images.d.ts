@@ -1,4 +1,4 @@
-interface IUrl {
+export interface IUrl {
   url: string
 }
 
@@ -7,10 +7,7 @@ interface Image {
   formats: { small: IUrl; medium: IUrl; large: IUrl; thumbnail: IUrl }
 }
 
-interface IDescriptions {
+interface IImages {
   descriptions: string
-}
-
-export interface IContentsImages extends IDescriptions {
-  contentsImages: Image[]
+  images: Image[]
 }

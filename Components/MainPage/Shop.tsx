@@ -4,30 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import { useGetShopQuery } from 'api/shop'
 import { useRouter } from 'next/router'
-import { useLazyShopImagesQuery } from 'api/shopImages'
-import { useGetCategoriesQuery } from 'api/filtration'
+import { useLazyImagesQuery } from 'api/images'
+import { selectParams } from 'slicers/category'
+import { useAppSelector } from 'Redux/store'
 import remarkParser from 'Constants/remarkParser'
 import Card from 'Modules/Card'
-import Selector from 'Modules/Selector'
 import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
 
 const Shop: NextPage = () => {
   const { isFallback } = useRouter()
-  const [params, setParams] = useState<Record<'categories.key', string>>()
   const [modal, setModal] = useState(false)
   const thousandsFormatter = new Intl.NumberFormat()
   const [modalDescriptions, setModalDescriptions] = useState('')
+  const params = useAppSelector(selectParams)
   const { data } = useGetShopQuery(params, {
     refetchOnMountOrArgChange: true,
     skip: isFallback,
   })
-  const categories = useGetCategoriesQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-    skip: isFallback,
-  })
-  const all = { id: 0, value: 'همه' }
-  const [getShopImages, gotShopImages] = useLazyShopImagesQuery()
+  const [getShopImages, gotShopImages] = useLazyImagesQuery()
   const shopImagesHandler = (id: number) => () =>
     getShopImages(id)
       .unwrap()
@@ -40,28 +35,6 @@ const Shop: NextPage = () => {
 
   return (
     <Grid container direction='column' justifyContent='space-between'>
-      <Grid container>
-        <Grid
-          item
-          marginY={2}
-          xs={6}
-          sm={3}
-          md={3}
-          lg={2}
-          alignItems='center'
-          display='flex'
-        >
-          فیلتر:
-          <Selector
-            defaultValue={all}
-            optionLabel='value'
-            options={[all, ...(categories.data || [])]}
-            onChange={(object: Record<string, any>) =>
-              setParams({ 'categories.key': object.key })
-            }
-          />
-        </Grid>
-      </Grid>
       <Zoom in timeout={1000}>
         <Grid container gap={3} marginTop={2} justifyContent='center'>
           {data?.map((card, index) => (
@@ -124,7 +97,7 @@ const Shop: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotShopImages.data?.shopImages || []}
+        images={gotShopImages.data?.images || []}
         descriptions={modalDescriptions}
       />
     </Grid>

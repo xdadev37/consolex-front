@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import baseQuery from 'Redux/axiosQuery'
-import type { IContentsImages } from 'Types/Redux/Images'
+import type { IImages } from 'Types/Redux/Images'
 
 const imagesApi = createApi({
   reducerPath: 'imagesApi',
@@ -11,7 +11,7 @@ const imagesApi = createApi({
         url: id.toString(),
         method: 'GET',
       }),
-      transformResponse: (res: IContentsImages) => res,
+      transformResponse: (res: IImages) => res,
     }),
   }),
 })

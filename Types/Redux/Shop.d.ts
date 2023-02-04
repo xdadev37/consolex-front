@@ -8,3 +8,7 @@ interface IShop {
   price?: number
   imagesId?: number
 }
+
+interface IParams {
+  'filters[menu_1][key][$eq]': string
+}

@@ -3,18 +3,24 @@ import MainPage from 'Components/MainPage/MainPage'
 import Shop from 'Components/MainPage/Shop'
 import Head from 'next/head'
 import { getRunningQueriesThunk, getShop } from 'api/shop'
-import { getCategories } from 'api/filtration'
+import { getMenu_1, getMenu_2, getMenu_3 } from 'api/categories'
 import { getServerSideProps as wrapper } from 'Redux/store'
 import type { NextPage } from 'next'
+import type { IParams } from 'Types/Redux/Shop'
 
-export const getServerSideProps = wrapper(({ dispatch }) => async ({ params }) => {
-  dispatch(getCategories.initiate(undefined))
-  dispatch(getShop.initiate(params as Record<'categories.key', string>))
+export const getServerSideProps = wrapper(
+  ({ dispatch }) =>
+    async ({ params }) => {
+      dispatch(getMenu_1.initiate(undefined))
+      dispatch(getMenu_2.initiate(undefined))
+      dispatch(getMenu_3.initiate(undefined))
+      dispatch(getShop.initiate(params as unknown as IParams))
 
-  await Promise.all(dispatch(getRunningQueriesThunk()))
+      await Promise.all(dispatch(getRunningQueriesThunk()))
 
-  return { props: {} }
-})
+      return { props: {} }
+    }
+)
 
 const ShopPage: NextPage = () => (
   <MainPage>

@@ -3,11 +3,12 @@ import * as darkMode from 'slicers/darkMode'
 import * as alertMessage from 'slicers/alertSnackbar'
 import * as shop from 'Redux/api/shop'
 import * as contents from 'Redux/api/contents'
-import * as images from 'api/contentsImages'
-import * as shopImages from 'Redux/api/shopImages'
-import * as filtration from 'api/filtration'
+import * as images from 'api/images'
+import * as filtration from 'api/categories'
 import * as category from 'slicers/category'
 import { createWrapper } from 'next-redux-wrapper'
+import { useDispatch, useSelector } from 'react-redux'
+import type { TypedUseSelectorHook } from 'react-redux'
 
 const store = configureStore({
   reducer: {
@@ -17,7 +18,6 @@ const store = configureStore({
     [shop.reducerPath]: shop.reducer,
     [contents.reducerPath]: contents.reducer,
     [images.reducerPath]: images.reducer,
-    [shopImages.reducerPath]: shopImages.reducer,
     [filtration.reducerPath]: filtration.reducer,
   },
   middleware: getDefault =>
@@ -25,7 +25,6 @@ const store = configureStore({
       shop.middleware,
       contents.middleware,
       images.middleware,
-      shopImages.middleware,
       filtration.middleware,
     ]),
 })
@@ -33,6 +32,8 @@ const store = configureStore({
 export type AppStore = typeof store
 export type RooState = ReturnType<AppStore['getState']>
 export type AppDispatch = AppStore['dispatch']
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppSelector: TypedUseSelectorHook<RooState> = useSelector
 
 export const { withRedux, getStaticProps, getServerSideProps } = createWrapper(
   () => store

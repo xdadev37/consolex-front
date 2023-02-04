@@ -1,18 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import type { IParams } from 'Types/Redux/Shop'
+import type { RooState } from 'Redux/store'
 
-const initialState = {}
+const initialState: Record<string, IParams | undefined> = {
+  params: undefined,
+}
 
-const categorySlice = createSlice({
-  name: 'category',
+const categoriesSlice = createSlice({
+  name: 'categories',
   initialState,
   reducers: {
-    setInit: () => {},
+    setParams: (state, action: PayloadAction<IParams>) => ({
+      params: { ...action.payload },
+    }),
   },
 })
 
+export const selectParams = (state: RooState) => state.categories.params
+
 export const {
-  actions: { setInit },
+  actions: { setParams },
   reducer,
   name,
-} = categorySlice
+} = categoriesSlice
