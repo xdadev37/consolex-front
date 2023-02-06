@@ -27,7 +27,7 @@ const Shop: NextPage = () => {
     getShopImages(id)
       .unwrap()
       .then(res =>
-        remarkParser.process(res.descriptions).then(parsed => {
+        remarkParser.process(res.data.descriptions).then(parsed => {
           setModalDescriptions(parsed.toString())
           return setModal(true)
         })
@@ -40,10 +40,10 @@ const Shop: NextPage = () => {
           {data?.data.map((card, index) => (
             <Card
               key={index}
-              onClick={shopImagesHandler(card.imagesId || 0)}
+              onClick={shopImagesHandler(card.attributes.image || 0)}
               backgroundColor='primary.main'
               header={{
-                title: card.title,
+                title: card.attributes.title,
                 subheader: 'تماس برای اطلاعات بیش تر',
                 actions: (
                   <Link href='#footer' color='primary.100'>
@@ -52,8 +52,8 @@ const Shop: NextPage = () => {
                 ),
               }}
               media={{
-                url: card.image.formats.small.url,
-                alt: card.image.name,
+                url: card.attributes.image.formats.small.url,
+                alt: card.attributes.image.name,
               }}
             >
               <Grid
@@ -64,7 +64,7 @@ const Shop: NextPage = () => {
                 <Grid item sm={6} md={6} lg={6}>
                   <Typography color='primary.100'>قیمت</Typography>
                 </Grid>
-                {card.price ? (
+                {card.attributes.price ? (
                   <Grid
                     item
                     alignItems='baseline'
@@ -74,7 +74,7 @@ const Shop: NextPage = () => {
                     lg={6}
                   >
                     <Typography variant='subtitle1'>
-                      {thousandsFormatter.format(card.price)}
+                      {thousandsFormatter.format(card.attributes.price)}
                     </Typography>
                     &nbsp;
                     <Typography
@@ -97,7 +97,7 @@ const Shop: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotShopImages.data?.images || []}
+        images={gotShopImages.data?.data || []}
         descriptions={modalDescriptions}
       />
     </Grid>

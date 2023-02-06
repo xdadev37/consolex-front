@@ -21,7 +21,7 @@ const Contents: NextPage = () => {
     getImages(id)
       .unwrap()
       .then(res =>
-        remarkParser.process(res.descriptions).then(parsed => {
+        remarkParser.process(res.data.descriptions).then(parsed => {
           setModalDescriptions(parsed.toString())
           return setModal(true)
         })
@@ -29,24 +29,24 @@ const Contents: NextPage = () => {
 
   return (
     <Fragment>
-      {data?.map((card, index) => (
+      {data?.data.map((card, index) => (
         <Card
           key={index}
-          onClick={contentsImagesHandler(card.imagesId || 0)}
+          onClick={contentsImagesHandler(card.attributes.image || 0)}
           backgroundColor='primary.main'
-          header={{ title: card.title }}
+          header={{ title: card.attributes.title }}
           media={{
-            url: card.image.formats.small.url,
-            alt: card.image.name,
+            url: card.attributes.image.formats.medium.url,
+            alt: card.attributes.image.name,
           }}
         >
-          <Typography>{card.ps}</Typography>
+          <Typography>{card.attributes.ps}</Typography>
         </Card>
       ))}
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotImages.data?.images || []}
+        images={gotImages.data?.data || []}
         descriptions={modalDescriptions}
       />
     </Fragment>
