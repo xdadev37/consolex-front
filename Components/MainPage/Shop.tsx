@@ -40,7 +40,7 @@ const Shop: NextPage = () => {
           {data?.data.map((card, index) => (
             <Card
               key={index}
-              onClick={shopImagesHandler(card.attributes.image || 0)}
+              onClick={shopImagesHandler(card.attributes.images.data.id || 0)}
               backgroundColor='primary.main'
               header={{
                 title: card.attributes.title,
@@ -52,8 +52,8 @@ const Shop: NextPage = () => {
                 ),
               }}
               media={{
-                url: card.attributes.image.formats.small.url,
-                alt: card.attributes.image.name,
+                url: card.attributes.image.formats.medium.url,
+                alt: card.attributes.image.formats.medium.name,
               }}
             >
               <Grid
@@ -89,7 +89,9 @@ const Shop: NextPage = () => {
                   <Typography variant='caption'>تماس بگیرید</Typography>
                 )}
               </Grid>
-              <Typography variant='caption'>{card.ps || ''}</Typography>
+              <Typography variant='caption'>
+                {card.attributes.ps || ''}
+              </Typography>
             </Card>
           ))}
         </Grid>
@@ -97,7 +99,7 @@ const Shop: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotShopImages.data?.data || []}
+        images={gotShopImages.data?.data.images.data || []}
         descriptions={modalDescriptions}
       />
     </Grid>

@@ -15,7 +15,8 @@ const contentsApi = createApi({
         params: {
           ...params,
           sort: 'updatedAt:desc',
-          'populate[image][populate]': 'medium',
+          'populate[images][fields][0]': 'id',
+          'populate[image][fields][0]': 'formats',
         },
       }),
       transformResponse: (res: Record<'data', IContents[]>) => res,

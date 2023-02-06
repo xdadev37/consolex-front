@@ -1,4 +1,4 @@
-import type { IImage } from 'Types/Redux/Images'
+import type { IImage, IId } from 'Types/Redux/Images'
 
 interface IAttributes {
   title: string
@@ -6,9 +6,9 @@ interface IAttributes {
   createdAt: Date
   updatedAt: Date
   image: IImage
+  images: Record<'data', IId>
 }
 
-interface IContents {
-  id: number
+interface IContents extends IId {
   attributes: IAttributes
 }

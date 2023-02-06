@@ -32,12 +32,12 @@ const Contents: NextPage = () => {
       {data?.data.map((card, index) => (
         <Card
           key={index}
-          onClick={contentsImagesHandler(card.attributes.image || 0)}
+          onClick={contentsImagesHandler(card.attributes.images.data.id || 0)}
           backgroundColor='primary.main'
           header={{ title: card.attributes.title }}
           media={{
             url: card.attributes.image.formats.medium.url,
-            alt: card.attributes.image.name,
+            alt: card.attributes.image.formats.medium.name,
           }}
         >
           <Typography>{card.attributes.ps}</Typography>
@@ -46,7 +46,7 @@ const Contents: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotImages.data?.data || []}
+        images={gotImages.data?.data.images.data || []}
         descriptions={modalDescriptions}
       />
     </Fragment>

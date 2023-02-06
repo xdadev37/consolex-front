@@ -1,7 +1,6 @@
 interface IMedium {
   url: string
   name: string
-  ext: string
 }
 
 interface IFormats {
@@ -9,6 +8,22 @@ interface IFormats {
 }
 
 export interface IImage {
-  name: string
   formats: IFormats
+}
+
+interface IId {
+  id: number
+}
+
+interface IFormat {
+  formats: IAttributes
+}
+
+interface IAttributes extends IId {
+  attributes: IFormat
+}
+
+export interface IImages {
+  descriptions: string
+  images: Record<'data', IAttributes[]>
 }
