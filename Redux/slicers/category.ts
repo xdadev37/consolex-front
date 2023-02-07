@@ -3,8 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { IParams } from 'Types/Redux/Shop'
 import type { RooState } from 'Redux/store'
 
-const initialState: Record<string, IParams | undefined> = {
-  params: undefined,
+const initialState: Record<string, IParams | null> = {
+  params: null,
 }
 
 const categoriesSlice = createSlice({

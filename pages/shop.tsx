@@ -3,7 +3,7 @@ import MainPage from 'Components/MainPage/MainPage'
 import Shop from 'Components/MainPage/Shop'
 import Head from 'next/head'
 import { getRunningQueriesThunk, getShop } from 'api/shop'
-import { getMenu_1, getMenu_2, getMenu_3 } from 'api/categories'
+import { getMenu_3 } from 'api/categories'
 import { getServerSideProps as wrapper } from 'Redux/store'
 import type { NextPage } from 'next'
 import type { IParams } from 'Types/Redux/Shop'
@@ -11,8 +11,6 @@ import type { IParams } from 'Types/Redux/Shop'
 export const getServerSideProps = wrapper(
   ({ dispatch }) =>
     async ({ params }) => {
-      dispatch(getMenu_1.initiate(undefined))
-      dispatch(getMenu_2.initiate(undefined))
       dispatch(getMenu_3.initiate(undefined))
       dispatch(getShop.initiate(params as unknown as IParams))
 

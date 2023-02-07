@@ -7,7 +7,7 @@ import type { ICategories, IMenu_3 } from 'Types/Redux/Categories.d'
 import type { NextPage } from 'next'
 import type { MouseEvent } from 'react'
 
-const SubList: NextPage<ICategories<IMenu_3>> = data => {
+const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const dispatch = useAppDispatch()
   const handlePopoverOpen = (event: MouseEvent<HTMLElement>) =>
@@ -63,4 +63,4 @@ const SubList: NextPage<ICategories<IMenu_3>> = data => {
   )
 }
 
-export default SubList
+export default Popover_Menu

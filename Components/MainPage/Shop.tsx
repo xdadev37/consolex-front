@@ -18,7 +18,7 @@ const Shop: NextPage = () => {
   const thousandsFormatter = new Intl.NumberFormat()
   const [modalDescriptions, setModalDescriptions] = useState('')
   const params = useAppSelector(selectParams)
-  const { data } = useGetShopQuery(params, {
+  const { data } = useGetShopQuery(params || undefined, {
     refetchOnMountOrArgChange: true,
     skip: isFallback,
   })
@@ -40,7 +40,7 @@ const Shop: NextPage = () => {
           {data?.data.map((card, index) => (
             <Card
               key={index}
-              onClick={shopImagesHandler(card.attributes.images.data.id || 0)}
+              onClick={shopImagesHandler(card.attributes.images.data?.id || 0)}
               backgroundColor='primary.main'
               header={{
                 title: card.attributes.title,
@@ -52,8 +52,8 @@ const Shop: NextPage = () => {
                 ),
               }}
               media={{
-                url: card.attributes.image.formats.medium.url,
-                alt: card.attributes.image.formats.medium.name,
+                url: card.attributes.image.formats?.medium.url,
+                alt: card.attributes.image.formats?.medium.name,
               }}
             >
               <Grid
@@ -99,7 +99,7 @@ const Shop: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotShopImages.data?.data.images.data || []}
+        images={gotShopImages.data?.data.images?.data || []}
         descriptions={modalDescriptions}
       />
     </Grid>

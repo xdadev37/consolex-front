@@ -1,8 +1,8 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import baseQuery from 'Redux/axiosQuery'
 import { HYDRATE } from 'next-redux-wrapper'
-import type { IContents } from 'Types/Redux/Contents'
-import type { IParams } from 'Types/Redux/Shop'
+import type { IContents } from 'Types/Redux/Contents.d'
+import type { IParams } from 'Types/Redux/Shop.d'
 
 const contentsApi = createApi({
   reducerPath: 'contentsApi',

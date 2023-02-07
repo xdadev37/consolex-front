@@ -5,11 +5,11 @@ import type { ICategories, IMenu_3 } from 'Types/Redux/Categories.d'
 
 const categoriesApi = createApi({
   reducerPath: 'categoriesApi',
-  baseQuery: baseQuery(''),
+  baseQuery: baseQuery('menu-3s'),
   endpoints: ({ query }) => ({
     getMenu_3: query({
       query: () => ({
-        url: 'menu-3s',
+        url: '',
         method: 'GET',
         params: { 'populate[menu_2s][populate]': 'menu_1' },
       }),

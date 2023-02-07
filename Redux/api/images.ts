@@ -4,7 +4,7 @@ import type { IImages } from 'Types/Redux/Images'
 
 const imagesApi = createApi({
   reducerPath: 'imagesApi',
-  baseQuery: baseQuery('content-images'),
+  baseQuery: baseQuery('images'),
   endpoints: ({ query }) => ({
     images: query({
       query: (id: number) => ({

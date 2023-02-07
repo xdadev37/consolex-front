@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
-import { Toolbar, Drawer, Button, List, Popover } from '@mui/material'
+import { Toolbar, Drawer, Button, List } from '@mui/material'
 import { useGetMenu_3Query } from 'api/categories'
+import Popover_Menu from './Popover'
 import { useRouter } from 'next/router'
 import List_3 from './List'
 import type { NextPage } from 'next'
@@ -15,7 +16,7 @@ const AppBarMenu: NextPage = () => {
     <Fragment>
       <Toolbar>
         {menu_3.data?.data.map(m => (
-          <Button key={m.attributes.key}>{m.attributes.value}</Button>
+          <Popover_Menu key={m.id} {...m} />
         ))}
       </Toolbar>
       <Drawer>
