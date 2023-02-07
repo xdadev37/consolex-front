@@ -23,8 +23,8 @@ import type { IModal } from 'Types/Modal'
 const ContentModal: NextPage<IModal> = ({
   open,
   setOpen,
-  images,
   descriptions,
+  images,
 }) => {
   const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
 
@@ -62,13 +62,13 @@ const ContentModal: NextPage<IModal> = ({
           <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
             <Gallery
               additionalClass={classes.gallery}
-              items={images.map(image => ({
+              items={images.data.map(image => ({
                 original: `${appSettings.baseUrl}${
-                  pcMode && image.formats.medium
-                    ? image.formats.medium.url
-                    : image.formats.small.url
+                  pcMode && image.attributes.formats.medium
+                    ? image.attributes.formats.medium.url
+                    : image.attributes.formats.small.url
                 }`,
-                thumbnail: `${appSettings.baseUrl}${image.formats.thumbnail.url}`,
+                thumbnail: `${appSettings.baseUrl}${image.attributes.formats.thumbnail.url}`,
               }))}
               lazyLoad
               autoPlay

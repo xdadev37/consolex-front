@@ -27,7 +27,7 @@ const Shop: NextPage = () => {
     getShopImages(id)
       .unwrap()
       .then(res =>
-        remarkParser.process(res.descriptions).then(parsed => {
+        remarkParser.process(res.attributes.descriptions).then(parsed => {
           setModalDescriptions(parsed.toString())
           return setModal(true)
         })
@@ -101,7 +101,7 @@ const Shop: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotShopImages.data?.images?.data || []}
+        images={{ data: gotShopImages.data?.attributes.images.data || [] }}
         descriptions={modalDescriptions}
       />
     </Grid>

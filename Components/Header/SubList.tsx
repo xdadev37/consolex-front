@@ -1,5 +1,11 @@
 import { useState, Fragment } from 'react'
-import { List, ListItemButton, ListItemText, Collapse } from '@mui/material'
+import {
+  List,
+  ListItemButton,
+  ListItemText,
+  Collapse,
+  Divider,
+} from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import { useAppDispatch } from 'Redux/store'
@@ -24,6 +30,7 @@ const SubList: NextPage<ICategories<IMenu_2>> = data => {
         </ListItemText>
         <FontAwesomeIcon icon={open ? faCaretUp : faCaretDown} />
       </ListItemButton>
+      <Divider />
       <Collapse in={open} timeout='auto' unmountOnExit>
         <List disablePadding>
           {data.attributes.menu_1s.data.map(i => (

@@ -21,7 +21,7 @@ const Contents: NextPage = () => {
     getImages(id)
       .unwrap()
       .then(res =>
-        remarkParser.process(res.descriptions).then(parsed => {
+        remarkParser.process(res.attributes.descriptions).then(parsed => {
           setModalDescriptions(parsed.toString())
           return setModal(true)
         })
@@ -48,7 +48,7 @@ const Contents: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotImages.data?.images.data || []}
+        images={{ data: gotImages.data?.attributes.images.data || [] }}
         descriptions={modalDescriptions}
       />
     </Fragment>

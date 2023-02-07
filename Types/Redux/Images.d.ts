@@ -5,6 +5,8 @@ interface IMedium {
 
 interface IFormats {
   medium: IMedium
+  small: IMedium
+  thumbnail: IMedium
 }
 
 export interface IImage {

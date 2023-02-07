@@ -1,5 +1,5 @@
 import { useState, Fragment } from 'react'
-import { Grid, Popover, Typography } from '@mui/material'
+import { Grid, Popover, Typography, Divider } from '@mui/material'
 import { useAppDispatch } from 'Redux/store'
 import { setParams } from 'slicers/category'
 import Image from 'next/image'
@@ -27,6 +27,7 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
         aria-haspopup='true'
         onMouseEnter={handlePopoverOpen}
         paddingX={2}
+        sx={{ textDecoration: 'underline' }}
       >
         {data.attributes.value}
       </Typography>
@@ -48,6 +49,7 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
           <Grid item sm={5} md={5} lg={5}>
             {data.attributes.menu_2s?.data.map(m => (
               <Fragment key={m.id}>
+                <Divider />
                 <Typography
                   // onClick={setParamsHandler(m.attributes.key)}
                   color='red'
@@ -63,7 +65,7 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
                       onClick={setParamsHandler(i.attributes.key)}
                       sx={{ cursor: 'pointer' }}
                     >
-                      - {i.attributes.value}
+                      {i.attributes.value}
                     </Typography>
                   ))}
                 </Grid>

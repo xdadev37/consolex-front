@@ -13,7 +13,8 @@ const imagesApi = createApi({
         method: 'GET',
         params: { 'populate[image][fields][0]': 'formats' },
       }),
-      transformResponse: (res: Record<'data', IImages>) => res.data,
+      transformResponse: (res: Record<'data', Record<'attributes', IImages>>) =>
+        res.data,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>
