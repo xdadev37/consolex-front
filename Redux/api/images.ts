@@ -11,7 +11,7 @@ const imagesApi = createApi({
       query: (id: number) => ({
         url: id.toString(),
         method: 'GET',
-        params: { 'populate[image][fields][0]': 'formats' },
+        params: { 'populate': '*' },
       }),
       transformResponse: (res: Record<'data', Record<'attributes', IImages>>) =>
         res.data,
