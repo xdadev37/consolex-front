@@ -18,7 +18,7 @@ const shopApi = createApi({
           'populate[image][fields][0]': 'formats',
         },
       }),
-      transformResponse: (res: Record<'data', IShop[]>) => res,
+      transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>

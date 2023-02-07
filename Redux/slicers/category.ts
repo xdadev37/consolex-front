@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { IParams } from 'Types/Redux/Shop'
 import type { RooState } from 'Redux/store'
 
-const initialState: Record<string, IParams | null> = {
+const initialState: Record<'params', IParams | null> = {
   params: null,
 }
 
@@ -12,7 +12,7 @@ const categoriesSlice = createSlice({
   initialState,
   reducers: {
     setParams: (state, action: PayloadAction<IParams>) => ({
-      params: { ...action.payload },
+      params: { ...state.params, ...action.payload },
     }),
   },
 })

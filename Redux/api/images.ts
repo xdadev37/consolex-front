@@ -1,5 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import baseQuery from 'Redux/axiosQuery'
+import { HYDRATE } from 'next-redux-wrapper'
 import type { IImages } from 'Types/Redux/Images'
 
 const imagesApi = createApi({
@@ -10,10 +11,13 @@ const imagesApi = createApi({
       query: (id: number) => ({
         url: id.toString(),
         method: 'GET',
+        params: { 'populate[image][fields][0]': 'formats' },
       }),
-      transformResponse: (res: Record<'data', IImages>) => res,
+      transformResponse: (res: Record<'data', IImages>) => res.data,
     }),
   }),
+  extractRehydrationInfo: (action, { reducerPath }) =>
+    action.type === HYDRATE ? action.payload[reducerPath] : undefined,
 })
 
 export const { useLazyImagesQuery, reducer, reducerPath, middleware } =

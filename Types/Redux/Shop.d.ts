@@ -1,4 +1,4 @@
-import type { IImage, IId } from 'Types/Redux/Images'
+import type { IAttributes as IImage, IId } from 'Types/Redux/Images.d'
 
 interface IAttributes {
   title: string
@@ -6,7 +6,7 @@ interface IAttributes {
   price: number
   createdAt: Date
   updatedAt: Date
-  image: IImage
+  image: Record<'data', IImage>
   images: Record<'data', IId>
 }
 
@@ -14,6 +14,6 @@ interface IShop extends IId {
   attributes: IAttributes
 }
 
-export interface IParams {
+interface IParams {
   'filters[menu_1][key][$eq]'?: string
 }

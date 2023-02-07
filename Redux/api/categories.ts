@@ -8,10 +8,15 @@ const categoriesApi = createApi({
   baseQuery: baseQuery('menu-3s'),
   endpoints: ({ query }) => ({
     getMenu_3: query({
-      query: () => ({
+      query: params => ({
         url: '',
         method: 'GET',
-        params: { 'populate[menu_2s][populate]': 'menu_1' },
+        params: {
+          ...params,
+          'populate[menu_2s][populate]': 'menu_1s',
+          'populate[image][fields][0]': 'formats',
+          sort: 'pos:asc',
+        },
       }),
       transformResponse: (res: Record<'data', ICategories<IMenu_3>[]>) => res,
     }),

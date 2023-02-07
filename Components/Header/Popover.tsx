@@ -3,6 +3,7 @@ import { Grid, Popover, Typography } from '@mui/material'
 import { useAppDispatch } from 'Redux/store'
 import { setParams } from 'slicers/category'
 import Image from 'next/image'
+import appSettings from 'AppSettings'
 import type { ICategories, IMenu_3 } from 'Types/Redux/Categories.d'
 import type { NextPage } from 'next'
 import type { MouseEvent } from 'react'
@@ -14,8 +15,10 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
     setAnchorEl(event.currentTarget)
   const handlePopoverClose = () => setAnchorEl(null)
   const open = Boolean(anchorEl)
-  const setParamsHandler = (value: string) => () =>
+  const setParamsHandler = (value: string) => () => {
     dispatch(setParams({ 'filters[menu_1][key][$eq]': value }))
+    return setAnchorEl(null)
+  }
 
   return (
     <Fragment key={data.attributes.key}>
@@ -23,13 +26,15 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
         aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup='true'
         onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
+        paddingX={2}
       >
         {data.attributes.value}
       </Typography>
       <Popover
         id='mouse-over-popover'
-        sx={{ pointerEvents: 'none' }}
+        PaperProps={{
+          sx: { width: '40%', paddingY: 2, paddingX: 4, borderRadius: 5 },
+        }}
         open={open}
         anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
@@ -40,22 +45,39 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
         onClose={handlePopoverClose}
       >
         <Grid container justifyContent='space-between'>
-          <Grid item>
-            {data.attributes.menu_2.data.map(m => (
-              <Grid container key={m.id}>
-                {m.attributes.menu_1.data.map(i => (
-                  <Typography
-                    key={i.id}
-                    onClick={setParamsHandler(i.attributes.key)}
-                  >
-                    {i.attributes.value}
-                  </Typography>
-                ))}
-              </Grid>
+          <Grid item sm={5} md={5} lg={5}>
+            {data.attributes.menu_2s?.data.map(m => (
+              <Fragment key={m.id}>
+                <Typography
+                  // onClick={setParamsHandler(m.attributes.key)}
+                  color='red'
+                  marginTop={3}
+                  marginBottom={1}
+                >
+                  {m.attributes.value}
+                </Typography>
+                <Grid item sx={{ paddingRight: 2 }}>
+                  {m.attributes.menu_1s?.data.map(i => (
+                    <Typography
+                      key={i.id}
+                      onClick={setParamsHandler(i.attributes.key)}
+                      sx={{ cursor: 'pointer' }}
+                    >
+                      - {i.attributes.value}
+                    </Typography>
+                  ))}
+                </Grid>
+              </Fragment>
             ))}
           </Grid>
-          <Grid item>
-            <Image alt='' src='' />
+          <Grid item sm={6} md={6} lg={6}>
+            <Image
+              width='100%'
+              height='100%'
+              layout='responsive'
+              alt={data.attributes.value}
+              src={`${appSettings.baseUrl}${data.attributes.image.data.attributes.formats.medium.url}`}
+            />
           </Grid>
         </Grid>
       </Popover>

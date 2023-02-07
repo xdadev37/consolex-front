@@ -15,7 +15,7 @@ import type { NextPage } from 'next'
 const Shop: NextPage = () => {
   const { isFallback } = useRouter()
   const [modal, setModal] = useState(false)
-  const thousandsFormatter = new Intl.NumberFormat()
+  const thousandsFormatter = new Intl.NumberFormat('fa-IR')
   const [modalDescriptions, setModalDescriptions] = useState('')
   const params = useAppSelector(selectParams)
   const { data } = useGetShopQuery(params || undefined, {
@@ -27,7 +27,7 @@ const Shop: NextPage = () => {
     getShopImages(id)
       .unwrap()
       .then(res =>
-        remarkParser.process(res.data.descriptions).then(parsed => {
+        remarkParser.process(res.descriptions).then(parsed => {
           setModalDescriptions(parsed.toString())
           return setModal(true)
         })
@@ -37,7 +37,7 @@ const Shop: NextPage = () => {
     <Grid container direction='column' justifyContent='space-between'>
       <Zoom in timeout={1000}>
         <Grid container gap={3} marginTop={2} justifyContent='center'>
-          {data?.data.map((card, index) => (
+          {data?.map((card, index) => (
             <Card
               key={index}
               onClick={shopImagesHandler(card.attributes.images.data?.id || 0)}
@@ -52,8 +52,10 @@ const Shop: NextPage = () => {
                 ),
               }}
               media={{
-                url: card.attributes.image.formats?.medium.url,
-                alt: card.attributes.image.formats?.medium.name,
+                url: card.attributes.image.data
+                  ? card.attributes.image.data.attributes.formats.medium.url
+                  : '',
+                alt: card.attributes.title,
               }}
             >
               <Grid
@@ -99,7 +101,7 @@ const Shop: NextPage = () => {
       <Modal
         open={modal}
         setOpen={setModal}
-        images={gotShopImages.data?.data.images?.data || []}
+        images={gotShopImages.data?.images?.data || []}
         descriptions={modalDescriptions}
       />
     </Grid>

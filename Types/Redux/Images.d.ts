@@ -14,13 +14,8 @@ export interface IImage {
 interface IId {
   id: number
 }
-
-interface IFormat {
-  formats: IAttributes
-}
-
 interface IAttributes extends IId {
-  attributes: IFormat
+  attributes: IImage
 }
 
 export interface IImages {
