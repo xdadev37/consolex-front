@@ -78,7 +78,11 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
               height='100%'
               layout='responsive'
               alt={data.attributes.value}
-              src={`${appSettings.baseUrl}${data.attributes.image.data.attributes.formats.medium.url}`}
+              src={`${appSettings.baseUrl}${
+                data.attributes.image.data?.attributes.formats.medium
+                  ? data.attributes.image.data?.attributes.formats.medium.url
+                  : data.attributes.image.data?.attributes.formats.small?.url
+              }`}
             />
           </Grid>
         </Grid>
