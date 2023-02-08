@@ -36,9 +36,9 @@ const Contents: NextPage = () => {
           backgroundColor='primary.main'
           header={{ title: card.attributes.title }}
           media={{
-            url: card.attributes.image.data?.attributes.formats.medium
-              ? card.attributes.image.data?.attributes.formats.medium.url
-              : card.attributes.image.data?.attributes.formats.small?.url,
+            url: card.attributes.image.data?.attributes.formats.small
+              ? card.attributes.image.data?.attributes.formats.small.url
+              : card.attributes.image.data?.attributes.formats.thumbnail?.url,
             alt: card.attributes.title,
           }}
         >

@@ -66,7 +66,9 @@ const ContentModal: NextPage<IModal> = ({
                 original: `${appSettings.baseUrl}${
                   pcMode && image.attributes.formats.medium
                     ? image.attributes.formats.medium.url
-                    : image.attributes.formats.small.url
+                    : image.attributes.formats.small
+                    ? image.attributes.formats.small.url
+                    : image.attributes.formats.thumbnail.url
                 }`,
                 thumbnail: `${appSettings.baseUrl}${image.attributes.formats.thumbnail.url}`,
               }))}
