@@ -16,7 +16,7 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
   const handlePopoverClose = () => setAnchorEl(null)
   const open = Boolean(anchorEl)
   const setParamsHandler = (value: string) => () => {
-    dispatch(setParams({ 'filters[menu_1][key][$eq]': value }))
+    dispatch(setParams({ 'filters[menu_1s][key][$eq]': value }))
     return setAnchorEl(null)
   }
 

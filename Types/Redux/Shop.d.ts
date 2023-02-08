@@ -15,5 +15,5 @@ interface IShop extends IId {
 }
 
 interface IParams {
-  'filters[menu_1][key][$eq]'?: string
+  'filters[menu_1s][key][$eq]'?: string
 }

@@ -18,7 +18,7 @@ const SubList: NextPage<ICategories<IMenu_2>> = data => {
   const dispatch = useAppDispatch()
   const toggleList = () => setOpen(!open)
   const setParamsHandler = (value: string) => () =>
-    dispatch(setParams({ 'filters[menu_1][key][$eq]': value }))
+    dispatch(setParams({ 'filters[menu_1s][key][$eq]': value }))
 
   return (
     <Fragment key={data.attributes.key}>
