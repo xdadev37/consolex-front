@@ -12,21 +12,23 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
     <Head>
       <title>کنسول ایکس | PS4 | PS5 | Xbox | بازی | اصفهان</title>
     </Head>
-      <TopAppBar />
-      <Grid
-        container
-        direction='column'
-        marginTop={10}
-        paddingX={1}
-        justifyContent='center'
-        minHeight='1000px !important'
-      >
-        <Toggler />
-        <Grid container gap={3} marginTop={2} justifyContent='center'>
-          {children}
-        </Grid>
+    <TopAppBar />
+    <Grid container marginTop={10} paddingX={1}>
+      <Toggler />
+    </Grid>
+    <Grid
+      container
+      direction='column'
+      marginTop={10}
+      paddingX={1}
+      justifyContent='center'
+      minHeight='1000px !important'
+    >
+      <Grid container gap={3} marginTop={2} justifyContent='center'>
+        {children}
       </Grid>
-      <Footer />
+    </Grid>
+    <Footer />
   </Fragment>
 )
 
