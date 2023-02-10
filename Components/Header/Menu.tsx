@@ -1,4 +1,4 @@
-import { Fragment, useState, useLayoutEffect } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Toolbar, Drawer, List, IconButton } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -22,14 +22,15 @@ const AppBarMenu: NextPage = () => {
     }
   )
 
-  useLayoutEffect(() => setOpen(false), [params])
+  useEffect(() => setOpen(false), [params])
 
   return (
     <Fragment>
       <Toolbar sx={{ display: { xs: 'none', sm: 'flex' } }}>
-        {data?.data.map(m => (
+        {/* {data?.data.map(m => (
           <Popover_Menu key={m.id} {...m} />
-        ))}
+          ))} */}
+        <Popover_Menu data={data || []} />
       </Toolbar>
       <IconButton sx={{ display: { sm: 'none' } }} onClick={toggleDrawer}>
         <FontAwesomeIcon icon={faBars} />
@@ -41,7 +42,7 @@ const AppBarMenu: NextPage = () => {
         anchor='right'
       >
         <List>
-          {data?.data.map(m => (
+          {data?.map(m => (
             <List_3 key={m.id} {...m} />
           ))}
         </List>

@@ -1,5 +1,5 @@
 import { useState, Fragment } from 'react'
-import { Grid, Popover, Typography, Divider } from '@mui/material'
+import { Grid, Popper, Typography, Divider, Paper } from '@mui/material'
 import { useAppDispatch } from 'Redux/store'
 import { setParams } from 'slicers/category'
 import Image from 'next/image'
@@ -8,11 +8,19 @@ import type { ICategories, IMenu_3 } from 'Types/Redux/Categories.d'
 import type { NextPage } from 'next'
 import type { MouseEvent } from 'react'
 
-const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
+const Popover_Menu: NextPage<Record<'data', ICategories<IMenu_3>[]>> = ({
+  data,
+}) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
+  const [menu, setMenu] = useState<ICategories<IMenu_3>>()
   const dispatch = useAppDispatch()
-  const handlePopoverOpen = (event: MouseEvent<HTMLElement>) =>
-    setAnchorEl(event.currentTarget)
+  const handlePopoverOpen = (
+    event: MouseEvent<HTMLElement>,
+    data: ICategories<IMenu_3>
+  ) => {
+    setMenu(data)
+    return setAnchorEl(event.currentTarget)
+  }
   const handlePopoverClose = () => setAnchorEl(null)
   const open = Boolean(anchorEl)
   const setParamsHandler = (value: string) => () => {
@@ -21,33 +29,41 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
   }
 
   return (
-    <Fragment key={data.attributes.key}>
-      <Typography
-        aria-owns={open ? 'mouse-over-popover' : undefined}
-        aria-haspopup='true'
-        onMouseEnter={handlePopoverOpen}
-        paddingX={2}
-        sx={{ textDecoration: 'underline' }}
-      >
-        {data.attributes.value}
-      </Typography>
-      <Popover
+    <Fragment>
+      {data.map(d => (
+        <Typography
+          key={d.attributes.key}
+          aria-owns={open ? 'mouse-over-popover' : undefined}
+          aria-haspopup='true'
+          onMouseEnter={e => handlePopoverOpen(e, d)}
+          marginX={2}
+          marginY={1}
+          zIndex={2}
+        >
+          {d.attributes.value}
+        </Typography>
+      ))}
+      <Popper
         id='mouse-over-popover'
-        PaperProps={{
-          sx: { width: '40%', paddingY: 2, paddingX: 4, borderRadius: 5 },
-        }}
+        disablePortal
         open={open}
         anchorEl={anchorEl}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        onClose={handlePopoverClose}
+        onMouseLeave={handlePopoverClose}
       >
-        <Grid container justifyContent='space-between'>
+        <Grid
+          container
+          justifyContent='space-between'
+          component={Paper}
+          sx={{
+            width: '300%',
+            paddingY: 2,
+            paddingX: 4,
+            borderRadius: 5,
+            marginTop: 1,
+          }}
+        >
           <Grid item sm={5} md={5} lg={5}>
-            {data.attributes.menu_2s?.data.map(m => (
+            {menu?.attributes.menu_2s?.data.map(m => (
               <Fragment key={m.id}>
                 <Divider />
                 <Typography
@@ -77,16 +93,17 @@ const Popover_Menu: NextPage<ICategories<IMenu_3>> = data => {
               width='100%'
               height='100%'
               layout='responsive'
-              alt={data.attributes.value}
+              style={{ borderRadius: 5 }}
+              alt={menu?.attributes.value}
               src={`${appSettings.baseUrl}${
-                data.attributes.image.data?.attributes.formats.medium
-                  ? data.attributes.image.data?.attributes.formats.medium.url
-                  : data.attributes.image.data?.attributes.formats.small?.url
+                menu?.attributes.image.data?.attributes.formats.medium
+                  ? menu?.attributes.image.data?.attributes.formats.medium.url
+                  : menu?.attributes.image.data?.attributes.formats.small?.url
               }`}
             />
           </Grid>
         </Grid>
-      </Popover>
+      </Popper>
     </Fragment>
   )
 }

@@ -18,7 +18,8 @@ const categoriesApi = createApi({
           sort: 'pos:asc',
         },
       }),
-      transformResponse: (res: Record<'data', ICategories<IMenu_3>[]>) => res,
+      transformResponse: (res: Record<'data', ICategories<IMenu_3>[]>) =>
+        res.data,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) =>
