@@ -27,10 +27,9 @@ const AppBarMenu: NextPage = () => {
   return (
     <Fragment>
       <Toolbar sx={{ display: { xs: 'none', sm: 'flex' } }}>
-        {/* {data?.data.map(m => (
-          <Popover_Menu key={m.id} {...m} />
-          ))} */}
-        <Popover_Menu data={data || []} />
+        {data?.map(m => (
+          <Popover_Menu key={m.id} d={m} />
+        ))}
       </Toolbar>
       <IconButton sx={{ display: { sm: 'none' } }} onClick={toggleDrawer}>
         <FontAwesomeIcon icon={faBars} />

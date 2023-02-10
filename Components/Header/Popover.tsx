@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, memo } from 'react'
 import { Grid, Popper, Typography, Divider, Paper } from '@mui/material'
 import { useAppDispatch } from 'Redux/store'
 import { setParams } from 'slicers/category'
@@ -8,19 +8,12 @@ import type { ICategories, IMenu_3 } from 'Types/Redux/Categories.d'
 import type { NextPage } from 'next'
 import type { MouseEvent } from 'react'
 
-const Popover_Menu: NextPage<Record<'data', ICategories<IMenu_3>[]>> = ({
-  data,
-}) => {
+const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const [menu, setMenu] = useState<ICategories<IMenu_3>>()
   const dispatch = useAppDispatch()
-  const handlePopoverOpen = (
-    event: MouseEvent<HTMLElement>,
-    data: ICategories<IMenu_3>
-  ) => {
-    setMenu(data)
-    return setAnchorEl(event.currentTarget)
-  }
+  const handlePopoverOpen = (event: MouseEvent<HTMLElement>) =>
+    setAnchorEl(event.currentTarget)
+
   const handlePopoverClose = () => setAnchorEl(null)
   const open = Boolean(anchorEl)
   const setParamsHandler = (value: string) => () => {
@@ -29,23 +22,21 @@ const Popover_Menu: NextPage<Record<'data', ICategories<IMenu_3>[]>> = ({
   }
 
   return (
-    <Fragment>
-      {data.map(d => (
-        <Typography
-          key={d.attributes.key}
-          aria-owns={open ? 'mouse-over-popover' : undefined}
-          aria-haspopup='true'
-          onMouseEnter={e => handlePopoverOpen(e, d)}
-          marginX={2}
-          marginY={1}
-          zIndex={2}
-        >
-          {d.attributes.value}
-        </Typography>
-      ))}
+    <Fragment key={d.attributes.key}>
+      <Typography
+        aria-owns={open ? 'mouse-over-popover' : undefined}
+        aria-haspopup='true'
+        onMouseEnter={handlePopoverOpen}
+        marginX={2}
+        marginY={1}
+        zIndex={2}
+      >
+        {d.attributes.value}
+      </Typography>
       <Popper
         id='mouse-over-popover'
         disablePortal
+        keepMounted
         open={open}
         anchorEl={anchorEl}
         onMouseLeave={handlePopoverClose}
@@ -63,7 +54,7 @@ const Popover_Menu: NextPage<Record<'data', ICategories<IMenu_3>[]>> = ({
           }}
         >
           <Grid item sm={5} md={5} lg={5}>
-            {menu?.attributes.menu_2s?.data.map(m => (
+            {d?.attributes.menu_2s?.data.map(m => (
               <Fragment key={m.id}>
                 <Divider />
                 <Typography
@@ -94,11 +85,11 @@ const Popover_Menu: NextPage<Record<'data', ICategories<IMenu_3>[]>> = ({
               height='100%'
               layout='responsive'
               style={{ borderRadius: 5 }}
-              alt={menu?.attributes.value}
+              alt={d?.attributes.value}
               src={`${appSettings.baseUrl}${
-                menu?.attributes.image.data?.attributes.formats.medium
-                  ? menu?.attributes.image.data?.attributes.formats.medium.url
-                  : menu?.attributes.image.data?.attributes.formats.small?.url
+                d?.attributes.image.data?.attributes.formats.medium
+                  ? d?.attributes.image.data?.attributes.formats.medium.url
+                  : d?.attributes.image.data?.attributes.formats.small?.url
               }`}
             />
           </Grid>
