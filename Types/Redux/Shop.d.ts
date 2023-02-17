@@ -16,4 +16,8 @@ interface IShop extends IId {
 
 interface IParams {
   'filters[menu_1s][key][$eq]'?: string
+  'filters[topic][$eq]'?: string
+  'populate[menu_2s][populate]'?: string
+  'populate[image][fields][0]'?: string
+  sort?: string
 }
