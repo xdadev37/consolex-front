@@ -40,6 +40,9 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
         open={open}
         anchorEl={anchorEl}
         onMouseLeave={handlePopoverClose}
+        nonce={undefined}
+        onResize={undefined}
+        onResizeCapture={undefined}
       >
         <Grid
           container

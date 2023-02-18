@@ -9,7 +9,7 @@ const categoriesApi = createApi({
   baseQuery: baseQuery('menu-3s'),
   endpoints: ({ query }) => ({
     getMenu_3: query({
-      query: (params: IParams) => ({
+      query: (params?: IParams) => ({
         url: '',
         method: 'GET',
         params: {
