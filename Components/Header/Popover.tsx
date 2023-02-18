@@ -22,11 +22,15 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
   }
 
   return (
-    <Fragment key={d.attributes.key}>
+    <Grid
+      item
+      key={d.attributes.key}
+      onMouseEnter={handlePopoverOpen}
+      onMouseLeave={handlePopoverClose}
+    >
       <Typography
         aria-owns={open ? 'mouse-over-popover' : undefined}
         aria-haspopup='true'
-        onMouseEnter={handlePopoverOpen}
         marginX={2}
         marginY={1}
         zIndex={2}
@@ -39,22 +43,18 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
         keepMounted
         open={open}
         anchorEl={anchorEl}
-        onMouseLeave={handlePopoverClose}
-        nonce={undefined}
-        onResize={undefined}
-        onResizeCapture={undefined}
       >
         <Grid
           container
           justifyContent='space-between'
+          alignItems='center'
           component={Paper}
-          sx={{
-            width: '300%',
-            paddingY: 2,
-            paddingX: 4,
-            borderRadius: 5,
-            marginTop: 1,
-          }}
+          width={800}
+          paddingY={4}
+          paddingX={2}
+          marginRight={4}
+          borderRadius={5}
+          marginTop={1}
         >
           <Grid item sm={5} md={5} lg={5}>
             {d?.attributes.menu_2s?.data.map(m => (
@@ -74,6 +74,7 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
                       key={i.id}
                       onClick={setParamsHandler(i.attributes.key)}
                       sx={{ cursor: 'pointer' }}
+                      marginBottom={1}
                     >
                       {i.attributes.value}
                     </Typography>
@@ -84,8 +85,8 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
           </Grid>
           <Grid item sm={6} md={6} lg={6}>
             <Image
-              width='100%'
-              height='100%'
+              width={10}
+              height={5}
               layout='responsive'
               style={{ borderRadius: 5 }}
               alt={d?.attributes.value}
@@ -98,8 +99,8 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
           </Grid>
         </Grid>
       </Popper>
-    </Fragment>
+    </Grid>
   )
 }
 
-export default Popover_Menu
+export default memo(Popover_Menu)

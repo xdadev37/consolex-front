@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, memo } from 'react'
 import {
   List,
   ListItemButton,
@@ -49,4 +49,4 @@ const SubList: NextPage<ICategories<IMenu_2>> = data => {
   )
 }
 
-export default SubList
+export default memo(SubList)

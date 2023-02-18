@@ -19,7 +19,6 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
     <Grid
       container
       direction='column'
-      marginTop={10}
       paddingX={1}
       justifyContent='center'
       minHeight='1000px !important'

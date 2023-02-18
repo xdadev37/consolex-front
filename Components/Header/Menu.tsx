@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect, memo } from 'react'
 import { Toolbar, Drawer, List, IconButton } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -50,4 +50,4 @@ const AppBarMenu: NextPage = () => {
   )
 }
 
-export default AppBarMenu
+export default memo(AppBarMenu)
