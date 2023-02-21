@@ -29,6 +29,7 @@ const Cards: NextPage<ICard> = ({
     <CardMedia
       component='img'
       image={`${appSettings.baseUrl}${media.url}`}
+      loading='lazy'
       alt={media.alt}
       height={300}
       sx={sx.media}
