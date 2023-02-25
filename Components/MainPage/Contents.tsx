@@ -4,6 +4,8 @@ import { useLazyImagesQuery } from 'api/images'
 import { useGetContentsQuery } from 'api/contents'
 import remarkParser from 'Constants/remarkParser'
 import { useRouter } from 'next/router'
+import { useAppSelector } from 'Redux/store'
+import { selectParams } from 'slicers/category'
 import Card from 'Modules/Card'
 import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
@@ -11,8 +13,9 @@ import type { NextPage } from 'next'
 const Contents: NextPage = () => {
   const { isFallback } = useRouter()
   const [modal, setModal] = useState(false)
+  const params = useAppSelector(selectParams)
   const [modalDescriptions, setModalDescriptions] = useState('')
-  const { data } = useGetContentsQuery(undefined, {
+  const { data } = useGetContentsQuery(params || undefined, {
     refetchOnMountOrArgChange: true,
     skip: isFallback,
   })

@@ -20,6 +20,8 @@ const Footer: NextPage = () => (
     <Grid item xs={12} sm={8} md={4} lg={4} xl={3}>
       <Grid
         item
+        onLoadedData={() => console.clear()}
+        title='map'
         component='iframe'
         src='https://balad.ir/embed?p=7dAvsq9vAAQJY2'
         sx={sx.iframe}
