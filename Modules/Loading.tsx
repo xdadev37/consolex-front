@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { Dialog, Stack, Fade } from '@mui/material'
-import Logo from 'Logo.png'
+import Logo from 'Logo.jpg'
 import classes from 'CSS/Loading.module.css'
 import Image from 'next/image'
 import type { FC } from 'react'
