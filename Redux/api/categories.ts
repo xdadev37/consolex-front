@@ -23,8 +23,9 @@ const categoriesApi = createApi({
         res.data,
     }),
   }),
-  extractRehydrationInfo: (action, { reducerPath }) =>
-    action.type === HYDRATE ? action.payload[reducerPath] : {},
+  extractRehydrationInfo: (action, { reducerPath }) => {
+    if (action.type === HYDRATE) return action.payload[reducerPath]
+  },
 })
 
 export const {

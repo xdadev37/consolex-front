@@ -22,8 +22,9 @@ const contentsApi = createApi({
       transformResponse: (res: Record<'data', IContents[]>) => res.data,
     }),
   }),
-  extractRehydrationInfo: (action, { reducerPath }) =>
-    action.type === HYDRATE ? action.payload[reducerPath] : undefined,
+  extractRehydrationInfo: (action, { reducerPath }) => {
+    if (action.type === HYDRATE) return action.payload[reducerPath]
+  },
 })
 
 export const {
