@@ -59,9 +59,9 @@
     "@yarnpkg/plugin-interactive-tools": "^4.0.0-rc.39",
     "@yarnpkg/plugin-nm": "^4.0.0-rc.39",
     "@yarnpkg/sdks": "^3.0.0-rc.39",
-    "eslint": "8.34.0",
+    "eslint": "8.35.0",
     "eslint-config-next": "13.2.1",
-    "next-sitemap": "^3.1.52",
+    "next-sitemap": "^3.1.53",
     "prettier": "^2.8.4",
     "web-vitals": "^3.1.1",
     "webpack": "^5.75.0"
