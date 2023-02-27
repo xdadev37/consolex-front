@@ -9,7 +9,7 @@ declare const self: ServiceWorkerGlobalScope
 const ignored = self.__WB_MANIFEST
 preNavEnable()
 const imageRoute = new Route(
-  ({ request, sameOrigin }) => sameOrigin && request.destination === 'image',
+  ({ request }) => request.destination === 'image',
   new CacheFirst()
 )
 registerRoute(imageRoute)
