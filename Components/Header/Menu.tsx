@@ -14,9 +14,9 @@ const AppBarMenu: NextPage = () => {
   const [open, setOpen] = useState(false)
   const toggleDrawer = () => setOpen(!open)
   const params = useAppSelector(selectParams)
-  const { isFallback, asPath } = useRouter()
+  const { isFallback, pathname } = useRouter()
   const { data } = useGetMenu_3Query(
-    { 'filters[topic][$eq]': asPath === '/contents' ? 'contents' : 'shop' },
+    { 'filters[topic][$eq]': pathname === '/contents' ? 'contents' : 'shop' },
     {
       skip: isFallback,
     }

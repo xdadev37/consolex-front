@@ -10,15 +10,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import { useAppDispatch } from 'Redux/store'
 import { setParams } from 'slicers/category'
+import { useRouter } from 'next/router'
 import type { ICategories, IMenu_2 } from 'Types/Redux/Categories.d'
 import type { NextPage } from 'next'
 
 const SubList: NextPage<ICategories<IMenu_2>> = data => {
+  const { replace } = useRouter()
   const [open, setOpen] = useState(false)
   const dispatch = useAppDispatch()
   const toggleList = () => setOpen(!open)
-  const setParamsHandler = (value: string) => () =>
-    dispatch(setParams({ 'filters[menu_1s][key][$eq]': value }))
+  const setParamsHandler = (value: string) => () => {
+    replace('')
+    return dispatch(setParams({ 'filters[menu_1s][key][$eq]': value }))
+  }
 
   return (
     <Fragment key={data.attributes.key}>

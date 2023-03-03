@@ -11,21 +11,27 @@ import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
 
 const Contents: NextPage = () => {
-  const { isFallback } = useRouter()
+  const { isFallback, query, route } = useRouter()
   const [modal, setModal] = useState(false)
   const params = useAppSelector(selectParams)
-  const [modalDescriptions, setModalDescriptions] = useState('')
-  const { data } = useGetContentsQuery(params || undefined, {
-    refetchOnMountOrArgChange: true,
-    skip: isFallback,
+  const [modalDescriptions, setModalDescriptions] = useState({
+    cardId: 0,
+    description: '',
   })
+  const { data } = useGetContentsQuery(
+    { ...params, ...query },
+    {
+      refetchOnMountOrArgChange: true,
+      skip: isFallback,
+    }
+  )
   const [getImages, gotImages] = useLazyImagesQuery()
-  const contentsImagesHandler = (id: number) => () =>
+  const contentsImagesHandler = (id: number, cardId: number) => () =>
     getImages(id)
       .unwrap()
       .then(res =>
         remarkParser.process(res.attributes.descriptions).then(parsed => {
-          setModalDescriptions(parsed.toString())
+          setModalDescriptions({ cardId, description: parsed.toString() })
           return setModal(true)
         })
       )
@@ -35,7 +41,10 @@ const Contents: NextPage = () => {
       {data?.map((card, index) => (
         <Card
           key={index}
-          onClick={contentsImagesHandler(card.attributes.images.data?.id || 0)}
+          onClick={contentsImagesHandler(
+            card.attributes.images.data?.id || 0,
+            card.id
+          )}
           backgroundColor='primary.main'
           header={{ title: card.attributes.title }}
           media={{
@@ -52,7 +61,8 @@ const Contents: NextPage = () => {
         open={modal}
         setOpen={setModal}
         images={{ data: gotImages.data?.attributes.images.data || [] }}
-        descriptions={modalDescriptions}
+        shareUri={`${route}?filters[id][$eq]=${modalDescriptions.cardId}`}
+        descriptions={modalDescriptions.description}
       />
     </Fragment>
   )

@@ -4,6 +4,7 @@ import { useAppDispatch } from 'Redux/store'
 import { setParams } from 'slicers/category'
 import Image from 'next/image'
 import appSettings from 'AppSettings'
+import { useRouter } from 'next/router'
 import type { ICategories, IMenu_3 } from 'Types/Redux/Categories.d'
 import type { NextPage } from 'next'
 import type { MouseEvent } from 'react'
@@ -16,7 +17,9 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
 
   const handlePopoverClose = () => setAnchorEl(null)
   const open = Boolean(anchorEl)
+  const { replace } = useRouter()
   const setParamsHandler = (value: string) => () => {
+    replace('')
     dispatch(setParams({ 'filters[menu_1s][key][$eq]': value }))
     return setAnchorEl(null)
   }

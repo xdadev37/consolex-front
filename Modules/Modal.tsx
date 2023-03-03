@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect, useState } from 'react'
 import {
   Grid,
   Dialog,
@@ -11,7 +11,7 @@ import {
 } from '@mui/material'
 import sx from 'TSS/Modal.module'
 import appSettings from 'AppSettings'
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark, faShareNodes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import Gallery from 'react-image-gallery'
@@ -25,8 +25,11 @@ const ContentModal: NextPage<IModal> = ({
   setOpen,
   descriptions,
   images,
+  shareUri,
 }) => {
+  const [isShareSupported, setIsShareSupported] = useState(true)
   const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
+  useEffect(() => setIsShareSupported(Boolean(navigator.canShare)), [])
 
   return (
     <Dialog
@@ -43,6 +46,14 @@ const ContentModal: NextPage<IModal> = ({
         <IconButton color='error' onClick={() => setOpen(false)}>
           <FontAwesomeIcon size='lg' icon={faCircleXmark} />
         </IconButton>
+        {isShareSupported && (
+          <IconButton
+            color='info'
+            onClick={async () => await navigator.share({ url: shareUri })}
+          >
+            <FontAwesomeIcon size='lg' icon={faShareNodes} />
+          </IconButton>
+        )}
       </DialogActions>
       <DialogContent>
         <Grid

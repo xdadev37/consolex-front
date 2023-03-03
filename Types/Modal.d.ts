@@ -5,4 +5,5 @@ import type { IData } from 'Types/BaseQuery'
 interface IModal extends IImages {
   open: boolean
   setOpen: Dispatch<SetStateAction<boolean>>
+  shareUri: string
 }
