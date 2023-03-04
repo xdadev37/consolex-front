@@ -17,6 +17,7 @@ const contentsApi = createApi({
           sort: 'updatedAt:desc',
           'populate[images][fields][0]': 'id',
           'populate[image][fields][0]': 'formats',
+          'pagination[pageSize]': 100,
         },
       }),
       transformResponse: (res: Record<'data', IContents[]>) => res.data,
