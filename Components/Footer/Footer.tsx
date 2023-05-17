@@ -23,7 +23,7 @@ const Footer: NextPage = () => (
         onLoadedData={() => console.clear()}
         title='map'
         component='iframe'
-        src='https://balad.ir/embed?p=7dAvsq9vAAQJY2'
+        src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3359.0744650533507!2d51.6654373!3d32.6574625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc356402d42323%3A0x173e558e57a227e3!2z2qnZhtiz2YjZhCDYp9uM2qnYsw!5e0!3m2!1sen!2s!4v1684336713477!5m2!1sen!2s'
         sx={sx.iframe}
         allowFullScreen
         loading='lazy'
