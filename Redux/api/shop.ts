@@ -21,6 +21,20 @@ const shopApi = createApi({
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
+    getSony: query({
+      query: () => ({
+        url: '',
+        method: 'GET',
+        params: {
+          'filters[menu_1s][key][$eq]': 'swny',
+          sort: 'updatedAt:desc',
+          'populate[images][fields][0]': 'id',
+          'populate[image][fields][0]': 'formats',
+          'pagination[pageSize]': 100,
+        },
+      }),
+      transformResponse: (res: Record<'data', IShop[]>) => res.data,
+    }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) => {
     if (action.type === HYDRATE) return action.payload[reducerPath]

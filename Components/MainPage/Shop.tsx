@@ -10,6 +10,11 @@ import { useAppSelector } from 'Redux/store'
 import remarkParser from 'Constants/remarkParser'
 import Card from 'Modules/Card'
 import Modal from 'Modules/Modal'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { EffectCoverflow, Pagination } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/effect-coverflow'
+import 'swiper/css/pagination'
 import type { NextPage } from 'next'
 
 const Shop: NextPage = () => {
@@ -41,7 +46,6 @@ const Shop: NextPage = () => {
 
   return (
     <Grid container direction='column' justifyContent='space-between'>
-      {/* <Zoom in timeout={1000}> */}
       <Grid container gap={3} marginTop={2} justifyContent='center'>
         {data?.map((card, index) => (
           <Card
@@ -102,7 +106,6 @@ const Shop: NextPage = () => {
           </Card>
         ))}
       </Grid>
-      {/* </Zoom> */}
       <Modal
         open={modal}
         setOpen={setModal}
