@@ -1,16 +1,18 @@
 import { Fragment, useState, useEffect, memo } from 'react'
-import { Toolbar, Drawer, List, IconButton } from '@mui/material'
+import { Toolbar, Drawer, List, IconButton, Button } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useGetMenu_3Query } from 'api/categories'
 import Popover_Menu from './Popover'
+import { useAppDispatch } from 'Redux/store'
 import { useRouter } from 'next/router'
 import { useAppSelector } from 'Redux/store'
-import { selectParams } from 'slicers/category'
+import { selectParams, setMainPage } from 'slicers/category'
 import List_3 from './List'
 import type { NextPage } from 'next'
 
 const AppBarMenu: NextPage = () => {
+  const dispatch = useAppDispatch()
   const [open, setOpen] = useState(false)
   const toggleDrawer = () => setOpen(!open)
   const params = useAppSelector(selectParams)
@@ -27,6 +29,7 @@ const AppBarMenu: NextPage = () => {
   return (
     <Fragment>
       <Toolbar sx={{ display: { xs: 'none', sm: 'flex' } }}>
+        <Button onClick={() => dispatch(setMainPage(true))}>صفحه اصلی</Button>
         {data?.map(m => (
           <Popover_Menu key={m.id} d={m} />
         ))}

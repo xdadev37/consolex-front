@@ -1,38 +1,39 @@
 import { memo, useState } from 'react'
-import { Grid, Typography, Link } from '@mui/material'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { useGetShopQuery } from 'api/shop'
+import { Grid, Typography } from '@mui/material'
+import {
+  useGetShopQuery,
+  useGetConsolesQuery,
+  useGetMicrosoftQuery,
+  useGetSonyQuery,
+} from 'api/shop'
 import { useRouter } from 'next/router'
 import { useLazyImagesQuery } from 'api/images'
-import { selectParams } from 'slicers/category'
+import { selectParams, selectMainPage } from 'slicers/category'
 import { useAppSelector } from 'Redux/store'
 import remarkParser from 'Constants/remarkParser'
-import Card from 'Modules/Card'
 import Modal from 'Modules/Modal'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { EffectCoverflow, Pagination } from 'swiper'
-import 'swiper/css'
-import 'swiper/css/effect-coverflow'
-import 'swiper/css/pagination'
+import SwiperFC from './Items/Swiper'
 import type { NextPage } from 'next'
 
 const Shop: NextPage = () => {
   const { isFallback, query, route } = useRouter()
   const [modal, setModal] = useState(false)
-  const thousandsFormatter = new Intl.NumberFormat('fa-IR')
   const [modalDescriptions, setModalDescriptions] = useState({
     cardId: 0,
     description: '',
   })
   const params = useAppSelector(selectParams)
+  const mainPage = useAppSelector(selectMainPage)
   const { data } = useGetShopQuery(
     { ...params, ...query },
     {
       refetchOnMountOrArgChange: true,
-      skip: isFallback,
+      skip: mainPage,
     }
   )
+  const allConsoles = useGetConsolesQuery(undefined, { skip: isFallback })
+  const allSony = useGetSonyQuery(undefined, { skip: isFallback })
+  const allMicrosoft = useGetMicrosoftQuery(undefined, { skip: isFallback })
   const [getShopImages, gotShopImages] = useLazyImagesQuery()
   const shopImagesHandler = (id: number, cardId: number) => () =>
     getShopImages(id)
@@ -43,69 +44,31 @@ const Shop: NextPage = () => {
           return setModal(true)
         })
       )
+  const mainPageData = [
+    { name: 'کنسول ها', data: allConsoles.data },
+    { name: 'سونی', data: allSony.data },
+    { name: 'مایکروسافت', data: allMicrosoft.data },
+  ]
 
   return (
     <Grid container direction='column' justifyContent='space-between'>
-      <Grid container gap={3} marginTop={2} justifyContent='center'>
-        {data?.map((card, index) => (
-          <Card
-            key={index}
-            onClick={shopImagesHandler(
-              card.attributes.images.data?.id || 0,
-              card.id
-            )}
-            backgroundColor='primary.main'
-            header={{
-              title: card.attributes.title,
-              subheader: 'تماس برای اطلاعات بیش تر',
-              actions: (
-                <Link href='#footer' color='primary.100'>
-                  <FontAwesomeIcon icon={faPhone} />
-                </Link>
-              ),
-            }}
-            media={{
-              url: card.attributes.image.data?.attributes.formats.small
-                ? card.attributes.image.data?.attributes.formats.small.url
-                : card.attributes.image.data?.attributes.formats.thumbnail?.url,
-              alt: card.attributes.title,
-            }}
-          >
-            <Grid container justifyContent='space-between' alignItems='center'>
-              <Grid item sm={6} md={6} lg={6}>
-                <Typography color='primary.100'>قیمت</Typography>
-              </Grid>
-              {card.attributes.price ? (
-                <Grid
-                  item
-                  alignItems='baseline'
-                  display='flex'
-                  sm={6}
-                  md={6}
-                  lg={6}
-                >
-                  <Typography variant='subtitle1'>
-                    {thousandsFormatter.format(card.attributes.price)}
-                  </Typography>
-                  &nbsp;
-                  <Typography
-                    component='sub'
-                    variant='caption'
-                    color='primary.200'
-                  >
-                    تومان
-                  </Typography>
+      {mainPage ? (
+        <Grid container marginTop={2}>
+          {mainPageData.map(
+            ({ name, data }, i) =>
+              data && (
+                <Grid key={i} container direction='column'>
+                  <Typography>{name}</Typography>
+                  <SwiperFC {...{ data, shopImagesHandler }} />
                 </Grid>
-              ) : (
-                <Typography variant='caption'>تماس بگیرید</Typography>
-              )}
-            </Grid>
-            <Typography variant='caption'>
-              {card.attributes.ps || ''}
-            </Typography>
-          </Card>
-        ))}
-      </Grid>
+              )
+          )}
+        </Grid>
+      ) : (
+        <Grid container gap={3} marginTop={2} justifyContent='center'>
+          {data && <SwiperFC {...{ data, shopImagesHandler }} />}
+        </Grid>
+      )}
       <Modal
         open={modal}
         setOpen={setModal}

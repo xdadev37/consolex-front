@@ -1,7 +1,6 @@
 import { memo } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { Grid, Typography, Link } from '@mui/material'
 import sx from 'TSS/Footer.module'
 import Image from 'next/image'
@@ -49,26 +48,6 @@ const Footer: NextPage = () => (
       </Grid>
     </Grid>
     <Grid item xs={12} sm={4} md={4} lg={4} xl={3} textAlign='right'>
-      <Grid container justifyContent='flex-end' gap={2}>
-        <Grid item alignItems='center'>
-          <Link
-            color='primary.200'
-            href='https://www.instagram.com/consolex_store'
-            target='_blank'
-          >
-            <FontAwesomeIcon size='3x' icon={faInstagram} />
-          </Link>
-        </Grid>
-        <Grid item alignItems='center'>
-          <Link
-            color='primary.100'
-            target='_blank'
-            href='https://wa.me/message/QSEN4SDWHXEVJ1'
-          >
-            <FontAwesomeIcon size='3x' icon={faWhatsapp} />
-          </Link>
-        </Grid>
-      </Grid>
       <Grid container justifyContent='flex-end'>
         <Image
           alt='whatsapp'

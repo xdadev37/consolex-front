@@ -1,7 +1,7 @@
 import { useState, Fragment, memo } from 'react'
 import { Grid, Popper, Typography, Divider, Paper } from '@mui/material'
 import { useAppDispatch } from 'Redux/store'
-import { setParams } from 'slicers/category'
+import { setParams, setMainPage } from 'slicers/category'
 import Image from 'next/image'
 import appSettings from 'AppSettings'
 import { useRouter } from 'next/router'
@@ -21,6 +21,7 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
   const setParamsHandler = (value: string) => () => {
     replace('')
     dispatch(setParams({ 'filters[menu_1s][key][$eq]': value }))
+    dispatch(setMainPage(false))
     return setAnchorEl(null)
   }
 
@@ -63,12 +64,7 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
             {d?.attributes.menu_2s?.data.map(m => (
               <Fragment key={m.id}>
                 <Divider />
-                <Typography
-                  // onClick={setParamsHandler(m.attributes.key)}
-                  color='red'
-                  marginTop={3}
-                  marginBottom={1}
-                >
+                <Typography color='red' marginTop={3} marginBottom={1}>
                   {m.attributes.value}
                 </Typography>
                 <Grid item sx={{ paddingRight: 2 }}>

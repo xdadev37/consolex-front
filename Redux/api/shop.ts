@@ -26,7 +26,35 @@ const shopApi = createApi({
         url: '',
         method: 'GET',
         params: {
-          'filters[menu_1s][key][$eq]': 'swny',
+          'filters[menu_2s][key][$eq]': 'swny',
+          sort: 'updatedAt:desc',
+          'populate[images][fields][0]': 'id',
+          'populate[image][fields][0]': 'formats',
+          'pagination[pageSize]': 100,
+        },
+      }),
+      transformResponse: (res: Record<'data', IShop[]>) => res.data,
+    }),
+    getMicrosoft: query({
+      query: () => ({
+        url: '',
+        method: 'GET',
+        params: {
+          'filters[menu_2s][key][$eq]': 'maykrwsaft',
+          sort: 'updatedAt:desc',
+          'populate[images][fields][0]': 'id',
+          'populate[image][fields][0]': 'formats',
+          'pagination[pageSize]': 100,
+        },
+      }),
+      transformResponse: (res: Record<'data', IShop[]>) => res.data,
+    }),
+    getConsoles: query({
+      query: () => ({
+        url: '',
+        method: 'GET',
+        params: {
+          'filters[menu_3s][key][$eq]': 'knswl-bazy',
           sort: 'updatedAt:desc',
           'populate[images][fields][0]': 'id',
           'populate[image][fields][0]': 'formats',
@@ -48,4 +76,7 @@ export const {
   reducerPath,
   middleware,
   useGetShopQuery,
+  useGetConsolesQuery,
+  useGetMicrosoftQuery,
+  useGetSonyQuery,
 } = shopApi
