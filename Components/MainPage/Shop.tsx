@@ -1,10 +1,11 @@
 import { memo, useState } from 'react'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography, useMediaQuery } from '@mui/material'
 import {
   useGetShopQuery,
   useGetConsolesQuery,
   useGetMicrosoftQuery,
   useGetSonyQuery,
+  useGetOffersQuery,
 } from 'api/shop'
 import { useRouter } from 'next/router'
 import { useLazyImagesQuery } from 'api/images'
@@ -13,11 +14,17 @@ import { useAppSelector } from 'Redux/store'
 import remarkParser from 'Constants/remarkParser'
 import Modal from 'Modules/Modal'
 import SwiperFC from './Items/Swiper'
+import Gallery from 'react-image-gallery'
+import classes from 'Styles/CSS/Gallery.module.css'
+import appSettings from 'AppSettings'
+import 'react-image-gallery/styles/css/image-gallery.css'
+import type { Theme } from '@mui/system'
 import type { NextPage } from 'next'
 
 const Shop: NextPage = () => {
   const { isFallback, query, route } = useRouter()
   const [modal, setModal] = useState(false)
+  const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
   const [modalDescriptions, setModalDescriptions] = useState({
     cardId: 0,
     description: '',
@@ -34,6 +41,7 @@ const Shop: NextPage = () => {
   const allConsoles = useGetConsolesQuery(undefined, { skip: isFallback })
   const allSony = useGetSonyQuery(undefined, { skip: isFallback })
   const allMicrosoft = useGetMicrosoftQuery(undefined, { skip: isFallback })
+  const allOffers = useGetOffersQuery(undefined, { skip: isFallback })
   const [getShopImages, gotShopImages] = useLazyImagesQuery()
   const shopImagesHandler = (id: number, cardId: number) => () =>
     getShopImages(id)
@@ -48,10 +56,36 @@ const Shop: NextPage = () => {
     { name: 'کنسول ها', data: allConsoles.data },
     { name: 'سونی', data: allSony.data },
     { name: 'مایکروسافت', data: allMicrosoft.data },
+    { name: 'پیشنهادات ویژه', data: allOffers.data },
   ]
 
   return (
     <Grid container direction='column' justifyContent='space-between'>
+      <Gallery
+        additionalClass={classes.gallery}
+        items={images.data.map(image => ({
+          original: `${appSettings.baseUrl}${
+            pcMode && image.attributes.formats.medium
+              ? image.attributes.formats.medium.url
+              : image.attributes.formats.small
+              ? image.attributes.formats.small.url
+              : image.attributes.formats.thumbnail.url
+          }`,
+          thumbnail: `${appSettings.baseUrl}${image.attributes.formats.thumbnail.url}`,
+        }))}
+        lazyLoad
+        autoPlay
+        infinite
+        useTranslate3D
+        useBrowserFullscreen
+        showFullscreenButton
+        showPlayButton
+        showBullets
+        showThumbnails
+        thumbnailPosition={pcMode ? 'right' : 'bottom'}
+        slideOnThumbnailOver
+        showIndex
+      />
       {mainPage ? (
         <Grid container marginTop={2}>
           {mainPageData.map(

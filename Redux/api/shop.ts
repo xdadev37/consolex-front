@@ -63,6 +63,9 @@ const shopApi = createApi({
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
+    getOffers: query({
+      query: () => ({ url: 'offers', method: 'GET' }),
+    }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) => {
     if (action.type === HYDRATE) return action.payload[reducerPath]
@@ -79,4 +82,5 @@ export const {
   useGetConsolesQuery,
   useGetMicrosoftQuery,
   useGetSonyQuery,
+  useGetOffersQuery,
 } = shopApi

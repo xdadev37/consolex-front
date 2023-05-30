@@ -22,6 +22,12 @@ const categoriesApi = createApi({
       transformResponse: (res: Record<'data', ICategories<IMenu_3>[]>) =>
         res.data,
     }),
+    getBanners: query({
+      query: () => ({
+        url: 'banners',
+        method: 'GET',
+      }),
+    }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) => {
     if (action.type === HYDRATE) return action.payload[reducerPath]
@@ -30,8 +36,9 @@ const categoriesApi = createApi({
 
 export const {
   useGetMenu_3Query,
+  useGetBannersQuery,
   reducer,
   reducerPath,
   middleware,
-  endpoints: { getMenu_3 },
+  endpoints: { getMenu_3, getBanners },
 } = categoriesApi
