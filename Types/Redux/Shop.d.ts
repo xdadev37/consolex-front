@@ -6,6 +6,7 @@ interface IAttributes {
   price: number
   createdAt: Date
   updatedAt: Date
+  discPrice?: number
   image: Record<'data', IImage>
   images: Record<'data', IId>
 }

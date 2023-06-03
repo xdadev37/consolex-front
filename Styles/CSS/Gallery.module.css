@@ -1,3 +1,11 @@
 .gallery img {
     border-radius: 3px;
 }
+
+.banner {
+    width: 100%;
+}
+
+.banner img {
+    border-radius: 10px;
+}

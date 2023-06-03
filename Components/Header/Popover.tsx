@@ -31,6 +31,7 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
       key={d.attributes.key}
       onMouseEnter={handlePopoverOpen}
       onMouseLeave={handlePopoverClose}
+      sx={{ cursor: 'pointer' }}
     >
       <Typography
         aria-owns={open ? 'mouse-over-popover' : undefined}

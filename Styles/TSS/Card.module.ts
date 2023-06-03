@@ -8,6 +8,7 @@ const sx: MuiClasses<'card' | 'dropMenu' | 'media'> = {
     width: 300,
     boxShadow: '3px 3px 7px',
     backgroundColor: 'primary.600',
+    margin: 5,
   },
   dropMenu: { color: 'primary.main' },
   media: { borderRadius: 8, padding: 1, objectFit: 'contain' },

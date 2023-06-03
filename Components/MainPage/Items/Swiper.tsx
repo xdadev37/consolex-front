@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { Grid, Typography, Link } from '@mui/material'
+import { Grid, Typography, Link, useMediaQuery } from '@mui/material'
 import classes from 'Styles/CSS/Swiper.module.css'
 import Card from 'Modules/Card'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -10,16 +10,18 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 import type { FC } from 'react'
 import type { ISwiper } from 'Types/Redux/Swiper.d'
+import type { Theme } from '@mui/system'
 
 const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
   const thousandsFormatter = new Intl.NumberFormat('fa-IR')
+  const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
 
   return (
     <Swiper
       effect='coverflow'
       grabCursor
       centeredSlides
-      slidesPerView='auto'
+      slidesPerView={pcMode ? 5 : undefined}
       coverflowEffect={{
         rotate: 50,
         stretch: 0,
@@ -57,7 +59,9 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
           >
             <Grid container justifyContent='space-between' alignItems='center'>
               <Grid item sm={6} md={6} lg={6}>
-                <Typography color='primary.100'>قیمت</Typography>
+                <Typography color='primary.100' marginBottom={1}>
+                  قیمت
+                </Typography>
               </Grid>
               {card.attributes.price ? (
                 <Grid
@@ -67,21 +71,32 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
                   sm={6}
                   md={6}
                   lg={6}
+                  columnGap={2}
                 >
-                  <Typography variant='subtitle1'>
+                  <Typography
+                    variant='subtitle1'
+                    sx={{
+                      textDecoration: card.attributes.discPrice
+                        ? 'line-through'
+                        : 'none',
+                    }}
+                    color={card.attributes.discPrice ? 'red' : 'white'}
+                  >
                     {thousandsFormatter.format(card.attributes.price)}
                   </Typography>
-                  &nbsp;
-                  <Typography
-                    component='sub'
-                    variant='caption'
-                    color='primary.200'
-                  >
+                  <Typography component='sub' variant='caption' color='green'>
                     تومان
                   </Typography>
                 </Grid>
               ) : (
                 <Typography variant='caption'>تماس بگیرید</Typography>
+              )}
+            </Grid>
+            <Grid container justifyContent='flex-end'>
+              {card.attributes.discPrice && (
+                <Typography variant='subtitle1'>
+                  {thousandsFormatter.format(card.attributes.discPrice)} تومان
+                </Typography>
               )}
             </Grid>
             <Typography variant='caption'>

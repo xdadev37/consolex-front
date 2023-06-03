@@ -13,7 +13,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
       <title>کنسول ایکس | PS4 | PS5 | Xbox | بازی | اصفهان</title>
     </Head>
     <TopAppBar />
-    <Grid container marginTop={10} paddingX={1}>
+    <Grid container paddingTop={13} paddingX={4} bgcolor='#f6f6f6'>
       <Toggler />
     </Grid>
     <Grid
@@ -22,6 +22,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
       paddingX={1}
       justifyContent='center'
       minHeight='1000px !important'
+      bgcolor='#f6f6f6'
     >
       <Grid container gap={3} marginTop={2} justifyContent='center'>
         {children}

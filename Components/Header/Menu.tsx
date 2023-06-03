@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect, memo } from 'react'
-import { Toolbar, Drawer, List, IconButton, Button } from '@mui/material'
+import { Toolbar, Drawer, List, IconButton, Typography } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useGetMenu_3Query } from 'api/categories'
@@ -29,7 +29,13 @@ const AppBarMenu: NextPage = () => {
   return (
     <Fragment>
       <Toolbar sx={{ display: { xs: 'none', sm: 'flex' } }}>
-        <Button onClick={() => dispatch(setMainPage(true))}>صفحه اصلی</Button>
+        <Typography
+          onClick={() => dispatch(setMainPage(true))}
+          marginLeft={1}
+          sx={{ cursor: 'pointer' }}
+        >
+          صفحه اصلی
+        </Typography>
         {data?.map(m => (
           <Popover_Menu key={m.id} d={m} />
         ))}

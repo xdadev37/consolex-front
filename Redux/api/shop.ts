@@ -3,68 +3,56 @@ import baseQuery from 'Redux/axiosQuery'
 import { HYDRATE } from 'next-redux-wrapper'
 import type { IShop, IParams } from 'Types/Redux/Shop'
 
+const commonParams = {
+  sort: 'updatedAt:desc',
+  'populate[images][fields][0]': 'id',
+  'populate[image][fields][0]': 'formats',
+  'pagination[pageSize]': 100,
+}
+
 const shopApi = createApi({
   reducerPath: 'shopApi',
-  baseQuery: baseQuery('shops'),
+  baseQuery: baseQuery(''),
   endpoints: ({ query }) => ({
     getShop: query({
       query: (params?: IParams) => ({
-        url: '',
+        url: 'shops',
         method: 'GET',
-        params: {
-          ...params,
-          sort: 'updatedAt:desc',
-          'populate[images][fields][0]': 'id',
-          'populate[image][fields][0]': 'formats',
-          'pagination[pageSize]': 100,
-        },
+        params: { ...params, ...commonParams },
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
     getSony: query({
       query: () => ({
-        url: '',
+        url: 'sonys',
         method: 'GET',
-        params: {
-          'filters[menu_2s][key][$eq]': 'swny',
-          sort: 'updatedAt:desc',
-          'populate[images][fields][0]': 'id',
-          'populate[image][fields][0]': 'formats',
-          'pagination[pageSize]': 100,
-        },
+        params: commonParams,
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
     getMicrosoft: query({
       query: () => ({
-        url: '',
+        url: 'microsofts',
         method: 'GET',
-        params: {
-          'filters[menu_2s][key][$eq]': 'maykrwsaft',
-          sort: 'updatedAt:desc',
-          'populate[images][fields][0]': 'id',
-          'populate[image][fields][0]': 'formats',
-          'pagination[pageSize]': 100,
-        },
+        params: commonParams,
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
     getConsoles: query({
       query: () => ({
-        url: '',
+        url: 'consoles',
         method: 'GET',
-        params: {
-          'filters[menu_3s][key][$eq]': 'knswl-bazy',
-          sort: 'updatedAt:desc',
-          'populate[images][fields][0]': 'id',
-          'populate[image][fields][0]': 'formats',
-          'pagination[pageSize]': 100,
-        },
+        params: commonParams,
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
     getOffers: query({
-      query: () => ({ url: 'offers', method: 'GET' }),
+      query: () => ({
+        url: 'offers',
+        method: 'GET',
+        params: commonParams,
+      }),
+      transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) => {

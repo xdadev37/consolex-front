@@ -1,5 +1,5 @@
 import { memo, useState } from 'react'
-import { Grid, Typography, useMediaQuery } from '@mui/material'
+import { Grid, Typography, useMediaQuery, Paper } from '@mui/material'
 import {
   useGetShopQuery,
   useGetConsolesQuery,
@@ -25,6 +25,7 @@ import type { NextPage } from 'next'
 const Shop: NextPage = () => {
   const { isFallback, query, route } = useRouter()
   const [modal, setModal] = useState(false)
+  const [slideIndex, setSlideIndex] = useState(0)
   const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
   const [modalDescriptions, setModalDescriptions] = useState({
     cardId: 0,
@@ -55,48 +56,76 @@ const Shop: NextPage = () => {
         })
       )
   const mainPageData = [
+    { name: 'پیشنهادات ویژه', data: allOffers.data },
     { name: 'کنسول ها', data: allConsoles.data },
     { name: 'سونی', data: allSony.data },
     { name: 'مایکروسافت', data: allMicrosoft.data },
-    { name: 'پیشنهادات ویژه', data: allOffers.data },
   ]
 
   return (
     <Grid container direction='column' justifyContent='space-between'>
-      <Gallery
-        additionalClass={classes.gallery}
-        items={
-          allBanners.data?.data.map(banner => ({
-            original: `${appSettings.baseUrl}${
-              pcMode && banner.attributes.image.data.attributes.formats.medium
-                ? banner.attributes.image.data.attributes.formats.medium.url
-                : banner.attributes.image.data.attributes.formats.small
-                ? banner.attributes.image.data.attributes.formats.small.url
-                : banner.attributes.image.data.attributes.formats.thumbnail.url
-            }`,
-            thumbnail: `${appSettings.baseUrl}${banner.attributes.image.data.attributes.formats.thumbnail.url}`,
-          })) || []
-        }
-        lazyLoad
-        autoPlay
-        infinite
-        useTranslate3D
-        useBrowserFullscreen
-        showFullscreenButton
-        showPlayButton
-        showBullets
-        showThumbnails
-        thumbnailPosition={pcMode ? 'right' : 'bottom'}
-        slideOnThumbnailOver
-        showIndex
-      />
+      <Grid container justifyContent='center'>
+        <Gallery
+          additionalClass={classes.banner}
+          items={
+            allBanners.data?.data.map(banner => ({
+              original: `${appSettings.baseUrl}${
+                pcMode && banner.attributes.image.data.attributes.formats.medium
+                  ? banner.attributes.image.data.attributes.formats.medium.url
+                  : banner.attributes.image.data.attributes.formats.small
+                  ? banner.attributes.image.data.attributes.formats.small.url
+                  : banner.attributes.image.data.attributes.formats.thumbnail
+                      .url
+              }`,
+              thumbnail: `${appSettings.baseUrl}${banner.attributes.image.data.attributes.formats.thumbnail.url}`,
+              description: banner.attributes.ps,
+              originalAlt: banner.attributes.ps,
+              thumbnailAlt: banner.attributes.ps,
+              loading: 'lazy',
+              thumbnailLoading: 'lazy',
+            })) || []
+          }
+          lazyLoad
+          autoPlay
+          infinite
+          useTranslate3D
+          useBrowserFullscreen
+          showFullscreenButton
+          showPlayButton
+          showBullets
+          showThumbnails
+          thumbnailPosition={pcMode ? 'right' : 'bottom'}
+          slideOnThumbnailOver
+          showIndex
+          showNav
+          onSlide={setSlideIndex}
+          onClick={() =>
+            window
+              .open(
+                allBanners.data?.data.at(slideIndex)?.attributes.link,
+                '_blank'
+              )
+              ?.focus()
+          }
+        />
+      </Grid>
       {mainPage ? (
         <Grid container marginTop={2}>
           {mainPageData.map(
             ({ name, data }, i) =>
               data && (
-                <Grid key={i} container direction='column'>
-                  <Typography>{name}</Typography>
+                <Grid
+                  key={i}
+                  container
+                  direction='column'
+                  component={Paper}
+                  borderRadius={5}
+                  paddingY={3}
+                  marginY={3}
+                >
+                  <Typography variant='h5' marginRight={3}>
+                    {name}
+                  </Typography>
                   <SwiperFC {...{ data, shopImagesHandler }} />
                 </Grid>
               )
