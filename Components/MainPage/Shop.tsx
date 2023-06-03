@@ -65,7 +65,18 @@ const Shop: NextPage = () => {
     <Grid container direction='column' justifyContent='space-between'>
       <Gallery
         additionalClass={classes.gallery}
-        items={allBanners.data?.data.map(banner => ({}))}
+        items={
+          allBanners.data?.data.map(banner => ({
+            original: `${appSettings.baseUrl}${
+              pcMode && banner.image.data.attributes.formats.medium
+                ? banner.image.data.attributes.formats.medium.url
+                : banner.image.data.attributes.formats.small
+                ? banner.image.data.attributes.formats.small.url
+                : banner.image.data.attributes.formats.thumbnail.url
+            }`,
+            thumbnail: `${appSettings.baseUrl}${banner.image.data.attributes.formats.thumbnail.url}`,
+          })) || []
+        }
         lazyLoad
         autoPlay
         infinite
