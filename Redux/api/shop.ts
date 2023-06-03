@@ -24,7 +24,7 @@ const shopApi = createApi({
     }),
     getSony: query({
       query: () => ({
-        url: 'sonys',
+        url: 'sonies',
         method: 'GET',
         params: commonParams,
       }),
