@@ -7,6 +7,7 @@ import {
   useGetSonyQuery,
   useGetOffersQuery,
 } from 'api/shop'
+import { useGetBannersQuery } from 'api/banners'
 import { useRouter } from 'next/router'
 import { useLazyImagesQuery } from 'api/images'
 import { selectParams, selectMainPage } from 'slicers/category'
@@ -42,6 +43,7 @@ const Shop: NextPage = () => {
   const allSony = useGetSonyQuery(undefined, { skip: isFallback })
   const allMicrosoft = useGetMicrosoftQuery(undefined, { skip: isFallback })
   const allOffers = useGetOffersQuery(undefined, { skip: isFallback })
+  const allBanners = useGetBannersQuery(undefined, { skip: isFallback })
   const [getShopImages, gotShopImages] = useLazyImagesQuery()
   const shopImagesHandler = (id: number, cardId: number) => () =>
     getShopImages(id)
@@ -63,16 +65,7 @@ const Shop: NextPage = () => {
     <Grid container direction='column' justifyContent='space-between'>
       <Gallery
         additionalClass={classes.gallery}
-        items={images.data.map(image => ({
-          original: `${appSettings.baseUrl}${
-            pcMode && image.attributes.formats.medium
-              ? image.attributes.formats.medium.url
-              : image.attributes.formats.small
-              ? image.attributes.formats.small.url
-              : image.attributes.formats.thumbnail.url
-          }`,
-          thumbnail: `${appSettings.baseUrl}${image.attributes.formats.thumbnail.url}`,
-        }))}
+        items={allBanners.data?.data.map(banner => ({}))}
         lazyLoad
         autoPlay
         infinite

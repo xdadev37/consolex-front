@@ -6,6 +6,7 @@ import * as contents from 'Redux/api/contents'
 import * as images from 'api/images'
 import * as categories from 'api/categories'
 import * as category from 'slicers/category'
+import * as banners from 'api/banners'
 import { createWrapper } from 'next-redux-wrapper'
 import { useDispatch, useSelector } from 'react-redux'
 import type { TypedUseSelectorHook } from 'react-redux'
@@ -19,6 +20,7 @@ const store = configureStore({
     [contents.reducerPath]: contents.reducer,
     [images.reducerPath]: images.reducer,
     [categories.reducerPath]: categories.reducer,
+    [banners.reducerPath]: banners.reducer,
   },
   middleware: getDefault =>
     getDefault().concat([
@@ -26,6 +28,7 @@ const store = configureStore({
       contents.middleware,
       images.middleware,
       categories.middleware,
+      banners.middleware,
     ]),
 })
 
