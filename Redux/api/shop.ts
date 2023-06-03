@@ -73,7 +73,7 @@ const shopApi = createApi({
 })
 
 export const {
-  endpoints: { getShop },
+  endpoints: { getShop, getConsoles, getSony, getMicrosoft, getOffers },
   util: { getRunningQueriesThunk },
   reducer,
   reducerPath,

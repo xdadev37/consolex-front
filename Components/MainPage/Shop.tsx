@@ -68,13 +68,13 @@ const Shop: NextPage = () => {
         items={
           allBanners.data?.data.map(banner => ({
             original: `${appSettings.baseUrl}${
-              pcMode && banner.image.data.attributes.formats.medium
-                ? banner.image.data.attributes.formats.medium.url
-                : banner.image.data.attributes.formats.small
-                ? banner.image.data.attributes.formats.small.url
-                : banner.image.data.attributes.formats.thumbnail.url
+              pcMode && banner.attributes.image.data.attributes.formats.medium
+                ? banner.attributes.image.data.attributes.formats.medium.url
+                : banner.attributes.image.data.attributes.formats.small
+                ? banner.attributes.image.data.attributes.formats.small.url
+                : banner.attributes.image.data.attributes.formats.thumbnail.url
             }`,
-            thumbnail: `${appSettings.baseUrl}${banner.image.data.attributes.formats.thumbnail.url}`,
+            thumbnail: `${appSettings.baseUrl}${banner.attributes.image.data.attributes.formats.thumbnail.url}`,
           })) || []
         }
         lazyLoad
