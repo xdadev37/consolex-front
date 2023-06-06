@@ -6,7 +6,6 @@ import type { NextPage } from 'next'
 const Home: NextPage = () => (
   <Fragment>
     <Head>
-      <link rel='canonical' href='https://consolex.ir/shop' />
       <link rel='canonical' href='https://www.consolex.ir/shop' />
     </Head>
     <Shop />

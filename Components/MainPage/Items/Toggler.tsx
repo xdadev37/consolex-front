@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import type { NextPage } from 'next'
 
 const Toggler: NextPage = () => {
-  const { asPath } = useRouter()
+  const { asPath, pathname } = useRouter()
 
   const modesButton = useMemo(
     () => [
@@ -32,6 +32,7 @@ const Toggler: NextPage = () => {
       {modesButton.map((button, index) => (
         <ToggleButton
           key={index}
+          aria-pressed={pathname === button.value ? 'true' : 'false'}
           sx={{
             ...sx.toggler,
             backgroundColor: button.backgroundColor,
