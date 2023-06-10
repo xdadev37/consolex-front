@@ -1,7 +1,6 @@
 import { memo } from 'react'
 import { AppBar, Toolbar, Grid, Link, Typography } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import sx from 'TSS/Header/AppBar.module'
 import Menu from './Header/Menu'
@@ -15,42 +14,16 @@ const TopAppBar: NextPage = () => {
           <Grid item xs={1} sm={2} md={4} lg={4}>
             <Menu />
           </Grid>
-          <Grid item xs={4} sm={2} md={4} lg={4} textAlign='center'>
+          <Grid item xs={4} sm={4} md={4} lg={4} textAlign='center'>
             <Typography variant='body1' fontStyle='italic'>
               کنسول ایکس | ConsoleX
             </Typography>
           </Grid>
-          <Grid item xs={4} sm={4} md={4} lg={4} textAlign='right'>
-            <Grid
-              container
-              justifyContent='flex-end'
-              gap={2}
-              alignItems='center'
-              fontWeight='bolder'
-            >
-              <Link href='tel://09139146705' color='primary.100'>
-                09139146705 &nbsp;
-                <FontAwesomeIcon icon={faPhone} />
-              </Link>
-              <Grid item alignItems='center'>
-                <Link
-                  color='primary.200'
-                  href='https://www.instagram.com/consolex_store'
-                  target='_blank'
-                >
-                  <FontAwesomeIcon size='3x' icon={faInstagram} />
-                </Link>
-              </Grid>
-              <Grid item alignItems='center'>
-                <Link
-                  color='primary.100'
-                  target='_blank'
-                  href='https://wa.me/message/QSEN4SDWHXEVJ1'
-                >
-                  <FontAwesomeIcon size='3x' icon={faWhatsapp} />
-                </Link>
-              </Grid>
-            </Grid>
+          <Grid item xs={5} sm={5} md={4} lg={4} textAlign='right'>
+            <Link href='tel://09139146705' color='primary.100'>
+              09139146705 &nbsp;
+              <FontAwesomeIcon icon={faPhone} />
+            </Link>
           </Grid>
         </Grid>
       </Toolbar>

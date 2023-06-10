@@ -13,17 +13,18 @@ import { getBanners } from 'api/banners'
 import { getServerSideProps as wrapper } from 'Redux/store'
 import type { NextPage } from 'next'
 
+const options = { forceRefetch: true, subscribe: true }
 export const getServerSideProps = wrapper(
   ({ dispatch }) =>
     async ({ params }) => {
       dispatch(getMenu_3.initiate({ 'filters[topic][$eq]': 'shop' }))
-      if (params) dispatch(getShop.initiate(params))
+      if (params) dispatch(getShop.initiate(params, options))
       else {
-        dispatch(getConsoles.initiate({}))
-        dispatch(getMicrosoft.initiate({}))
-        dispatch(getOffers.initiate({}))
-        dispatch(getSony.initiate({}))
-        dispatch(getBanners.initiate({}))
+        dispatch(getConsoles.initiate({}, options))
+        dispatch(getMicrosoft.initiate({}, options))
+        dispatch(getOffers.initiate({}, options))
+        dispatch(getSony.initiate({}, options))
+        dispatch(getBanners.initiate({}, options))
       }
 
       await Promise.all(dispatch(getRunningQueriesThunk()))

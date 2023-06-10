@@ -21,7 +21,7 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
       effect='coverflow'
       grabCursor
       centeredSlides
-      slidesPerView={pcMode ? 5 : undefined}
+      slidesPerView={pcMode ? 4 : 1}
       coverflowEffect={{
         rotate: 50,
         stretch: 0,
@@ -80,7 +80,7 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
                         ? 'line-through'
                         : 'none',
                     }}
-                    color={card.attributes.discPrice ? 'red' : 'white'}
+                    color={card.attributes.discPrice ? 'red' : 'black'}
                   >
                     {thousandsFormatter.format(card.attributes.price)}
                   </Typography>

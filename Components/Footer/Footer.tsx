@@ -4,6 +4,7 @@ import { faPhone } from '@fortawesome/free-solid-svg-icons'
 import { Grid, Typography, Link } from '@mui/material'
 import sx from 'TSS/Footer.module'
 import Image from 'next/image'
+import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import WhatsappQR from 'Components/Footer/consoleXWPQR.jpeg'
 import constants from 'Constants/constants.enum'
 import type { NextPage } from 'next'
@@ -48,11 +49,27 @@ const Footer: NextPage = () => (
       </Grid>
     </Grid>
     <Grid item xs={12} sm={4} md={4} lg={4} xl={3} textAlign='right'>
+      <Grid container justifyContent='flex-end' columnGap={2}>
+        <Link
+          color='primary.200'
+          href='https://www.instagram.com/consolex_store'
+          target='_blank'
+        >
+          <FontAwesomeIcon size='4x' icon={faInstagram} />
+        </Link>
+        <Link
+          color='primary.100'
+          target='_blank'
+          href='https://wa.me/message/QSEN4SDWHXEVJ1'
+        >
+          <FontAwesomeIcon size='4x' icon={faWhatsapp} />
+        </Link>
+      </Grid>
       <Grid container justifyContent='flex-end'>
         <Image
           alt='whatsapp'
-          width='100'
-          height='100'
+          width='120'
+          height='120'
           src={WhatsappQR}
           priority
         />

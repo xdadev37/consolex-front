@@ -1,13 +1,20 @@
 import { Fragment, useState, useEffect, memo } from 'react'
-import { Toolbar, Drawer, List, IconButton, Typography } from '@mui/material'
+import {
+  Toolbar,
+  Drawer,
+  List,
+  IconButton,
+  Typography,
+  ListItemButton,
+  ListItemText,
+} from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useGetMenu_3Query } from 'api/categories'
 import Popover_Menu from './Popover'
-import { useAppDispatch } from 'Redux/store'
+import { useAppDispatch, useAppSelector } from 'Redux/store'
 import { useRouter } from 'next/router'
-import { useAppSelector } from 'Redux/store'
-import { selectParams, setMainPage } from 'slicers/category'
+import { selectParams, setMainPage, setParams } from 'slicers/category'
 import List_3 from './List'
 import type { NextPage } from 'next'
 
@@ -23,6 +30,10 @@ const AppBarMenu: NextPage = () => {
       skip: isFallback,
     }
   )
+  const mainPage = () => {
+    pathname === '/shop' && dispatch(setMainPage(true))
+    return dispatch(setParams({ 'filters[menu_1s][key][$eq]': undefined }))
+  }
 
   useEffect(() => setOpen(false), [params])
 
@@ -30,7 +41,7 @@ const AppBarMenu: NextPage = () => {
     <Fragment>
       <Toolbar sx={{ display: { xs: 'none', sm: 'flex' } }}>
         <Typography
-          onClick={() => dispatch(setMainPage(true))}
+          onClick={mainPage}
           marginLeft={1}
           sx={{ cursor: 'pointer' }}
         >
@@ -50,6 +61,9 @@ const AppBarMenu: NextPage = () => {
         anchor='right'
       >
         <List>
+          <ListItemButton onClick={mainPage}>
+            <ListItemText sx={{ textAlign: 'right' }}>صفحه اصلی</ListItemText>
+          </ListItemButton>
           {data?.map(m => (
             <List_3 key={m.id} {...m} />
           ))}
