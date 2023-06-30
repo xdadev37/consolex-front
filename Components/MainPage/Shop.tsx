@@ -40,11 +40,11 @@ const Shop: NextPage = () => {
       skip: mainPage,
     }
   )
+  const allBanners = useGetBannersQuery(undefined, { skip: isFallback })
   const allConsoles = useGetConsolesQuery(undefined, { skip: isFallback })
+  const allOffers = useGetOffersQuery(undefined, { skip: isFallback })
   const allSony = useGetSonyQuery(undefined, { skip: isFallback })
   const allMicrosoft = useGetMicrosoftQuery(undefined, { skip: isFallback })
-  const allOffers = useGetOffersQuery(undefined, { skip: isFallback })
-  const allBanners = useGetBannersQuery(undefined, { skip: isFallback })
   const [getShopImages, gotShopImages] = useLazyImagesQuery()
   const shopImagesHandler = (id: number, cardId: number) => () =>
     getShopImages(id)
@@ -56,8 +56,8 @@ const Shop: NextPage = () => {
         })
       )
   const mainPageData = [
-    { name: 'پیشنهادات ویژه', data: allOffers.data },
     { name: 'کنسول ها', data: allConsoles.data },
+    { name: 'پیشنهادات ویژه', data: allOffers.data },
     { name: 'سونی', data: allSony.data },
     { name: 'مایکروسافت', data: allMicrosoft.data },
   ]

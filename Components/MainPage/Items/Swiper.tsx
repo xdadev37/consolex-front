@@ -23,7 +23,7 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
       centeredSlides
       slidesPerView={pcMode ? 4 : 1}
       coverflowEffect={{
-        rotate: 50,
+        rotate: 0,
         stretch: 0,
         depth: 100,
         modifier: 1,

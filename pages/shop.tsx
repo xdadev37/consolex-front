@@ -20,11 +20,11 @@ export const getServerSideProps = wrapper(
       dispatch(getMenu_3.initiate({ 'filters[topic][$eq]': 'shop' }))
       if (params) dispatch(getShop.initiate(params, options))
       else {
+        dispatch(getBanners.initiate({}, options))
         dispatch(getConsoles.initiate({}, options))
-        dispatch(getMicrosoft.initiate({}, options))
         dispatch(getOffers.initiate({}, options))
         dispatch(getSony.initiate({}, options))
-        dispatch(getBanners.initiate({}, options))
+        dispatch(getMicrosoft.initiate({}, options))
       }
 
       await Promise.all(dispatch(getRunningQueriesThunk()))

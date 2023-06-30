@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import { useAppDispatch } from 'Redux/store'
-import { setParams } from 'slicers/category'
+import { setParams, setMainPage } from 'slicers/category'
 import { useRouter } from 'next/router'
 import type { ICategories, IMenu_2 } from 'Types/Redux/Categories.d'
 import type { NextPage } from 'next'
@@ -21,7 +21,8 @@ const SubList: NextPage<ICategories<IMenu_2>> = data => {
   const toggleList = () => setOpen(!open)
   const setParamsHandler = (value: string) => () => {
     replace('')
-    return dispatch(setParams({ 'filters[menu_1s][key][$eq]': value }))
+    dispatch(setParams({ 'filters[menu_1s][key][$eq]': value }))
+    return dispatch(setMainPage(false))
   }
 
   return (
