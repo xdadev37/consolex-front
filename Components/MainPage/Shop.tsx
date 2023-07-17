@@ -56,10 +56,10 @@ const Shop: NextPage = () => {
         })
       )
   const mainPageData = [
-    { name: 'کنسول ها', data: allConsoles.data },
-    { name: 'پیشنهادات ویژه', data: allOffers.data },
-    { name: 'سونی', data: allSony.data },
-    { name: 'مایکروسافت', data: allMicrosoft.data },
+    { name: 'کنسول ها 🎮', data: allConsoles.data },
+    { name: 'پیشنهادات ویژه 🎯', data: allOffers.data },
+    { name: 'سونی 🕹', data: allSony.data },
+    { name: 'مایکروسافت ✖️', data: allMicrosoft.data },
   ]
 
   return (
@@ -70,12 +70,11 @@ const Shop: NextPage = () => {
           items={
             allBanners.data?.data.map(banner => ({
               original: `${appSettings.baseUrl}${
-                pcMode && banner.attributes.image.data.attributes.formats.medium
+                pcMode && banner.attributes.image.data.attributes.formats.large
+                  ? banner.attributes.image.data.attributes.formats.large.url
+                  : banner.attributes.image.data.attributes.formats.medium
                   ? banner.attributes.image.data.attributes.formats.medium.url
-                  : banner.attributes.image.data.attributes.formats.small
-                  ? banner.attributes.image.data.attributes.formats.small.url
-                  : banner.attributes.image.data.attributes.formats.thumbnail
-                      .url
+                  : banner.attributes.image.data.attributes.formats.small.url
               }`,
               thumbnail: `${appSettings.baseUrl}${banner.attributes.image.data.attributes.formats.thumbnail.url}`,
               description: banner.attributes.ps,
@@ -93,9 +92,7 @@ const Shop: NextPage = () => {
           showFullscreenButton
           showPlayButton
           showBullets
-          showThumbnails
-          thumbnailPosition={pcMode ? 'right' : 'bottom'}
-          slideOnThumbnailOver
+          showThumbnails={false}
           showIndex
           showNav
           onSlide={setSlideIndex}

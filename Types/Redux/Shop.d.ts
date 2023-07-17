@@ -20,5 +20,6 @@ interface IParams {
   'filters[topic][$eq]'?: string
   'populate[menu_2s][populate]'?: string
   'populate[image][fields][0]'?: string
+  'filters[title][$contains]'?: string
   sort?: string
 }

@@ -8,7 +8,7 @@ import {
   IconButton,
   Collapse,
 } from '@mui/material'
-import sx from 'TSS/Card.module'
+import sx, { color } from 'TSS/Card.module'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import appSettings from 'AppSettings'
@@ -17,14 +17,19 @@ import type { ICard } from 'Types/Card'
 
 const Cards: NextPage<ICard> = ({
   header: { actions, ...header },
-  backgroundColor,
   cardActions,
   collapse,
   children,
   media,
   onClick,
 }) => (
-  <Card sx={{ ...sx.card, backgroundColor }} {...{ onClick }}>
+  <Card
+    sx={{
+      ...sx.card,
+      backgroundColor: color.at(Math.floor(Math.random() * color.length)),
+    }}
+    {...{ onClick }}
+  >
     <CardHeader {...header} {...{ actions }} />
     <CardMedia
       component='img'

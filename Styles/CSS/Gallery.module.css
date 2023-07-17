@@ -9,3 +9,17 @@
 .banner img {
     border-radius: 10px;
 }
+
+.image-gallery-description,
+.image-gallery-index {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.image-gallery-fullscreen-button,
+.image-gallery-play-button,
+.image-gallery-bullet,
+.image-gallery-right-nav,
+.image-gallery-left-nav {
+    width: 48px;
+}

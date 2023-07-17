@@ -4,6 +4,7 @@ interface IMedium {
 }
 
 interface IFormats {
+  large: IMedium
   medium: IMedium
   small: IMedium
   thumbnail: IMedium
