@@ -4,22 +4,27 @@
 
 .banner {
     width: 100%;
+    padding-inline: 15px;
 }
 
 .banner img {
     border-radius: 10px;
 }
 
-.image-gallery-description,
-.image-gallery-index {
-    font-size: 20px;
+.banner span[class="image-gallery-description"] {
+    font-size: 30px;
     font-weight: bolder;
+    line-height: 40px;
 }
 
-.image-gallery-fullscreen-button,
-.image-gallery-play-button,
-.image-gallery-bullet,
-.image-gallery-right-nav,
-.image-gallery-left-nav {
+.banner button[type="button"] {
     width: 48px;
+    height: 48px;
+}
+
+.banner button[class="image-gallery-bullet"],
+.banner button[aria-pressed="true"] {
+    width: 10px;
+    height: 10px;
+    padding-inline: 10px;
 }
