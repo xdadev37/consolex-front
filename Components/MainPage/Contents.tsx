@@ -48,12 +48,20 @@ const Contents: NextPage = () => {
 
   return (
     <Grid container>
-      <Grid container>
+      <Grid container onSubmit={e => e.preventDefault()}>
         <TextField
+          id='search'
           onReset={() =>
             dispatch(setParams({ 'filters[title][$contains]': '' }))
           }
           onChange={e => setSearch(e.target.value)}
+          onSubmit={() =>
+            dispatch(
+              setParams({
+                'filters[title][$contains]': search,
+              })
+            )
+          }
           type='search'
           placeholder='جستجو ...'
           sx={{
@@ -80,18 +88,33 @@ const Contents: NextPage = () => {
               opacity: 0.5,
             },
             '.Mui-disabled': { WebkitTextFillColor: '#474E68' },
+            '::-ms-clear': { display: 'none' },
           }}
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
                 <IconButton
-                  onClick={() =>
-                    dispatch(setParams({ 'filters[title][$contains]': '' }))
-                  }
+                  onClick={() => {
+                    const input = document.querySelector('input')
+                    if (input) {
+                      input!.value = ''
+                    }
+                    return dispatch(
+                      setParams({ 'filters[title][$contains]': '' })
+                    )
+                  }}
                 >
                   <FontAwesomeIcon icon={faXmark} />
                 </IconButton>
-                <IconButton type='submit'>
+                <IconButton
+                  onClick={() =>
+                    dispatch(
+                      setParams({
+                        'filters[title][$contains]': search,
+                      })
+                    )
+                  }
+                >
                   <FontAwesomeIcon icon={faSearch} />
                 </IconButton>
               </InputAdornment>

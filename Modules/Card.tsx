@@ -64,4 +64,4 @@ const Cards: NextPage<ICard> = ({
   </Card>
 )
 
-export default memo(Cards)
+export default memo(Cards, (prev, next) => prev.collapse === next.collapse)

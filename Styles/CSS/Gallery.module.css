@@ -12,19 +12,10 @@
 }
 
 .banner span[class="image-gallery-description"] {
-    font-size: 30px;
-    font-weight: bolder;
-    line-height: 40px;
+    font-size: 4dvw;
 }
 
 .banner button[type="button"] {
     width: 48px;
     height: 48px;
-}
-
-.banner button[class="image-gallery-bullet"],
-.banner button[aria-pressed="true"] {
-    width: 10px;
-    height: 10px;
-    padding-inline: 10px;
 }

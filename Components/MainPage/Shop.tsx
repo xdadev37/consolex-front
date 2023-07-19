@@ -56,7 +56,7 @@ const Shop: NextPage = () => {
         })
       )
   const mainPageData = [
-    { name: 'کنسول ها 🎮', data: allConsoles.data },
+    { name: 'کنسول های بازی 🎮', data: allConsoles.data },
     { name: 'پیشنهادات ویژه 🎯', data: allOffers.data },
     { name: 'سونی 🕹', data: allSony.data },
     { name: 'مایکروسافت ✖️', data: allMicrosoft.data },
@@ -91,7 +91,6 @@ const Shop: NextPage = () => {
           useBrowserFullscreen
           showFullscreenButton
           showPlayButton
-          showBullets
           showThumbnails={false}
           showIndex
           showNav
