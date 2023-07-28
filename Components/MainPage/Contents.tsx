@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useState, useMemo } from 'react'
 import {
   Typography,
   TextField,
@@ -48,20 +48,27 @@ const Contents: NextPage = () => {
 
   return (
     <Grid container>
-      <Grid container onSubmit={e => e.preventDefault()}>
+      <Grid
+        container
+        component='form'
+        autoComplete='off'
+        autoCorrect='off'
+        autoSave='off'
+        onSubmit={e => {
+          e.preventDefault()
+          return dispatch(
+            setParams({
+              'filters[title][$contains]': search,
+            })
+          )
+        }}
+      >
         <TextField
           id='search'
           onReset={() =>
             dispatch(setParams({ 'filters[title][$contains]': '' }))
           }
           onChange={e => setSearch(e.target.value)}
-          onSubmit={() =>
-            dispatch(
-              setParams({
-                'filters[title][$contains]': search,
-              })
-            )
-          }
           type='search'
           placeholder='جستجو ...'
           sx={{
@@ -123,25 +130,30 @@ const Contents: NextPage = () => {
         />
       </Grid>
       <Grid container justifyContent='center'>
-        {data?.map((card, index) => (
-          <Card
-            key={index}
-            onClick={contentsImagesHandler(
-              card.attributes.images.data?.id || 0,
-              card.id
-            )}
-            backgroundColor='primary.main'
-            header={{ title: card.attributes.title }}
-            media={{
-              url: card.attributes.image.data?.attributes.formats.small
-                ? card.attributes.image.data?.attributes.formats.small.url
-                : card.attributes.image.data?.attributes.formats.thumbnail?.url,
-              alt: card.attributes.title,
-            }}
-          >
-            <Typography>{card.attributes.ps}</Typography>
-          </Card>
-        ))}
+        {useMemo(
+          () =>
+            data?.map((card, index) => (
+              <Card
+                key={index}
+                onClick={contentsImagesHandler(
+                  card.attributes.images.data?.id || 0,
+                  card.id
+                )}
+                backgroundColor='primary.main'
+                header={{ title: card.attributes.title }}
+                media={{
+                  url: card.attributes.image.data?.attributes.formats.small
+                    ? card.attributes.image.data?.attributes.formats.small.url
+                    : card.attributes.image.data?.attributes.formats.thumbnail
+                        ?.url,
+                  alt: card.attributes.title,
+                }}
+              >
+                <Typography>{card.attributes.ps}</Typography>
+              </Card>
+            )),
+          [data]
+        )}
       </Grid>
       <Modal
         open={modal}
