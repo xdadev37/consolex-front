@@ -1,4 +1,4 @@
-import { memo, useState } from 'react'
+import { memo, useState, useMemo } from 'react'
 import { Grid, Typography, useMediaQuery, Paper } from '@mui/material'
 import {
   useGetShopQuery,
@@ -105,10 +105,10 @@ const Shop: NextPage = () => {
           }
         />
       </Grid>
-      {mainPage ? (
-        <Grid container marginTop={2}>
-          {mainPageData.map(
-            ({ name, data }, i) =>
+      <Grid container marginTop={2} display={mainPage ? undefined : 'none'}>
+        {mainPageData.map(({ name, data }, i) =>
+          useMemo(
+            () =>
               data && (
                 <Grid
                   key={i}
@@ -124,14 +124,23 @@ const Shop: NextPage = () => {
                   </Typography>
                   <SwiperFC {...{ data, shopImagesHandler }} />
                 </Grid>
-              )
-          )}
-        </Grid>
-      ) : (
-        <Grid container gap={3} marginTop={2} justifyContent='center'>
-          {data && <SwiperFC {...{ data, shopImagesHandler }} />}
-        </Grid>
-      )}
+              ),
+            [data]
+          )
+        )}
+      </Grid>
+      <Grid
+        container
+        gap={3}
+        marginTop={2}
+        justifyContent='center'
+        display={mainPage ? 'none' : undefined}
+      >
+        {useMemo(
+          () => data && <SwiperFC {...{ data, shopImagesHandler }} />,
+          [data]
+        )}
+      </Grid>
       <Modal
         open={modal}
         setOpen={setModal}
