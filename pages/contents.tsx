@@ -1,6 +1,8 @@
 import MainPage from 'Components/MainPage/MainPage'
 import Contents from 'Components/MainPage/Contents'
 import { getMenu_3 } from 'api/categories'
+import { Fragment } from 'react'
+import Head from 'next/head'
 import { getContents, getRunningQueriesThunk } from 'api/contents'
 import { getServerSideProps as wrapper } from 'Redux/store'
 import type { NextPage } from 'next'
@@ -21,9 +23,14 @@ export const getServerSideProps = wrapper(
 )
 
 const ContentsPage: NextPage = () => (
-  <MainPage>
-    <Contents />
-  </MainPage>
+  <Fragment>
+    <Head>
+      <link rel='canonical' href='https://www.consolex.ir/contents' />
+    </Head>
+    <MainPage>
+      <Contents />
+    </MainPage>
+  </Fragment>
 )
 
 export default ContentsPage

@@ -132,7 +132,8 @@ const Contents: NextPage = () => {
       <Grid container justifyContent='center'>
         {useMemo(
           () =>
-            data?.map((card, index) => (
+            data &&
+            data.map((card, index) => (
               <Card
                 key={index}
                 onClick={contentsImagesHandler(

@@ -1,5 +1,7 @@
 import MainPage from 'Components/MainPage/MainPage'
 import Shop from 'Components/MainPage/Shop'
+import { Fragment } from 'react'
+import Head from 'next/head'
 import {
   getRunningQueriesThunk,
   getConsoles,
@@ -34,9 +36,14 @@ export const getServerSideProps = wrapper(
 )
 
 const ShopPage: NextPage = () => (
-  <MainPage>
-    <Shop />
-  </MainPage>
+  <Fragment>
+    <Head>
+      <link rel='canonical' href='https://www.consolex.ir/' />
+    </Head>
+    <MainPage>
+      <Shop />
+    </MainPage>
+  </Fragment>
 )
 
 export default ShopPage
