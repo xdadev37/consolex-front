@@ -4,7 +4,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   IconButton,
   Zoom,
   useMediaQuery,
@@ -63,14 +62,28 @@ const ContentModal: NextPage<IModal> = ({
           bgcolor='white'
           height='100%'
         >
-          <Grid item xs={12} sm={12} md={5} lg={5} xl={5}>
-            <DialogContentText
-              paragraph
-              sx={sx.contents}
-              dangerouslySetInnerHTML={{ __html: descriptions }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={5}
+            lg={5}
+            xl={5}
+            sx={sx.contents}
+            borderLeft={pcMode ? '1px solid #ccc' : undefined}
+            borderBottom={pcMode ? undefined : '1px solid #ccc'}
+            paddingLeft={pcMode ? 5 : undefined}
+            dangerouslySetInnerHTML={{ __html: descriptions }}
+          />
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            md={6}
+            lg={6}
+            xl={6}
+            paddingTop={pcMode ? undefined : 2}
+          >
             <Gallery
               additionalClass={classes.gallery}
               items={images.data.map(image => ({
