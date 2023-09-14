@@ -58,7 +58,7 @@ const Contents: NextPage = () => {
           e.preventDefault()
           return dispatch(
             setParams({
-              'filters[title][$contains]': search,
+              'filters[title][$containsi]': search,
             })
           )
         }}
@@ -66,7 +66,7 @@ const Contents: NextPage = () => {
         <TextField
           id='search'
           onReset={() =>
-            dispatch(setParams({ 'filters[title][$contains]': '' }))
+            dispatch(setParams({ 'filters[title][$containsi]': '' }))
           }
           onChange={e => setSearch(e.target.value)}
           type='search'
@@ -107,7 +107,7 @@ const Contents: NextPage = () => {
                       input!.value = ''
                     }
                     return dispatch(
-                      setParams({ 'filters[title][$contains]': '' })
+                      setParams({ 'filters[title][$containsi]': '' })
                     )
                   }}
                 >
@@ -117,7 +117,7 @@ const Contents: NextPage = () => {
                   onClick={() =>
                     dispatch(
                       setParams({
-                        'filters[title][$contains]': search,
+                        'filters[title][$containsi]': search,
                       })
                     )
                   }
@@ -153,6 +153,7 @@ const Contents: NextPage = () => {
                 <Typography>{card.attributes.ps}</Typography>
               </Card>
             )),
+          // eslint-disable-next-line react-hooks/exhaustive-deps
           [data]
         )}
       </Grid>
