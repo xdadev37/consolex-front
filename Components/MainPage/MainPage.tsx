@@ -10,10 +10,7 @@ import type { IChildren } from 'Types/Children'
 const MainPage: NextPage<IChildren> = ({ children }) => (
   <Fragment>
     <Head>
-      <title>
-        کنسول ایکس PS4 PS5 Xbox کنسول بازی ایکس باکس پلی استیشن اصفهان
-      </title>
-      <title>کنسول ایکس | پلی استیشن ایکس باکس xbox ps4 ps5 اصفهان</title>
+      <title>کنسول ایکس | نصب بازی پلی استیشن ایکس باکس xbox ps4 ps5 اصفهان</title>
     </Head>
     <TopAppBar />
     <Grid container paddingTop={10} paddingX={4} bgcolor='#f6f6f6'>
