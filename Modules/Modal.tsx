@@ -104,10 +104,12 @@ const ContentModal: NextPage<IModal> = ({
               showFullscreenButton
               showPlayButton
               showBullets
-              showThumbnails
-              thumbnailPosition={pcMode ? 'right' : 'bottom'}
-              slideOnThumbnailOver
               showIndex
+              // thumbnailPosition={pcMode ? 'right' : 'bottom'}
+              // slideOnThumbnailOver
+              // disableThumbnailScroll
+              showThumbnails={false}
+              showNav={false}
             />
           </Grid>
         </Grid>
