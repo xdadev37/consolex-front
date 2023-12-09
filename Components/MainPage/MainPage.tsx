@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Toggler from 'Components/MainPage/Items/Toggler'
 import TopAppBar from 'Components/TopAppBar'
 import Footer from 'Components/Footer/Footer'
-import gvi from './gvi.webp'
+import gvi from './gvi.png'
 import type { NextPage } from 'next'
 import type { IChildren } from 'Types/Children'
 
@@ -29,7 +29,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
       sx={{
         backgroundImage: `url(${gvi.src})`,
         backgroundRepeat: 'space',
-        backgroundSize: '20px 20px',
+        backgroundSize: '50px 50px',
       }}
     >
       <Grid container gap={3} marginTop={2} justifyContent='center'>
