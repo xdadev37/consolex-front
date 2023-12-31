@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone } from '@fortawesome/free-solid-svg-icons'
-import { Grid, Typography, Link } from '@mui/material'
+import { Grid, Typography, Link, Divider } from '@mui/material'
 import sx from 'TSS/Footer.module'
 import Image from 'next/image'
 import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
@@ -29,9 +29,15 @@ const Footer: NextPage = () => (
         loading='lazy'
         referrerPolicy='no-referrer-when-downgrade'
       />
+      <Divider sx={{ marginY: 1 }} />
       <Typography textAlign='justify'>
-        اصفهان_ ابتدای خیابان طالقانی از سمت خیابان شمس آبادی_ روبه روی بانک
-        ملی_ جنب مادی فدن_ مجتمع تجاری اداری الماس شهر _ طبقه پایین واحد 10
+        شعبه ارگ جهان نما: اصفهان خیابان شمس ابادی ارگ عظیم جهان نما طبقه اول از
+        ورودی شمس ابادی طبقه اول جنب مشاور املاک واحد 129 کنسول ایکس
+      </Typography>
+      <Divider sx={{ marginY: 1 }} />
+      <Typography textAlign='justify'>
+        شعبه طالقانی: اصفهان خیابان طالقانی نرسیده به چهارراه شمس ابادی روبروی
+        بانک ملی مجتمع الماس طبقه پایین واحد 10 کنسول ایکس
       </Typography>
       <Grid
         item
@@ -74,10 +80,10 @@ const Footer: NextPage = () => (
           priority
         />
       </Grid>
+      <Typography variant='subtitle1' textAlign='justify'>
+        {constants.description}
+      </Typography>
     </Grid>
-    <Typography variant='subtitle1' textAlign='justify'>
-      {constants.description}
-    </Typography>
   </Grid>
 )
 
