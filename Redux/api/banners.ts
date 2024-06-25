@@ -14,6 +14,7 @@ const bannersApi = createApi({
         params: {
           sort: 'updatedAt:desc',
           'populate[image][fields][0]': 'formats',
+          'populate[image][fields][1]': 'url',
         },
       }),
       transformResponse: (res: Record<'data', IBanners[]>) => res,

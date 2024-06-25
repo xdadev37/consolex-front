@@ -70,13 +70,21 @@ const Shop: NextPage = () => {
           items={
             allBanners.data?.data.map(banner => ({
               original: `${appSettings.baseUrl}${
-                pcMode && banner.attributes.image.data.attributes.formats.large
-                  ? banner.attributes.image.data.attributes.formats.large.url
-                  : banner.attributes.image.data.attributes.formats.medium
-                  ? banner.attributes.image.data.attributes.formats.medium.url
-                  : banner.attributes.image.data.attributes.formats.small.url
+                banner.attributes.image.data.attributes.formats
+                  ? pcMode &&
+                    banner.attributes.image.data.attributes.formats.large
+                    ? banner.attributes.image.data.attributes.formats.large.url
+                    : banner.attributes.image.data.attributes.formats.medium
+                    ? banner.attributes.image.data.attributes.formats.medium.url
+                    : banner.attributes.image.data.attributes.formats.small.url
+                  : banner.attributes.image.data.attributes.url
               }`,
-              thumbnail: `${appSettings.baseUrl}${banner.attributes.image.data.attributes.formats.thumbnail.url}`,
+              thumbnail: `${appSettings.baseUrl}${
+                banner.attributes.image.data.attributes.formats
+                  ? banner.attributes.image.data.attributes.formats.thumbnail
+                      .url
+                  : banner.attributes.image.data.attributes.url
+              }`,
               description: banner.attributes.ps,
               originalAlt: banner.attributes.ps,
               thumbnailAlt: banner.attributes.ps,

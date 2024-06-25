@@ -12,6 +12,7 @@ interface IFormats {
 
 export interface IImage {
   formats: IFormats
+  url: string
 }
 
 interface IId {
