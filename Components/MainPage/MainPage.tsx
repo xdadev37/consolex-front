@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Toggler from 'Components/MainPage/Items/Toggler'
 import TopAppBar from 'Components/TopAppBar'
 import Footer from 'Components/Footer/Footer'
-import gvi from './gvi.png'
+import ps from './ps.jpg'
 import type { NextPage } from 'next'
 import type { IChildren } from 'Types/Children'
 
@@ -27,7 +27,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
       minHeight='1000px !important'
       bgcolor='#f6f6f6'
       sx={{
-        backgroundImage: `url(${gvi.src})`,
+        backgroundImage: `url(${ps.src})`,
         backgroundRepeat: 'space',
         backgroundSize: '50px 50px',
       }}

@@ -88,20 +88,16 @@ const Shop: NextPage = () => {
               description: banner.attributes.ps,
               originalAlt: banner.attributes.ps,
               thumbnailAlt: banner.attributes.ps,
-              loading: 'lazy',
-              thumbnailLoading: 'lazy',
             })) || []
           }
-          lazyLoad
           autoPlay
           infinite
-          useTranslate3D
-          useBrowserFullscreen
-          showFullscreenButton
-          showPlayButton
+          showNav={false}
+          showBullets
+          showPlayButton={false}
+          showFullscreenButton={false}
           showThumbnails={false}
-          showIndex
-          showNav
+          isRTL
           onSlide={setSlideIndex}
           onClick={() =>
             window
