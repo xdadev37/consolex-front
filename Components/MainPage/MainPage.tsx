@@ -26,10 +26,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
       justifyContent='center'
       minHeight='1000px !important'
       bgcolor='#f6f6f6'
-      sx={{
-        backgroundImage: `url(${ps.src})`,
-        backgroundRepeat: 'space',
-      }}
+      sx={{ backgroundImage: `url(${ps.src})` }}
     >
       <Grid container gap={3} marginTop={2} justifyContent='center'>
         {children}
