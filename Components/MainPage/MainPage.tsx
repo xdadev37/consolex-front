@@ -12,10 +12,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
   <Fragment>
     <Head>
       <title>
-        <h1>ps5 اصفهان</h1>
-        <h2>ps4 xbox</h2>
-        <h3>پلی استیشن ایکس باکس</h3>
-        <h4>خرید نصب بازی</h4>
+        | ps5 اصفهان | ps4 xbox | پلی استیشن ایکس باکس | خرید نصب بازی
       </title>
     </Head>
     <TopAppBar />

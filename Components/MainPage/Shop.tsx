@@ -84,7 +84,7 @@ const Shop: NextPage = () => {
             </Grid>
           )
       ),
-    [data]
+    [mainPageData]
   )
 
   const swiper = useMemo(
