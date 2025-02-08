@@ -23,6 +23,7 @@ import type { Theme } from '@mui/system'
 import type { NextPage } from 'next'
 
 const Shop: NextPage = () => {
+  const AnyGallery: any = Gallery
   const { isFallback, query, route } = useRouter()
   const [modal, setModal] = useState(false)
   const [slideIndex, setSlideIndex] = useState(0)
@@ -62,10 +63,39 @@ const Shop: NextPage = () => {
     { name: 'مایکروسافت ✖️', data: allMicrosoft.data },
   ]
 
+  const mapData = useMemo(
+    () =>
+      mainPageData.map(
+        ({ name, data }, i) =>
+          data && (
+            <Grid
+              key={i}
+              container
+              direction='column'
+              component={Paper}
+              borderRadius={5}
+              paddingY={3}
+              marginY={3}
+            >
+              <Typography variant='h5' marginRight={3}>
+                {name}
+              </Typography>
+              <SwiperFC {...{ data, shopImagesHandler }} />
+            </Grid>
+          )
+      ),
+    [data]
+  )
+
+  const swiper = useMemo(
+    () => data && <SwiperFC {...{ data, shopImagesHandler }} />,
+    [data]
+  )
+
   return (
     <Grid container direction='column' justifyContent='space-between'>
       <Grid container justifyContent='center'>
-        <Gallery
+        <AnyGallery
           additionalClass={classes.banner}
           items={
             allBanners.data?.data.map(banner => ({
@@ -110,28 +140,7 @@ const Shop: NextPage = () => {
         />
       </Grid>
       <Grid container marginTop={2} display={mainPage ? undefined : 'none'}>
-        {mainPageData.map(({ name, data }, i) =>
-          useMemo(
-            () =>
-              data && (
-                <Grid
-                  key={i}
-                  container
-                  direction='column'
-                  component={Paper}
-                  borderRadius={5}
-                  paddingY={3}
-                  marginY={3}
-                >
-                  <Typography variant='h5' marginRight={3}>
-                    {name}
-                  </Typography>
-                  <SwiperFC {...{ data, shopImagesHandler }} />
-                </Grid>
-              ),
-            [data]
-          )
-        )}
+        {mapData}
       </Grid>
       <Grid
         container
@@ -140,10 +149,7 @@ const Shop: NextPage = () => {
         justifyContent='center'
         display={mainPage ? 'none' : undefined}
       >
-        {useMemo(
-          () => data && <SwiperFC {...{ data, shopImagesHandler }} />,
-          [data]
-        )}
+        {swiper}
       </Grid>
       <Modal
         open={modal}

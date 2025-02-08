@@ -29,6 +29,7 @@ const ContentModal: NextPage<IModal> = ({
   const [isShareSupported, setIsShareSupported] = useState(true)
   const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
   useEffect(() => setIsShareSupported(Boolean(navigator.canShare)), [])
+  const AnyGallery: any = Gallery
 
   return (
     <Dialog
@@ -84,7 +85,7 @@ const ContentModal: NextPage<IModal> = ({
             xl={6}
             paddingTop={pcMode ? undefined : 2}
           >
-            <Gallery
+            <AnyGallery
               additionalClass={classes.gallery}
               items={images.data.map(image => ({
                 original: `${appSettings.baseUrl}${
