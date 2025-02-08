@@ -25,7 +25,7 @@ export const getServerSideProps = wrapper(
 const ContentsPage: NextPage = () => (
   <Fragment>
     <Head>
-      <link rel='canonical' href='https://www.consolex.ir/contents' />
+      <link rel='canonical' href='https://consolex.ir/contents' />
     </Head>
     <MainPage>
       <Contents />

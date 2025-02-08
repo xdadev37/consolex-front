@@ -84,11 +84,13 @@ const Shop: NextPage = () => {
             </Grid>
           )
       ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [mainPageData]
   )
 
   const swiper = useMemo(
     () => data && <SwiperFC {...{ data, shopImagesHandler }} />,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [data]
   )
 

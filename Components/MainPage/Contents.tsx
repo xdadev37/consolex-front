@@ -46,6 +46,32 @@ const Contents: NextPage = () => {
         })
       )
 
+  const cards = useMemo(
+    () =>
+      data &&
+      data.map((card, index) => (
+        <Card
+          key={index}
+          onClick={contentsImagesHandler(
+            card.attributes.images.data?.id || 0,
+            card.id
+          )}
+          backgroundColor='primary.main'
+          header={{ title: card.attributes.title }}
+          media={{
+            url: card.attributes.image.data?.attributes.formats.small
+              ? card.attributes.image.data?.attributes.formats.small.url
+              : card.attributes.image.data?.attributes.formats.thumbnail?.url,
+            alt: card.attributes.title,
+          }}
+        >
+          <Typography>{card.attributes.ps}</Typography>
+        </Card>
+      )),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [data]
+  )
+
   return (
     <Grid container>
       <Grid
@@ -130,32 +156,7 @@ const Contents: NextPage = () => {
         />
       </Grid>
       <Grid container justifyContent='center'>
-        {useMemo(
-          () =>
-            data &&
-            data.map((card, index) => (
-              <Card
-                key={index}
-                onClick={contentsImagesHandler(
-                  card.attributes.images.data?.id || 0,
-                  card.id
-                )}
-                backgroundColor='primary.main'
-                header={{ title: card.attributes.title }}
-                media={{
-                  url: card.attributes.image.data?.attributes.formats.small
-                    ? card.attributes.image.data?.attributes.formats.small.url
-                    : card.attributes.image.data?.attributes.formats.thumbnail
-                        ?.url,
-                  alt: card.attributes.title,
-                }}
-              >
-                <Typography>{card.attributes.ps}</Typography>
-              </Card>
-            )),
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          [data]
-        )}
+        {cards}
       </Grid>
       <Modal
         open={modal}
