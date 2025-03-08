@@ -7,16 +7,12 @@
 
 <url>
   <loc>https://consolex.ir/contents</loc>
-  <xhtml:link rel="alternate" href="https://www.consolex.ir/contents"/>
   <lastmod>2025-03-07T01:56:14+00:00</lastmod>
   <changefreq>daily</changefreq>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://consolex.ir/</loc>
-  <xhtml:link rel="alternate" href="https://wwww.consolex.ir/"/>
-  <xhtml:link rel="alternate" href="https://consolex.ir/shop"/>
-  <xhtml:link rel="alternate" href="https://www.consolex.ir/shop"/>
   <lastmod>2025-03-07T01:56:14+00:00</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.80</priority>
