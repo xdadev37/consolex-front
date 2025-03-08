@@ -40,6 +40,8 @@ const ShopPage: NextPage = () => (
     <Head>
       <link rel='canonical' href='https://consolex.ir/' />
       <link rel='canonical' href='https://consolex.ir/shop' />
+      <link rel='canonical' href='https://www.consolex.ir/' />
+      <link rel='canonical' href='https://www.consolex.ir/shop' />
     </Head>
     <MainPage>
       <Shop />
