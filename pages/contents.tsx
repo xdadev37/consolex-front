@@ -26,7 +26,6 @@ const ContentsPage: NextPage = () => (
   <Fragment>
     <Head>
       <link rel='canonical' href='https://consolex.ir/contents' />
-      <link rel='canonical' href='https://www.consolex.ir/contents' />
     </Head>
     <MainPage>
       <Contents />
