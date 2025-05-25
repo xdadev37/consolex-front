@@ -29,15 +29,18 @@ const Footer: NextPage = () => (
         loading='lazy'
         referrerPolicy='no-referrer-when-downgrade'
       />
+      <Typography variant='h6' textAlign='center'>
+        اصفهان
+      </Typography>
       <Divider sx={{ marginY: 1 }} />
       <Typography textAlign='justify'>
-        شعبه ارگ جهان نما: اصفهان خیابان شمس ابادی ارگ عظیم جهان نما طبقه بالا اول از
+        شعبه ارگ جهان نما: خیابان شمس ابادی ارگ عظیم جهان نما طبقه بالا اول از
         ورودی شمس ابادی طبقه اول جنب مشاور املاک واحد 129 کنسول ایکس
       </Typography>
       <Divider sx={{ marginY: 1 }} />
       <Typography textAlign='justify'>
-        شعبه طالقانی: اصفهان خیابان طالقانی نرسیده به چهارراه شمس ابادی روبروی
-        بانک ملی مجتمع الماس طبقه پایین واحد 10 کنسول ایکس
+        شعبه طالقانی: خیابان طالقانی نرسیده به چهارراه شمس ابادی روبروی بانک ملی
+        مجتمع الماس طبقه پایین واحد 10 کنسول ایکس
       </Typography>
       <Grid
         item
@@ -80,9 +83,6 @@ const Footer: NextPage = () => (
           priority
         />
       </Grid>
-      <Typography variant='subtitle1' textAlign='justify'>
-        {constants.description}
-      </Typography>
     </Grid>
   </Grid>
 )
