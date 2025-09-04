@@ -3,9 +3,9 @@ import { Grid, Typography, useMediaQuery, Paper } from '@mui/material'
 import {
   useGetShopQuery,
   useGetRadiotherapyQuery,
-  useGetMicrosoftQuery,
-  useGetSonyQuery,
-  useGetOffersQuery,
+  useGetIndustrialQuery,
+  useGetRadiologyQuery,
+  useGetNuclearQuery,
 } from 'api/shop'
 import { useGetBannersQuery } from 'api/banners'
 import { useRouter } from 'next/router'
@@ -42,10 +42,10 @@ const Shop: NextPage = () => {
     }
   )
   const allBanners = useGetBannersQuery(undefined, { skip: isFallback })
-  const allConsoles = useGetRadiotherapyQuery(undefined, { skip: isFallback })
-  const allOffers = useGetOffersQuery(undefined, { skip: isFallback })
-  const allSony = useGetSonyQuery(undefined, { skip: isFallback })
-  const allMicrosoft = useGetMicrosoftQuery(undefined, { skip: isFallback })
+  const allRadiotherapy = useGetRadiotherapyQuery(undefined, { skip: isFallback })
+  const allNuclear = useGetNuclearQuery(undefined, { skip: isFallback })
+  const allRadiology = useGetRadiologyQuery(undefined, { skip: isFallback })
+  const allIndustrial = useGetIndustrialQuery(undefined, { skip: isFallback })
   const [getShopImages, gotShopImages] = useLazyImagesQuery()
   const shopImagesHandler = (id: number, cardId: number) => () =>
     getShopImages(id)
@@ -57,10 +57,10 @@ const Shop: NextPage = () => {
         })
       )
   const mainPageData = [
-    { name: 'رادیوتراپی', data: allConsoles.data },
-    { name: 'پزشکی هسته ای', data: allOffers.data },
-    { name: 'سیتی اسکن و رادیولوژی', data: allSony.data },
-    { name: 'صنعتی', data: allMicrosoft.data },
+    { name: 'رادیوتراپی', data: allRadiotherapy.data },
+    { name: 'پزشکی هسته ای', data: allNuclear.data },
+    { name: 'سیتی اسکن و رادیولوژی', data: allRadiology.data },
+    { name: 'صنعتی', data: allIndustrial.data },
   ]
 
   const mapData = useMemo(

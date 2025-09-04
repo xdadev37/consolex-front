@@ -13,7 +13,7 @@ import type { ISwiper } from 'Types/Redux/Swiper.d'
 import type { Theme } from '@mui/system'
 
 const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
-  const thousandsFormatter = new Intl.NumberFormat('fa-IR')
+  // const thousandsFormatter = new Intl.NumberFormat('fa-IR')
   const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
 
   return (
@@ -57,7 +57,7 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
               alt: card.attributes.title,
             }}
           >
-            <Grid container justifyContent='space-between' alignItems='center'>
+            {/* <Grid container justifyContent='space-between' alignItems='center'>
               <Grid item sm={6} md={6} lg={6}>
                 <Typography color='primary.100' marginBottom={1}>
                   قیمت
@@ -98,7 +98,7 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
                   {thousandsFormatter.format(card.attributes.discPrice)} تومان
                 </Typography>
               )}
-            </Grid>
+            </Grid> */}
             <Typography variant='caption'>
               {card.attributes.ps || ''}
             </Typography>

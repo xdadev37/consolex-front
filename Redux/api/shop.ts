@@ -22,17 +22,17 @@ const shopApi = createApi({
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
-    getSony: query({
+    getIndustrial: query({
       query: () => ({
-        url: 'sonies',
+        url: 'industrials',
         method: 'GET',
         params: commonParams,
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
-    getMicrosoft: query({
+    getRadiology: query({
       query: () => ({
-        url: 'microsofts',
+        url: 'radiologies',
         method: 'GET',
         params: commonParams,
       }),
@@ -46,9 +46,9 @@ const shopApi = createApi({
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
-    getOffers: query({
+    getNuclear: query({
       query: () => ({
-        url: 'offers',
+        url: 'nuclears',
         method: 'GET',
         params: commonParams,
       }),
@@ -61,14 +61,14 @@ const shopApi = createApi({
 })
 
 export const {
-  endpoints: { getShop, getRadiotherapy, getSony, getMicrosoft, getOffers },
+  endpoints: { getShop, getRadiotherapy, getIndustrial, getRadiology, getNuclear },
   util: { getRunningQueriesThunk },
   reducer,
   reducerPath,
   middleware,
   useGetShopQuery,
   useGetRadiotherapyQuery,
-  useGetMicrosoftQuery,
-  useGetSonyQuery,
-  useGetOffersQuery,
+  useGetIndustrialQuery,
+  useGetRadiologyQuery,
+  useGetNuclearQuery,
 } = shopApi

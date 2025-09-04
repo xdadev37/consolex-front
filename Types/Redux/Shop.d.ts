@@ -3,10 +3,10 @@ import type { IAttributes as IImage, IId } from 'Types/Redux/Images.d'
 interface IAttributes {
   title: string
   ps: string
-  price: number
+  // price: number
+  // discPrice?: number
   createdAt: Date
   updatedAt: Date
-  discPrice?: number
   image: Record<'data', IImage>
   images: Record<'data', IId>
 }
