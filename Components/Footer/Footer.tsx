@@ -5,7 +5,7 @@ import { Grid, Typography, Link, Divider } from '@mui/material'
 import sx from 'TSS/Footer.module'
 import Image from 'next/image'
 import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-import WhatsappQR from 'Components/Footer/consoleXWPQR.jpeg'
+import WhatsappQR from 'Components/Footer/WPQR.png'
 import constants from 'Constants/constants.enum'
 import type { NextPage } from 'next'
 
@@ -23,24 +23,22 @@ const Footer: NextPage = () => (
         onLoadedData={() => console.clear()}
         title='map'
         component='iframe'
-        src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3359.0744650533507!2d51.6654373!3d32.6574625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fbc356402d42323%3A0x173e558e57a227e3!2z2qnZhtiz2YjZhCDYp9uM2qnYsw!5e0!3m2!1sen!2s!4v1684336713477!5m2!1sen!2s'
+        src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4042.7550749282186!2d50.868999912088306!3d35.67808177247395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8d97e4fb143deb%3A0x2960601b5b094628!2z2LPYp9mF2KfZhiDYqtin2KjYtCDYp9mF24zYryDbsg!5e1!3m2!1sen!2s!4v1756983303891!5m2!1sen!2s'
         sx={sx.iframe}
         allowFullScreen
         loading='lazy'
         referrerPolicy='no-referrer-when-downgrade'
       />
       <Typography variant='h6' textAlign='center'>
-        اصفهان
+        تهران
       </Typography>
       <Divider sx={{ marginY: 1 }} />
       <Typography textAlign='justify'>
-        شعبه ارگ جهان نما: خیابان شمس ابادی ارگ عظیم جهان نما طبقه بالا اول از
-        ورودی شمس ابادی طبقه اول جنب مشاور املاک واحد 129 کنسول ایکس
+        دفتر فروش: خ. فاطمی, روبروی وزارت کشور, خ میرزایی بی غش (چهارم), نبش رامین, پلاک 2
       </Typography>
       <Divider sx={{ marginY: 1 }} />
       <Typography textAlign='justify'>
-        شعبه طالقانی: خیابان طالقانی نرسیده به چهارراه شمس ابادی روبروی بانک ملی
-        مجتمع الماس طبقه پایین واحد 10 کنسول ایکس
+        کارگاه: جاده ی ملارد به صفادشت, ارسطو, ولیعصر هشتم, بلوار شورا, کوچه حافظ, پلاک 8
       </Typography>
       <Grid
         item
@@ -49,11 +47,11 @@ const Footer: NextPage = () => (
         alignItems='center'
         marginTop={2}
       >
-        <Typography>031-31318398</Typography> &nbsp;
+        <Typography>021-88991219</Typography> &nbsp;
         <FontAwesomeIcon icon={faPhone} />
       </Grid>
       <Grid item display='flex' color='primary.300' alignItems='center'>
-        <Typography>09139146705</Typography> &nbsp;
+        <Typography>09124472556</Typography> &nbsp;
         <FontAwesomeIcon icon={faPhone} />
       </Grid>
     </Grid>
@@ -61,7 +59,7 @@ const Footer: NextPage = () => (
       <Grid container justifyContent='flex-end' columnGap={2}>
         <Link
           color='primary.200'
-          href='https://www.instagram.com/consolex_store'
+          href='https://instagram.com/samantabesh_omid021'
           target='_blank'
         >
           <FontAwesomeIcon size='4x' icon={faInstagram} />
@@ -69,7 +67,7 @@ const Footer: NextPage = () => (
         <Link
           color='primary.100'
           target='_blank'
-          href='https://wa.me/message/QSEN4SDWHXEVJ1'
+          href='https://api.whatsapp.com/send/?phone=9124472556&text&type=phone_number&app_absent=0'
         >
           <FontAwesomeIcon size='4x' icon={faWhatsapp} />
         </Link>

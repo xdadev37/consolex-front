@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react'
 import { ToggleButtonGroup, ToggleButton } from '@mui/material'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGamepad, faShop } from '@fortawesome/free-solid-svg-icons'
+import { faScroll, faRadiation } from '@fortawesome/free-solid-svg-icons'
 import sx from 'TSS/Toggler.module'
 import { useRouter } from 'next/router'
 import type { NextPage } from 'next'
@@ -13,14 +13,14 @@ const Toggler: NextPage = () => {
     () => [
       {
         value: '/contents',
-        label: 'مطالب',
-        icon: faGamepad,
+        label: 'مقالات',
+        icon: faScroll,
         backgroundColor: '#6200ea',
       },
       {
         value: '/shop',
-        label: 'فروشگاه',
-        icon: faShop,
+        label: 'محصولات',
+        icon: faRadiation,
         backgroundColor: '#ffab00',
       },
     ],

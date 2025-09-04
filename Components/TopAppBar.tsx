@@ -16,12 +16,12 @@ const TopAppBar: NextPage = () => {
           </Grid>
           <Grid item xs={4} sm={4} md={4} lg={4} textAlign='center'>
             <Typography variant='body1' fontStyle='italic'>
-              کنسول ایکس | ConsoleX
+              شرکت پزشکی سامان تابش امید
             </Typography>
           </Grid>
           <Grid item xs={5} sm={5} md={4} lg={4} textAlign='right'>
-            <Link href='tel://09139146705' color='primary.100'>
-              09139146705 &nbsp;
+            <Link href='tel://09124472556' color='primary.100'>
+              09124472556 &nbsp;
               <FontAwesomeIcon icon={faPhone} />
             </Link>
           </Grid>

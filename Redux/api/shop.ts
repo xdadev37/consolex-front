@@ -38,9 +38,9 @@ const shopApi = createApi({
       }),
       transformResponse: (res: Record<'data', IShop[]>) => res.data,
     }),
-    getConsoles: query({
+    getRadiotherapy: query({
       query: () => ({
-        url: 'consoles',
+        url: 'radiotherapies',
         method: 'GET',
         params: commonParams,
       }),
@@ -61,13 +61,13 @@ const shopApi = createApi({
 })
 
 export const {
-  endpoints: { getShop, getConsoles, getSony, getMicrosoft, getOffers },
+  endpoints: { getShop, getRadiotherapy, getSony, getMicrosoft, getOffers },
   util: { getRunningQueriesThunk },
   reducer,
   reducerPath,
   middleware,
   useGetShopQuery,
-  useGetConsolesQuery,
+  useGetRadiotherapyQuery,
   useGetMicrosoftQuery,
   useGetSonyQuery,
   useGetOffersQuery,

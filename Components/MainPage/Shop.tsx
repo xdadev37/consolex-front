@@ -2,7 +2,7 @@ import { memo, useState, useMemo } from 'react'
 import { Grid, Typography, useMediaQuery, Paper } from '@mui/material'
 import {
   useGetShopQuery,
-  useGetConsolesQuery,
+  useGetRadiotherapyQuery,
   useGetMicrosoftQuery,
   useGetSonyQuery,
   useGetOffersQuery,
@@ -42,7 +42,7 @@ const Shop: NextPage = () => {
     }
   )
   const allBanners = useGetBannersQuery(undefined, { skip: isFallback })
-  const allConsoles = useGetConsolesQuery(undefined, { skip: isFallback })
+  const allConsoles = useGetRadiotherapyQuery(undefined, { skip: isFallback })
   const allOffers = useGetOffersQuery(undefined, { skip: isFallback })
   const allSony = useGetSonyQuery(undefined, { skip: isFallback })
   const allMicrosoft = useGetMicrosoftQuery(undefined, { skip: isFallback })
@@ -57,10 +57,10 @@ const Shop: NextPage = () => {
         })
       )
   const mainPageData = [
-    { name: 'کنسول های بازی 🎮', data: allConsoles.data },
-    { name: 'پیشنهادات ویژه 🎯', data: allOffers.data },
-    { name: 'سونی 🕹', data: allSony.data },
-    { name: 'مایکروسافت ✖️', data: allMicrosoft.data },
+    { name: 'رادیوتراپی', data: allConsoles.data },
+    { name: 'پزشکی هسته ای', data: allOffers.data },
+    { name: 'سیتی اسکن و رادیولوژی', data: allSony.data },
+    { name: 'صنعتی', data: allMicrosoft.data },
   ]
 
   const mapData = useMemo(
