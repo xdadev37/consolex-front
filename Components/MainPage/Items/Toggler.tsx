@@ -15,13 +15,13 @@ const Toggler: NextPage = () => {
         value: '/contents',
         label: 'مقالات',
         icon: faScroll,
-        backgroundColor: '#6200ea',
+        backgroundColor: '#0094eaff',
       },
       {
         value: '/shop',
         label: 'محصولات',
         icon: faRadiation,
-        backgroundColor: '#ffab00',
+        backgroundColor: '#002fffff',
       },
     ],
     []

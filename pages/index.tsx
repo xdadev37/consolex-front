@@ -4,10 +4,10 @@ import { Fragment } from 'react'
 import Head from 'next/head'
 import {
   getRunningQueriesThunk,
-  getConsoles,
-  getMicrosoft,
-  getOffers,
-  getSony,
+  getRadiotherapy,
+  getIndustrial,
+  getRadiology,
+  getNuclear,
   getShop,
 } from 'api/shop'
 import { getMenu_3 } from 'api/categories'
@@ -23,10 +23,10 @@ export const getServerSideProps = wrapper(
       if (params) dispatch(getShop.initiate(params, options))
       else {
         dispatch(getBanners.initiate({}, options))
-        dispatch(getConsoles.initiate({}, options))
-        dispatch(getOffers.initiate({}, options))
-        dispatch(getSony.initiate({}, options))
-        dispatch(getMicrosoft.initiate({}, options))
+        dispatch(getRadiotherapy.initiate({}, options))
+        dispatch(getIndustrial.initiate({}, options))
+        dispatch(getRadiology.initiate({}, options))
+        dispatch(getNuclear.initiate({}, options))
       }
 
       await Promise.all(dispatch(getRunningQueriesThunk()))
