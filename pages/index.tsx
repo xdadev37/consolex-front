@@ -36,17 +36,9 @@ export const getServerSideProps = wrapper(
 )
 
 const ShopPage: NextPage = () => (
-  <Fragment>
-    <Head>
-      <link rel='canonical' href='https://consolex.ir/' />
-      <link rel='alternate' href='https://wwww.consolex.ir/' />
-      <link rel='alternate' href='https://consolex.ir/shop' />
-      <link rel='alternate' href='https://www.consolex.ir/shop' />
-    </Head>
-    <MainPage>
-      <Shop />
-    </MainPage>
-  </Fragment>
+  <MainPage>
+    <Shop />
+  </MainPage>
 )
 
 export default ShopPage

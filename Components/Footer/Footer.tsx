@@ -6,7 +6,7 @@ import sx from 'TSS/Footer.module'
 import Image from 'next/image'
 import { faInstagram, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import WhatsappQR from 'Components/Footer/consoleXWPQR.jpeg'
-import constants from 'Constants/constants.enum'
+// import constants from 'Constants/constants.enum'
 import type { NextPage } from 'next'
 
 const Footer: NextPage = () => (

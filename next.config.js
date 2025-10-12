@@ -7,7 +7,7 @@ module.exports = withWorkbox({
   staticPageGenerationTimeout: 99999,
   swcMinify: true,
   images: {
-    domains: ['localhost', 'consolex.ir'],
+    domains: ['localhost', 'www.consolex.ir'],
   },
   workbox: {
     swSrc: './sw.ts',
