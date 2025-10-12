@@ -7,8 +7,8 @@ import { CssBaseline } from '@mui/material'
 import theme from 'TSS/Header/Root.module'
 import { withRedux } from 'Redux/store'
 import { StyledEngineProvider } from '@mui/material/styles'
-import Head from 'next/head'
 import { TssCacheProvider } from 'tss-react'
+import { GoogleTagManager } from '@next/third-parties/google'
 import 'CSS/Font.css'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import type { EmotionCache } from '@emotion/react'
@@ -28,9 +28,7 @@ const App = ({ Component, emotionCache = rtlCache, pageProps }: MyAppProps) => {
   return (
     <ThemeProvider {...{ theme }}>
       <TssCacheProvider value={emotionCache}>
-        <Head>
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
-        </Head>
+        <GoogleTagManager gtmId='GTM-M6N8WFJT' />
         <StyledEngineProvider>
           <CssBaseline enableColorScheme />
           <Component {...pageProps} />

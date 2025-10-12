@@ -10,6 +10,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta name='theme-color' content='#ffd401' />
           <meta name='description' content={constants.description} />
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
           <meta name='emotion-insertion-point' content='' />
           {(this.props as any).emotionStyleTags}
           <link rel='manifest' href='/manifest.json' />
