@@ -38,7 +38,7 @@ const Cards: NextPage<ICard> = ({
       {...header}
       {...{ actions }}
       titleTypographyProps={
-        gamesCatalog ? { fontSize: 10, fontWeight: 'bold' } : undefined
+        gamesCatalog ? { fontSize: 12, fontWeight: 'bold' } : undefined
       }
     />
     <CardMedia

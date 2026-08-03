@@ -38,7 +38,7 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
           <Card
             onClick={shopImagesHandler(
               card.attributes.images.data?.id || 0,
-              card.id
+              card.id,
             )}
             backgroundColor='primary.main'
             header={{

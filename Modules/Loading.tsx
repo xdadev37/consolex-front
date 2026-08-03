@@ -14,13 +14,17 @@ const Loading: FC<ILoading> = ({ open }) => (
     classes={{ root: classes.zIndexModal }}
   >
     <Stack className={`${classes.stack} ${classes.backdrop}`}>
-      <Stack>
+      <Stack className={classes.loading}>
         {Array(4)
           .fill(1)
           .map((dot, index) => (
             <Stack key={index} />
           ))}
-        <Image alt='logo' src={Logo} />
+        <Image
+          alt='logo'
+          src={Logo}
+          style={{ borderRadius: '50%', marginTop: -30, marginRight: -50 }}
+        />
       </Stack>
     </Stack>
   </Dialog>

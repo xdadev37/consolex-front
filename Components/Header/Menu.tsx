@@ -16,6 +16,7 @@ import { useAppDispatch, useAppSelector } from 'Redux/store'
 import { useRouter } from 'next/router'
 import { selectParams, setMainPage, setParams } from 'slicers/category'
 import List_3 from './List'
+import Loading from 'Modules/Loading'
 import type { NextPage } from 'next'
 
 const AppBarMenu: NextPage = () => {
@@ -24,14 +25,14 @@ const AppBarMenu: NextPage = () => {
   const toggleDrawer = () => setOpen(!open)
   const params = useAppSelector(selectParams)
   const { isFallback, pathname, replace } = useRouter()
-  const { data } = useGetMenu_3Query(
+  const { data, isLoading } = useGetMenu_3Query(
     { 'filters[topic][$eq]': pathname === '/contents' ? 'contents' : 'shop' },
     {
       skip: isFallback,
     },
   )
   const mainPage = () => {
-    pathname === '/shop' && dispatch(setMainPage(true))
+    pathname === '/' && dispatch(setMainPage(true))
     return dispatch(setParams({ 'filters[menu_1s][key][$eq]': undefined }))
   }
   const gamesPage = () => {
@@ -85,6 +86,7 @@ const AppBarMenu: NextPage = () => {
           ))}
         </List>
       </Drawer>
+      <Loading open={isLoading} />
     </Fragment>
   )
 }

@@ -18,7 +18,7 @@ const Toggler: NextPage = () => {
         backgroundColor: '#6200ea',
       },
       {
-        value: '/shop',
+        value: '/',
         label: 'فروشگاه',
         icon: faShop,
         backgroundColor: '#ffab00',
