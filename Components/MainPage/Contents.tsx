@@ -5,6 +5,7 @@ import {
   Grid,
   IconButton,
   InputAdornment,
+  useMediaQuery,
 } from '@mui/material'
 import { useLazyImagesQuery } from 'api/images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,6 +18,7 @@ import { selectParams, setParams } from 'slicers/category'
 import Card from 'Modules/Card'
 import Modal from 'Modules/Modal'
 import type { NextPage } from 'next'
+import type { Theme } from '@mui/system'
 
 const Contents: NextPage = () => {
   const [search, setSearch] = useState('')
@@ -24,6 +26,11 @@ const Contents: NextPage = () => {
   const [modal, setModal] = useState(false)
   const params = useAppSelector(selectParams)
   const dispatch = useAppDispatch()
+  const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
+  const gamesCatalog = useMemo(
+    () => !pcMode && params && params['filters[menu_1s][key][$eq]'] === 'swny',
+    [params, pcMode],
+  )
   const [modalDescriptions, setModalDescriptions] = useState({
     cardId: 0,
     description: '',
@@ -33,7 +40,7 @@ const Contents: NextPage = () => {
     {
       refetchOnMountOrArgChange: true,
       skip: isFallback,
-    }
+    },
   )
   const [getImages, gotImages] = useLazyImagesQuery()
   const contentsImagesHandler = (id: number, cardId: number) => () =>
@@ -43,7 +50,7 @@ const Contents: NextPage = () => {
         remarkParser.process(res.attributes.descriptions).then(parsed => {
           setModalDescriptions({ cardId, description: parsed.toString() })
           return setModal(true)
-        })
+        }),
       )
 
   const cards = useMemo(
@@ -52,9 +59,10 @@ const Contents: NextPage = () => {
       data.map((card, index) => (
         <Card
           key={index}
+          gamesCatalog={gamesCatalog}
           onClick={contentsImagesHandler(
             card.attributes.images.data?.id || 0,
-            card.id
+            card.id,
           )}
           backgroundColor='primary.main'
           header={{ title: card.attributes.title }}
@@ -65,11 +73,13 @@ const Contents: NextPage = () => {
             alt: card.attributes.title,
           }}
         >
-          <Typography>{card.attributes.ps}</Typography>
+          <Typography fontSize={gamesCatalog ? 9 : undefined}>
+            {card.attributes.ps}
+          </Typography>
         </Card>
       )),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [data]
+    [data, pcMode],
   )
 
   return (
@@ -85,7 +95,7 @@ const Contents: NextPage = () => {
           return dispatch(
             setParams({
               'filters[title][$containsi]': search,
-            })
+            }),
           )
         }}
       >
@@ -133,7 +143,7 @@ const Contents: NextPage = () => {
                       input!.value = ''
                     }
                     return dispatch(
-                      setParams({ 'filters[title][$containsi]': '' })
+                      setParams({ 'filters[title][$containsi]': '' }),
                     )
                   }}
                 >
@@ -144,7 +154,7 @@ const Contents: NextPage = () => {
                     dispatch(
                       setParams({
                         'filters[title][$containsi]': search,
-                      })
+                      }),
                     )
                   }
                 >

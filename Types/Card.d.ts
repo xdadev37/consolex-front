@@ -30,5 +30,6 @@ interface ICard {
   cardActions?: JSX.Element | JSX.Element[]
   media: IMedia
   collapse?: ICollapse
+  gamesCatalog?: boolean | null
   onClick?: () => void
 }

@@ -4,21 +4,22 @@ import {
   CardHeader,
   CardContent,
   CardMedia,
-  CardActions,
-  IconButton,
-  Collapse,
+  // CardActions,
+  // IconButton,
+  // Collapse,
 } from '@mui/material'
 import sx, { color } from 'TSS/Card.module'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import appSettings from 'AppSettings'
 import type { NextPage } from 'next'
 import type { ICard } from 'Types/Card'
 
 const Cards: NextPage<ICard> = ({
   header: { actions, ...header },
-  cardActions,
-  collapse,
+  // cardActions,
+  // collapse,
+  gamesCatalog,
   children,
   media,
   onClick,
@@ -26,21 +27,30 @@ const Cards: NextPage<ICard> = ({
   <Card
     sx={{
       ...sx.card,
+      width: gamesCatalog ? 180 : 300,
+      height: gamesCatalog ? 180 : undefined,
+      margin: gamesCatalog ? 1 : 5,
       backgroundColor: color.at(Math.floor(Math.random() * color.length)),
     }}
     {...{ onClick }}
   >
-    <CardHeader {...header} {...{ actions }} />
+    <CardHeader
+      {...header}
+      {...{ actions }}
+      titleTypographyProps={
+        gamesCatalog ? { fontSize: 10, fontWeight: 'bold' } : undefined
+      }
+    />
     <CardMedia
       component='img'
       image={`${appSettings.baseUrl}${media.url}`}
       loading='lazy'
       alt={media.alt}
-      height={300}
+      height={gamesCatalog ? 100 : 300}
       sx={sx.media}
     />
     <CardContent>{children}</CardContent>
-    {(cardActions || collapse) && (
+    {/* {(cardActions || collapse) && (
       <CardActions>
         {cardActions}
         {collapse && (
@@ -60,7 +70,7 @@ const Cards: NextPage<ICard> = ({
       >
         <CardContent>{collapse.children}</CardContent>
       </Collapse>
-    )}
+    )} */}
   </Card>
 )
 

@@ -24,7 +24,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
       direction='column'
       paddingX={1}
       justifyContent='center'
-      minHeight='1000px !important'
+      // minHeight='1000px !important'
       bgcolor='#f6f6f6'
       sx={{ backgroundImage: `url(${ps.src})` }}
     >

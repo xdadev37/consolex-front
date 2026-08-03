@@ -23,16 +23,20 @@ const AppBarMenu: NextPage = () => {
   const [open, setOpen] = useState(false)
   const toggleDrawer = () => setOpen(!open)
   const params = useAppSelector(selectParams)
-  const { isFallback, pathname } = useRouter()
+  const { isFallback, pathname, replace } = useRouter()
   const { data } = useGetMenu_3Query(
     { 'filters[topic][$eq]': pathname === '/contents' ? 'contents' : 'shop' },
     {
       skip: isFallback,
-    }
+    },
   )
   const mainPage = () => {
     pathname === '/shop' && dispatch(setMainPage(true))
     return dispatch(setParams({ 'filters[menu_1s][key][$eq]': undefined }))
+  }
+  const gamesPage = () => {
+    replace('/contents')
+    return dispatch(setParams({ 'filters[menu_1s][key][$eq]': 'swny' }))
   }
 
   useEffect(() => setOpen(false), [params])
@@ -46,6 +50,13 @@ const AppBarMenu: NextPage = () => {
           sx={{ cursor: 'pointer' }}
         >
           صفحه اصلی
+        </Typography>
+        <Typography
+          onClick={gamesPage}
+          marginLeft={1}
+          sx={{ cursor: 'pointer' }}
+        >
+          لیست بازی ها
         </Typography>
         {data?.map(m => (
           <Popover_Menu key={m.id} d={m} />
@@ -63,6 +74,11 @@ const AppBarMenu: NextPage = () => {
         <List>
           <ListItemButton onClick={mainPage}>
             <ListItemText sx={{ textAlign: 'right' }}>صفحه اصلی</ListItemText>
+          </ListItemButton>
+          <ListItemButton onClick={gamesPage}>
+            <ListItemText sx={{ textAlign: 'right' }}>
+              لیست بازی ها
+            </ListItemText>
           </ListItemButton>
           {data?.map(m => (
             <List_3 key={m.id} {...m} />
