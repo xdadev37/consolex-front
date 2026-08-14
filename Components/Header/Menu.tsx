@@ -24,7 +24,7 @@ const AppBarMenu: NextPage = () => {
   const [open, setOpen] = useState(false)
   const toggleDrawer = () => setOpen(!open)
   const params = useAppSelector(selectParams)
-  const { isFallback, pathname, replace } = useRouter()
+  const { isFallback, pathname, push } = useRouter()
   const { data, isLoading } = useGetMenu_3Query(
     { 'filters[topic][$eq]': pathname === '/contents' ? 'contents' : 'shop' },
     {
@@ -36,7 +36,7 @@ const AppBarMenu: NextPage = () => {
     return dispatch(setParams({ 'filters[menu_1s][key][$eq]': undefined }))
   }
   const gamesPage = () => {
-    replace('/contents')
+    push('/contents')
     return dispatch(setParams({ 'filters[menu_1s][key][$eq]': 'swny' }))
   }
 
