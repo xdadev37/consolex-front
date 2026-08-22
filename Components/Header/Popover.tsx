@@ -2,7 +2,7 @@ import { useState, Fragment, memo } from 'react'
 import { Grid, Popper, Typography, Divider, Paper } from '@mui/material'
 import { useAppDispatch } from 'Redux/store'
 import { setParams, setMainPage } from 'slicers/category'
-import Image from 'next/image'
+// import Image from 'next/image'
 import appSettings from 'AppSettings'
 import { useRouter } from 'next/router'
 import type { ICategories, IMenu_3 } from 'Types/Redux/Categories.d'
@@ -84,10 +84,8 @@ const Popover_Menu: NextPage<Record<'d', ICategories<IMenu_3>>> = ({ d }) => {
             ))}
           </Grid>
           <Grid item sm={6} md={6} lg={6}>
-            <Image
-              width={10}
-              height={5}
-              layout='responsive'
+            <img
+              width='80%'
               style={{ borderRadius: 5 }}
               alt={d?.attributes.value}
               src={`${appSettings.baseUrl}${
