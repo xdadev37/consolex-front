@@ -178,7 +178,7 @@ const Contents: NextPage = () => {
           open={modal}
           setOpen={setModal}
           images={{ data: gotImages.data?.attributes.images.data || [] }}
-          shareUri={`${route}?filters[id][$eq]=${modalDescriptions.cardId}`}
+          shareUri={`${route}?filters.id.eq=${modalDescriptions.cardId}`}
           descriptions={modalDescriptions.description}
         />
       </Grid>
