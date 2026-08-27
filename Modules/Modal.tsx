@@ -49,7 +49,7 @@ const ContentModal: NextPage<IModal> = ({
         {isShareSupported && (
           <IconButton
             color='info'
-            onClick={async () => await navigator.share({ url: shareUri })}
+            onClick={async () => await navigator.share({ url: `'${shareUri}'` })}
           >
             <FontAwesomeIcon size='lg' icon={faShareNodes} />
           </IconButton>
