@@ -162,7 +162,7 @@ const Shop: NextPage = () => {
           open={modal}
           setOpen={setModal}
           images={{ data: gotShopImages.data?.attributes.images.data || [] }}
-          shareUri={`${route}?filters.id.eq=${modalDescriptions.cardId}`}
+          shareUri={`${route}?filters[id][$eq]=${modalDescriptions.cardId}`}
           descriptions={modalDescriptions.description}
         />
       </Grid>
