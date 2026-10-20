@@ -22,5 +22,10 @@ const imagesApi = createApi({
   },
 })
 
-export const { useLazyImagesQuery, reducer, reducerPath, middleware } =
-  imagesApi
+export const {
+  useImagesQuery,
+  useLazyImagesQuery,
+  reducer,
+  reducerPath,
+  middleware,
+} = imagesApi

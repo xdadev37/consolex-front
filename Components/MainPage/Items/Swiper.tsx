@@ -108,4 +108,5 @@ const SwiperFC: FC<ISwiper> = ({ data, shopImagesHandler }) => {
     </Swiper>
   )
 }
+
 export default SwiperFC

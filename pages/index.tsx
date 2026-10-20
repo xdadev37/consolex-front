@@ -1,7 +1,5 @@
 import MainPage from 'Components/MainPage/MainPage'
 import Shop from 'Components/MainPage/Shop'
-import { Fragment } from 'react'
-import Head from 'next/head'
 import {
   getRunningQueriesThunk,
   getConsoles,

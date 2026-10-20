@@ -26,11 +26,11 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
       justifyContent='center'
       // minHeight='1000px !important'
       bgcolor='#f6f6f6'
+      gap={3}
+      marginTop={2}
       sx={{ backgroundImage: `url(${ps.src})` }}
     >
-      <Grid container gap={3} marginTop={2} justifyContent='center'>
-        {children}
-      </Grid>
+      {children}
     </Grid>
     <Footer />
   </Fragment>
