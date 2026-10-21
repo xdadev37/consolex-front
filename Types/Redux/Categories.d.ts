@@ -1,5 +1,6 @@
 import type { IAttributes as IImage, IId } from 'Types/Redux/Images.d'
 import type { IParams } from 'Types/Redux/Shop.d'
+import type { IImages } from 'Types/Redux/Images'
 
 interface IAttributes {
   value: string
@@ -25,4 +26,5 @@ interface IMenu_3 extends IAttributes {
 interface ISlicer {
   params: IParams | null
   mainPage: boolean
+  images: IImages | null
 }

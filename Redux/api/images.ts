@@ -1,4 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
+import { setImages } from 'slicers/category'
 import baseQuery from 'Redux/axiosQuery'
 import { HYDRATE } from 'next-redux-wrapper'
 import type { IImages } from 'Types/Redux/Images'
@@ -15,6 +16,12 @@ const imagesApi = createApi({
       }),
       transformResponse: (res: Record<'data', Record<'attributes', IImages>>) =>
         res.data,
+      onQueryStarted: (a, { queryFulfilled, dispatch }) => {
+        queryFulfilled.then(res => {
+          console.log(res.data.attributes,'sda')
+          dispatch(setImages(res.data.attributes))
+        })
+      },
     }),
   }),
   extractRehydrationInfo: (action, { reducerPath }) => {
@@ -23,6 +30,7 @@ const imagesApi = createApi({
 })
 
 export const {
+  endpoints: { images },
   useImagesQuery,
   useLazyImagesQuery,
   reducer,
