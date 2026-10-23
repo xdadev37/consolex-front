@@ -26,5 +26,4 @@ interface IMenu_3 extends IAttributes {
 interface ISlicer {
   params: IParams | null
   mainPage: boolean
-  images: IImages | null
 }

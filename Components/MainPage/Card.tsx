@@ -5,8 +5,10 @@ import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShareNodes } from '@fortawesome/free-solid-svg-icons'
 import { useAppSelector } from 'Redux/store'
-import { useGetImagesQuery } from 'api/contents'
-import { selectParams, selectImages } from 'slicers/category'
+import { useGetContentsQuery } from 'api/contents'
+import { useImagesQuery } from 'api/images'
+import { selectParams } from 'slicers/category'
+import appSettings from 'AppSettings'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import Gallery from 'react-image-gallery'
 import Loading from 'Modules/Loading'
@@ -21,20 +23,24 @@ const Card: NextPage = () => {
   const [isShareSupported, setIsShareSupported] = useState(true)
   const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
   const params = useAppSelector(selectParams)
-  const images = useAppSelector(selectImages)
-  const { data, isLoading } = useGetImagesQuery(
+  // const images = useAppSelector(selectImages)
+  const contents = useGetContentsQuery(
     { ...params, ...query },
     {
       refetchOnMountOrArgChange: true,
       skip: isFallback,
     },
   )
+  const { data, isLoading } = useImagesQuery(contents.data?.at(0)?.id || 0, {
+    refetchOnMountOrArgChange: true,
+    skip: isFallback && !contents.data?.at(0)?.id,
+  })
   useEffect(() => {
     setIsShareSupported(Boolean(navigator.canShare))
     remarkParser
-      .process(images?.descriptions || '')
+      .process(data?.attributes.descriptions || '')
       .then(res => setParsed(res.value.toString()))
-  }, [images?.descriptions])
+  }, [data?.attributes.descriptions])
   const AnyGallery: any = Gallery
 
   return (
@@ -48,11 +54,7 @@ const Card: NextPage = () => {
       {isShareSupported && (
         <IconButton
           color='info'
-          onClick={async () =>
-            await navigator.share({
-              url: `${route}?filters[id][$eq]=${images?.images.data?.at(0)?.id}`,
-            })
-          }
+          onClick={async () => await navigator.share({ url: route })}
         >
           <FontAwesomeIcon size='lg' icon={faShareNodes} />
         </IconButton>
@@ -70,7 +72,7 @@ const Card: NextPage = () => {
         paddingLeft={pcMode ? 5 : undefined}
         dangerouslySetInnerHTML={{ __html: parsed }}
       />
-      {/* <Grid
+      <Grid
         item
         xs={12}
         sm={12}
@@ -81,7 +83,7 @@ const Card: NextPage = () => {
       >
         <AnyGallery
           additionalClass={classes.gallery}
-          items={images.data?.attributes.images.data.map(image => ({
+          items={data?.attributes.images.data.map(image => ({
             original: `${appSettings.baseUrl}${
               pcMode && image.attributes.formats.medium
                 ? image.attributes.formats.medium.url
@@ -106,7 +108,7 @@ const Card: NextPage = () => {
           showThumbnails={false}
           showNav={false}
         />
-      </Grid> */}
+      </Grid>
       <Loading open={isLoading} />
     </Grid>
   )
