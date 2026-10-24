@@ -23,7 +23,9 @@ const Card: NextPage = () => {
   const [isShareSupported, setIsShareSupported] = useState(true)
   const pcMode = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
   const params = useAppSelector(selectParams)
-  // const images = useAppSelector(selectImages)
+  const [images, setImages] = useState<
+    { original: string; thumbnail: string }[]
+  >([])
   const contents = useGetContentsQuery(
     { ...params, ...query },
     {
@@ -33,14 +35,27 @@ const Card: NextPage = () => {
   )
   const { data, isLoading } = useImagesQuery(contents.data?.at(0)?.id || 0, {
     refetchOnMountOrArgChange: true,
-    skip: isFallback && !contents.data?.at(0)?.id,
+    skip: !contents.data?.at(0)?.id,
   })
   useEffect(() => {
     setIsShareSupported(Boolean(navigator.canShare))
     remarkParser
       .process(data?.attributes.descriptions || '')
       .then(res => setParsed(res.value.toString()))
-  }, [data?.attributes.descriptions])
+    data &&
+      setImages(
+        data?.attributes.images.data.map(image => ({
+          original: `${appSettings.baseUrl}${
+            pcMode && image.attributes.formats.medium
+              ? image.attributes.formats.medium.url
+              : image.attributes.formats.small
+                ? image.attributes.formats.small.url
+                : image.attributes.formats.thumbnail.url
+          }`,
+          thumbnail: `${appSettings.baseUrl}${image.attributes.formats.thumbnail.url}`,
+        })),
+      )
+  }, [data, pcMode])
   const AnyGallery: any = Gallery
 
   return (
@@ -83,16 +98,7 @@ const Card: NextPage = () => {
       >
         <AnyGallery
           additionalClass={classes.gallery}
-          items={data?.attributes.images.data.map(image => ({
-            original: `${appSettings.baseUrl}${
-              pcMode && image.attributes.formats.medium
-                ? image.attributes.formats.medium.url
-                : image.attributes.formats.small
-                  ? image.attributes.formats.small.url
-                  : image.attributes.formats.thumbnail.url
-            }`,
-            thumbnail: `${appSettings.baseUrl}${image.attributes.formats.thumbnail.url}`,
-          }))}
+          items={images}
           lazyLoad
           autoPlay
           infinite
