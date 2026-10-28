@@ -33,10 +33,13 @@ const Card: NextPage = () => {
       skip: isFallback,
     },
   )
-  const { data, isLoading } = useImagesQuery(contents.data?.at(0)?.id || 0, {
-    refetchOnMountOrArgChange: true,
-    skip: !contents.data?.at(0)?.id,
-  })
+  const { data, isLoading } = useImagesQuery(
+    contents.data?.at(0)?.attributes.images.data.id || 0,
+    {
+      refetchOnMountOrArgChange: true,
+      skip: !contents.data?.at(0)?.id,
+    },
+  )
   useEffect(() => {
     setIsShareSupported(Boolean(navigator.canShare))
     remarkParser
@@ -74,6 +77,9 @@ const Card: NextPage = () => {
           <FontAwesomeIcon size='lg' icon={faShareNodes} />
         </IconButton>
       )}
+      <Grid container marginRight={15} fontWeight='bolder' fontStyle='italic'>
+        * {contents.data?.at(0)?.attributes.title} *
+      </Grid>
       <Grid
         item
         xs={12}
