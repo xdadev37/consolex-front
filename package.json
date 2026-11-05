@@ -62,7 +62,6 @@
   "devDependencies": {
     "@yarnpkg/plugin-interactive-tools": "^4.0.0-rc.45",
     "@yarnpkg/plugin-nm": "^4.0.0-rc.45",
-    "@yarnpkg/sdks": "^3.0.0-rc.45",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "next-sitemap": "^4.1.3",
