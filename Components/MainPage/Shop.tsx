@@ -73,10 +73,10 @@ const Shop: NextPage = () => {
               key={i}
               container
               direction='column'
-              component={Paper}
               borderRadius={5}
               paddingY={3}
               marginY={3}
+              sx={{ backgroundColor: '#ffffff90' }}
             >
               <Typography variant='h5' marginRight={3}>
                 {name}

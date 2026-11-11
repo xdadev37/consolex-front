@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Toggler from 'Components/MainPage/Items/Toggler'
 import TopAppBar from 'Components/TopAppBar'
 import Footer from 'Components/Footer/Footer'
-import ps from './image.jpg'
+import ps from './image.png'
 import type { NextPage } from 'next'
 import type { IChildren } from 'Types/Children'
 
@@ -28,7 +28,7 @@ const MainPage: NextPage<IChildren> = ({ children }) => (
       bgcolor='#f6f6f6'
       gap={3}
       marginTop={2}
-      sx={{ backgroundImage: `url(${ps.src})` }}
+      sx={{ backgroundImage: ` linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 50%)), url(${ps.src})`, backgroundColor: '#00000090' }}
     >
       {children}
     </Grid>
