@@ -24,7 +24,7 @@ const Toggler: NextPage = () => {
         backgroundColor: '#ffab00',
       },
     ],
-    []
+    [],
   )
 
   return (
